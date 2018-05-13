@@ -1,6 +1,6 @@
 from flask import Flask, render_template, jsonify, redirect
 from flask_pymongo import PyMongo
-import scrape_surfing
+import surfer
 
 
 app = Flask(__name__)
