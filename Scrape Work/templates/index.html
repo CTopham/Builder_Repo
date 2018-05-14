@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Mars Data</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+        <div class="container">
+
+                <div class="jumbotron text-center">
+                  <h1>Lets Move to Mars</h1>
+                  <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Mars Data</a></p>
+                </div>
+
+                    <!-- Craigslist Listings -->
+            <div class="row">
+            <div class="col-sm-9">
+        
+              <h2 class="heading">{{listing.News_Title}}</h2>
+              <h4 class="heading">{{listing.Newsp}}</h4>
+            </div>
+            
+            <div class="col-sm-3">
+                    <div class="panel panel-default">
+                            <div class="panel-heading">Marshan Weather</div>
+                            <div class="panel-body">
+                            <p font-size: 30px>{{listing.New_Tweet}}</p>
+</div>
+</div>
+</div>
+  
+        <div class="row">
+        <div class="col-sm-9">
+      
+                <img src= {{ listing.featured_image_url }} alt="Featured Mars Image">
+
+        </div>
+        </div>
+
+
+
+
+</div>         
+</div>
+</div>
+
+
+
+</body>
+</html>
