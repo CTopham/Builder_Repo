@@ -73,5 +73,68 @@ def scrape():
     soup = BeautifulSoup(html, "html.parser")
     last_tweet = soup.find(class_="TweetTextSize TweetTextSize--jumbo js-tweet-text tweet-text").get_text()
     listing['New_Tweet']=last_tweet
+
+# Grabbing Mars Photos
+    time.sleep(5)
+    url = "https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars"
+    browser.visit(url)
+    time.sleep(2)
+    #grabbing html
+    html = browser.html
+    soup = BeautifulSoup(html, "html.parser")
+
+        #Pulling data from Cerberus Page
+    xpath = '//*[contains(@src,"/cache/images/dfaf3849e74bf973b59eb50dab52b583_cerberus_enhanced.tif_thumb.png")]'
+    results = browser.find_by_xpath(xpath)
+    img = results[0]
+    img.click()
+    time.sleep(6)
+    html = browser.html
+    soup = BeautifulSoup(html, "html.parser")
+    listing["cerb_title"] = soup.find(class_='title').text
+    all_Images = soup.find("div", {"downloads"},{"img"})
+    listing['cerb_img'] = all_Images.find('a', href=True)['href']
+    
+    #Pulling data from Schiaparelli Page
+    browser.execute_script("window.history.go(-1)")
+    time.sleep(2)
+    xpath = '//*[contains(@src,"/cache/images/7677c0a006b83871b5a2f66985ab5857_schiaparelli_enhanced.tif_thumb.png")]'
+    results = browser.find_by_xpath(xpath)
+    img = results[0]
+    img.click()
+    time.sleep(2)
+    html = browser.html
+    soup = BeautifulSoup(html, "html.parser")
+    listing["schia_title"] = soup.find(class_='title').text
+    all_Images = soup.find("div", {"downloads"},{"img"})
+    listing['schia_img'] = all_Images.find('a', href=True)['href']
+    
+        #Pulling data from Syrtus Page
+    browser.execute_script("window.history.go(-1)")
+    time.sleep(2)
+    xpath = '//*[contains(@src,"/cache/images/aae41197e40d6d4f3ea557f8cfe51d15_syrtis_major_enhanced.tif_thumb.png")]'
+    results = browser.find_by_xpath(xpath)
+    img = results[0]
+    img.click()
+    time.sleep(2)
+    html = browser.html
+    soup = BeautifulSoup(html, "html.parser")
+    listing["syrtus_title"] = soup.find(class_='title').text
+    all_Images = soup.find("div", {"downloads"},{"img"})
+    listing['syrtus_img'] = all_Images.find('a', href=True)['href']
+    
+        #Pulling data from Valles Marineras Page
+    browser.execute_script("window.history.go(-1)")
+    time.sleep(2)
+    xpath = '//*[contains(@src,"/cache/images/04085d99ec3713883a9a57f42be9c725_valles_marineris_enhanced.tif_thumb.png")]'
+    results = browser.find_by_xpath(xpath)
+    img = results[0]
+    img.click()
+    time.sleep(2)
+    html = browser.html
+    soup = BeautifulSoup(html, "html.parser")
+    listing["vm_title"] = soup.find(class_='title').text
+    all_Images = soup.find("div", {"downloads"},{"img"})
+    listing['vm_img'] = all_Images.find('a', href=True)['href']
     
     return listing
