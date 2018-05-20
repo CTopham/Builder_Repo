@@ -1,0 +1,8413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Alien Project</title>
+<style>
+  h4{
+    display: inline-block;
+}
+</style>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+    
+
+</head>
+<!--  create a table dynamically based upon a dataset -->
+<!--  allow our users to search through the table  -->
+<!--  column for: date/time, city, state, country, shape, and comment -->
+<!--  Add an input tag to your HTML document and write JavaScript code that will search through the date/time -->
+<!--  Using multiple input tags and/or select dropdowns, write JavaScript code so the user can to set multiple filters -->
+<!--  date/time/city/state/country/shape -->
+<!--  client-side pagination 50 results per page -->
+<body>
+
+    <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <h4>
+              <input type="datetime" class="form-control" id="dlook" placeholder="Search Date">
+              <a id="dtime" class="btn btn-default">Date Search</a>
+              <br>
+
+              <input type="text" class="form-control" id="look" placeholder="Other Search">
+              <a id="city" class="btn btn-default">City Search</a>
+              <a id="state" class="btn btn-default">State Search</a>
+              <a id="country" class="btn btn-default">Country Search</a>
+              <a id="shape" class="btn btn-default">Shape Search</a>
+              
+            </h4>
+              
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            
+            <table class="table table-striped" id="alienTable">
+<thead>
+  <tr style="text-align: right;">
+    <th></th>
+    <th>datetime</th>
+    <th>city</th>
+    <th>state</th>
+    <th>country</th>
+    <th>durationMinutes</th>
+    <th>shape</th>
+    <th>comments</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <th>0</th>
+    <td>01/01/2010</td>
+    <td>benton</td>
+    <td>ar</td>
+    <td>us</td>
+    <td>5 mins.</td>
+    <td>circle</td>
+    <td>4 bright green circles high in the sky going i...</td>
+  </tr>
+  <tr>
+    <th>1</th>
+    <td>01/01/2010</td>
+    <td>bonita</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>13 minutes</td>
+    <td>light</td>
+    <td>Three bright red lights witnessed floating sta...</td>
+  </tr>
+  <tr>
+    <th>2</th>
+    <td>01/01/2010</td>
+    <td>el cajon</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>6 minutes</td>
+    <td>triangle</td>
+    <td>On New Years Eve I went outside to hear the ce...</td>
+  </tr>
+  <tr>
+    <th>3</th>
+    <td>01/01/2010</td>
+    <td>el cajon</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>12 minutes</td>
+    <td>triangle</td>
+    <td>3 Red objects hovering over El Cajon CA</td>
+  </tr>
+  <tr>
+    <th>4</th>
+    <td>01/01/2010</td>
+    <td>fresno</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>1 min</td>
+    <td>light</td>
+    <td>Fresno cal. bright light hovers over head then...</td>
+  </tr>
+  <tr>
+    <th>5</th>
+    <td>01/01/2010</td>
+    <td>grants pass</td>
+    <td>or</td>
+    <td>us</td>
+    <td>a few mintues</td>
+    <td>triangle</td>
+    <td>Triangle shaped craft with three red lights at...</td>
+  </tr>
+  <tr>
+    <th>6</th>
+    <td>01/01/2010</td>
+    <td>la mesa</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>10 min</td>
+    <td>light</td>
+    <td>Three red lights over southern California that...</td>
+  </tr>
+  <tr>
+    <th>7</th>
+    <td>01/01/2010</td>
+    <td>lemon grove</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>about 15 minutes</td>
+    <td>light</td>
+    <td>3 Red lights in line pattern above El Cajon/ E...</td>
+  </tr>
+  <tr>
+    <th>8</th>
+    <td>01/01/2010</td>
+    <td>maricopa</td>
+    <td>az</td>
+    <td>us</td>
+    <td>3 minutes</td>
+    <td>unknown</td>
+    <td>One huge UFO or three seperate ones</td>
+  </tr>
+  <tr>
+    <th>9</th>
+    <td>01/01/2010</td>
+    <td>park city</td>
+    <td>ky</td>
+    <td>us</td>
+    <td>2-3 seconds</td>
+    <td>light</td>
+    <td>Lights orbiting the moon</td>
+  </tr>
+  <tr>
+    <th>10</th>
+    <td>01/01/2010</td>
+    <td>st. louis</td>
+    <td>mo</td>
+    <td>us</td>
+    <td>1 min</td>
+    <td>fireball</td>
+    <td>7 floating orbs or fireballs moving from south...</td>
+  </tr>
+  <tr>
+    <th>11</th>
+    <td>01/01/2010</td>
+    <td>el cajon</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>15 min.</td>
+    <td>formation</td>
+    <td>Three red lights over the San Diego area - IT&amp;...</td>
+  </tr>
+  <tr>
+    <th>12</th>
+    <td>01/01/2010</td>
+    <td>spring valley</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>10:00</td>
+    <td>light</td>
+    <td>Three bright red lights in a straight line for...</td>
+  </tr>
+  <tr>
+    <th>13</th>
+    <td>01/01/2010</td>
+    <td>willow</td>
+    <td>ak</td>
+    <td>us</td>
+    <td>7 min</td>
+    <td>formation</td>
+    <td>four orange red objects suddenly appear 12:01 ...</td>
+  </tr>
+  <tr>
+    <th>14</th>
+    <td>01/01/2010</td>
+    <td>antioch</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>30 minuets</td>
+    <td>other</td>
+    <td>Objects in sky over Antioch California 12:03AM...</td>
+  </tr>
+  <tr>
+    <th>15</th>
+    <td>01/01/2010</td>
+    <td>el cajon</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>10min</td>
+    <td>light</td>
+    <td>3 red lights in sky new years 2010</td>
+  </tr>
+  <tr>
+    <th>16</th>
+    <td>01/01/2010</td>
+    <td>naples</td>
+    <td>fl</td>
+    <td>us</td>
+    <td>2 min</td>
+    <td>sphere</td>
+    <td>i&amp;#39m in naples park. last night&amp;#44 my husba...</td>
+  </tr>
+  <tr>
+    <th>17</th>
+    <td>01/01/2010</td>
+    <td>la mesa</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>4-6 minutes</td>
+    <td>triangle</td>
+    <td>3 bright red lights hovering high in the sky i...</td>
+  </tr>
+  <tr>
+    <th>18</th>
+    <td>01/01/2010</td>
+    <td>anchorage</td>
+    <td>ak</td>
+    <td>us</td>
+    <td>one minute</td>
+    <td>light</td>
+    <td>Upper atmosphere object moving south&amp;#44 becom...</td>
+  </tr>
+  <tr>
+    <th>19</th>
+    <td>01/01/2010</td>
+    <td>national city</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>25 mintutes</td>
+    <td>formation</td>
+    <td>3 red lights over the mountains in Eastern San...</td>
+  </tr>
+  <tr>
+    <th>20</th>
+    <td>01/01/2010</td>
+    <td>boca raton</td>
+    <td>fl</td>
+    <td>us</td>
+    <td>4 minutes</td>
+    <td>fireball</td>
+    <td>Slow moving fireball northbound at hight altit...</td>
+  </tr>
+  <tr>
+    <th>21</th>
+    <td>01/01/2010</td>
+    <td>falcon</td>
+    <td>co</td>
+    <td>us</td>
+    <td>8 mins</td>
+    <td>disk</td>
+    <td>We experienced red disk over the falcon&amp;#44 co...</td>
+  </tr>
+  <tr>
+    <th>22</th>
+    <td>01/01/2010</td>
+    <td>crestview</td>
+    <td>fl</td>
+    <td>us</td>
+    <td>2 minutes</td>
+    <td>unknown</td>
+    <td>Orange/Yellow flickering light in the sky with...</td>
+  </tr>
+  <tr>
+    <th>23</th>
+    <td>01/01/2010</td>
+    <td>aspen</td>
+    <td>co</td>
+    <td>us</td>
+    <td>2 mins</td>
+    <td>chevron</td>
+    <td>New Years Eve Anomoly In Aspen Colorado</td>
+  </tr>
+  <tr>
+    <th>24</th>
+    <td>01/01/2010</td>
+    <td>walworth</td>
+    <td>wi</td>
+    <td>us</td>
+    <td>5-7 minutes</td>
+    <td>sphere</td>
+    <td>Large red/orange orb traveling southeast betwe...</td>
+  </tr>
+  <tr>
+    <th>25</th>
+    <td>01/01/2010</td>
+    <td>baker</td>
+    <td>fl</td>
+    <td>us</td>
+    <td>15</td>
+    <td>unknown</td>
+    <td>Six flickering orange lights over baker</td>
+  </tr>
+  <tr>
+    <th>26</th>
+    <td>01/01/2010</td>
+    <td>san diego</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>20 minutes</td>
+    <td>sphere</td>
+    <td>Orange spheres in sky New Year&amp;#39s Eve&amp;#44 Sa...</td>
+  </tr>
+  <tr>
+    <th>27</th>
+    <td>01/01/2010</td>
+    <td>willow</td>
+    <td>ak</td>
+    <td>us</td>
+    <td>10-11 min</td>
+    <td>sphere</td>
+    <td>4 redishorange shpereiodical objects appear du...</td>
+  </tr>
+  <tr>
+    <th>28</th>
+    <td>01/01/2010</td>
+    <td>san diego</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>3 minutes</td>
+    <td>triangle</td>
+    <td>It happen nEw years eve 2010</td>
+  </tr>
+  <tr>
+    <th>29</th>
+    <td>01/01/2010</td>
+    <td>haverhill</td>
+    <td>ma</td>
+    <td>us</td>
+    <td>30 seconds</td>
+    <td>triangle</td>
+    <td>Haverhill Massachusetts triangle object sighting</td>
+  </tr>
+  <tr>
+    <th>30</th>
+    <td>01/01/2010</td>
+    <td>pasadena</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>1 minute</td>
+    <td>triangle</td>
+    <td>Walking on Cordova westbound just before the H...</td>
+  </tr>
+  <tr>
+    <th>31</th>
+    <td>01/01/2010</td>
+    <td>albuquerque</td>
+    <td>nm</td>
+    <td>us</td>
+    <td>half an hour</td>
+    <td>light</td>
+    <td>My wife and I were outside in the Jacuzzi when...</td>
+  </tr>
+  <tr>
+    <th>32</th>
+    <td>01/01/2010</td>
+    <td>jasper</td>
+    <td>fl</td>
+    <td>us</td>
+    <td>1 min</td>
+    <td>sphere</td>
+    <td>Bright light sets in the eastren sky.</td>
+  </tr>
+  <tr>
+    <th>33</th>
+    <td>01/01/2010</td>
+    <td>bakersfield</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>1 minute</td>
+    <td>light</td>
+    <td>Two Crafts dancing in the sky&amp;#33</td>
+  </tr>
+  <tr>
+    <th>34</th>
+    <td>01/02/2010</td>
+    <td>orange</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>5-6 minutes</td>
+    <td>light</td>
+    <td>Point of light in daytime sky over Orange&amp;#44 CA</td>
+  </tr>
+  <tr>
+    <th>35</th>
+    <td>01/02/2010</td>
+    <td>phoenix</td>
+    <td>az</td>
+    <td>us</td>
+    <td>10 seconds</td>
+    <td>rectangle</td>
+    <td>A bright light in Phoenix hovered above houses...</td>
+  </tr>
+  <tr>
+    <th>36</th>
+    <td>01/02/2010</td>
+    <td>sacramento</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>4min</td>
+    <td>triangle</td>
+    <td>Triangle shaped object spotted over Sacramento...</td>
+  </tr>
+  <tr>
+    <th>37</th>
+    <td>01/02/2010</td>
+    <td>middleburg</td>
+    <td>fl</td>
+    <td>us</td>
+    <td>10 minutes</td>
+    <td>sphere</td>
+    <td>I was on my way out the door of my house &amp;#44 ...</td>
+  </tr>
+  <tr>
+    <th>38</th>
+    <td>01/02/2010</td>
+    <td>waxhaw</td>
+    <td>nc</td>
+    <td>us</td>
+    <td>1 minute</td>
+    <td>sphere</td>
+    <td>red glow/flame over waxhaw&amp;#44 nc</td>
+  </tr>
+  <tr>
+    <th>39</th>
+    <td>01/02/2010</td>
+    <td>madison</td>
+    <td>al</td>
+    <td>us</td>
+    <td>2 minutes</td>
+    <td>triangle</td>
+    <td>Triangle shaped craft with orange-yellow light...</td>
+  </tr>
+  <tr>
+    <th>40</th>
+    <td>01/02/2010</td>
+    <td>loveland</td>
+    <td>co</td>
+    <td>us</td>
+    <td>5 minutes</td>
+    <td>cross</td>
+    <td>extremely bright light over tree in loveland&amp;#...</td>
+  </tr>
+  <tr>
+    <th>41</th>
+    <td>01/02/2010</td>
+    <td>atlanta</td>
+    <td>ga</td>
+    <td>us</td>
+    <td>3 seconds</td>
+    <td>fireball</td>
+    <td>glowing red spaceship flys at car</td>
+  </tr>
+  <tr>
+    <th>42</th>
+    <td>01/03/2010</td>
+    <td>mason</td>
+    <td>oh</td>
+    <td>us</td>
+    <td>20 mins</td>
+    <td>circle</td>
+    <td>didnt move like a plane or helicopter&amp;#44 too ...</td>
+  </tr>
+  <tr>
+    <th>43</th>
+    <td>01/04/2010</td>
+    <td>glen spey</td>
+    <td>ny</td>
+    <td>us</td>
+    <td>35 mins</td>
+    <td>flash</td>
+    <td>colorful flashing craft hovers for 30mins &amp;amp...</td>
+  </tr>
+  <tr>
+    <th>44</th>
+    <td>01/04/2010</td>
+    <td>reedville</td>
+    <td>va</td>
+    <td>us</td>
+    <td>abt 1 hour</td>
+    <td>changing</td>
+    <td>Spherical flashing lights&amp;#44 hovering in the ...</td>
+  </tr>
+  <tr>
+    <th>45</th>
+    <td>01/04/2010</td>
+    <td>cleveland</td>
+    <td>oh</td>
+    <td>us</td>
+    <td>downtown</td>
+    <td>triangle</td>
+    <td>is it a ufo</td>
+  </tr>
+  <tr>
+    <th>46</th>
+    <td>01/04/2010</td>
+    <td>whittier</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>3 seconds</td>
+    <td>light</td>
+    <td>Thick bright light travels across southern Cal...</td>
+  </tr>
+  <tr>
+    <th>47</th>
+    <td>01/04/2010</td>
+    <td>ben wheeler</td>
+    <td>tx</td>
+    <td>us</td>
+    <td>2-3 minutes</td>
+    <td>light</td>
+    <td>Very bright light&amp;#44 flying lower than a jet;...</td>
+  </tr>
+  <tr>
+    <th>48</th>
+    <td>01/04/2010</td>
+    <td>san pablo</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>4 hours</td>
+    <td>unknown</td>
+    <td>Extremely high&amp;#44 hovering object blinking va...</td>
+  </tr>
+  <tr>
+    <th>49</th>
+    <td>01/04/2010</td>
+    <td>cedar rapids</td>
+    <td>ia</td>
+    <td>us</td>
+    <td>15 min</td>
+    <td>light</td>
+    <td>Two very bright white lights come close togeth...</td>
+  </tr>
+  <tr>
+    <th>50</th>
+    <td>01/04/2010</td>
+    <td>el cajon</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>noticed from dusk to dawn</td>
+    <td>light</td>
+    <td>&amp;quot;Fake stars&amp;quot; over San Diego&amp;#44 CA</td>
+  </tr>
+  <tr>
+    <th>51</th>
+    <td>01/05/2010</td>
+    <td>princeton</td>
+    <td>in</td>
+    <td>us</td>
+    <td>15 seconds</td>
+    <td>disk</td>
+    <td>Flying Saucer hovering above ground.</td>
+  </tr>
+  <tr>
+    <th>52</th>
+    <td>01/05/2010</td>
+    <td>chula vista</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>10 seconds</td>
+    <td>oval</td>
+    <td>One Oval Spining above Chula Vista</td>
+  </tr>
+  <tr>
+    <th>53</th>
+    <td>01/05/2010</td>
+    <td>colonia</td>
+    <td>nj</td>
+    <td>us</td>
+    <td>15 min</td>
+    <td>unknown</td>
+    <td>loud aircraft that could be heard for up to 15...</td>
+  </tr>
+  <tr>
+    <th>54</th>
+    <td>01/05/2010</td>
+    <td>clinton</td>
+    <td>nj</td>
+    <td>us</td>
+    <td>3 weeks</td>
+    <td>cigar</td>
+    <td>Traveling to Pennylvania.</td>
+  </tr>
+  <tr>
+    <th>55</th>
+    <td>01/05/2010</td>
+    <td>new paltz</td>
+    <td>ny</td>
+    <td>us</td>
+    <td>45 seconds</td>
+    <td>triangle</td>
+    <td>Black Triangular Aircraft w/ Three White Light...</td>
+  </tr>
+  <tr>
+    <th>56</th>
+    <td>01/05/2010</td>
+    <td>rockwell</td>
+    <td>nc</td>
+    <td>us</td>
+    <td>40 seconds</td>
+    <td>cigar</td>
+    <td>Brilliant silver/white silent object flew into...</td>
+  </tr>
+  <tr>
+    <th>57</th>
+    <td>01/05/2010</td>
+    <td>anderson</td>
+    <td>sc</td>
+    <td>us</td>
+    <td>seven minutes</td>
+    <td>light</td>
+    <td>Orange light that set down in woods&amp;#44 got br...</td>
+  </tr>
+  <tr>
+    <th>58</th>
+    <td>01/06/2010</td>
+    <td>san diego</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>20 minutes</td>
+    <td>light</td>
+    <td>Unusual silent&amp;#44 orange glowing light stoppi...</td>
+  </tr>
+  <tr>
+    <th>59</th>
+    <td>01/06/2010</td>
+    <td>pacific palisades</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>5 minutes</td>
+    <td>teardrop</td>
+    <td>I was at home in my condo at night.My condo fa...</td>
+  </tr>
+  <tr>
+    <th>60</th>
+    <td>01/06/2010</td>
+    <td>searcy</td>
+    <td>ar</td>
+    <td>us</td>
+    <td>1 hour</td>
+    <td>disk</td>
+    <td>disc shape hovering above Searcy&amp;#44 AR</td>
+  </tr>
+  <tr>
+    <th>61</th>
+    <td>01/07/2010</td>
+    <td>southampton</td>
+    <td>ny</td>
+    <td>us</td>
+    <td>30 sec</td>
+    <td>formation</td>
+    <td>7 dim lights triangular formation 30 sec easte...</td>
+  </tr>
+  <tr>
+    <th>62</th>
+    <td>01/07/2010</td>
+    <td>mansfield</td>
+    <td>ma</td>
+    <td>us</td>
+    <td>3 min</td>
+    <td>light</td>
+    <td>Bright lights aligned with Castor and Pollux</td>
+  </tr>
+  <tr>
+    <th>63</th>
+    <td>01/07/2010</td>
+    <td>edgartown</td>
+    <td>ma</td>
+    <td>us</td>
+    <td>50 sec.</td>
+    <td>circle</td>
+    <td>UFO  Sighting 01/07/12010  My wife and I were ...</td>
+  </tr>
+  <tr>
+    <th>64</th>
+    <td>01/07/2010</td>
+    <td>windham</td>
+    <td>nh</td>
+    <td>us</td>
+    <td>2 seconds</td>
+    <td>light</td>
+    <td>Bright white flash on the southwestern horizon</td>
+  </tr>
+  <tr>
+    <th>65</th>
+    <td>01/07/2010</td>
+    <td>west boylston</td>
+    <td>ma</td>
+    <td>us</td>
+    <td>approx. 1 sec.</td>
+    <td>light</td>
+    <td>Bright Florissant-green&amp;#44 circular light arc...</td>
+  </tr>
+  <tr>
+    <th>66</th>
+    <td>01/07/2010</td>
+    <td>westbrook</td>
+    <td>ct</td>
+    <td>us</td>
+    <td>2-3 minutes</td>
+    <td>triangle</td>
+    <td>Very large (747ish)&amp;#44 low flying&amp;#44 slow mo...</td>
+  </tr>
+  <tr>
+    <th>67</th>
+    <td>01/08/2010</td>
+    <td>fort worth</td>
+    <td>tx</td>
+    <td>us</td>
+    <td>20 minutes</td>
+    <td>chevron</td>
+    <td>Colorful and bright huge objects in sky.</td>
+  </tr>
+  <tr>
+    <th>68</th>
+    <td>01/08/2010</td>
+    <td>tomball</td>
+    <td>tx</td>
+    <td>us</td>
+    <td>10-15 seconds</td>
+    <td>unknown</td>
+    <td>Four straight &amp;#44horizontal lights on one 40-...</td>
+  </tr>
+  <tr>
+    <th>69</th>
+    <td>01/08/2010</td>
+    <td>port saint lucie</td>
+    <td>fl</td>
+    <td>us</td>
+    <td>2 -3 minutes</td>
+    <td>fireball</td>
+    <td>Red ball surrounded by fire surrounded by a bl...</td>
+  </tr>
+  <tr>
+    <th>70</th>
+    <td>01/08/2010</td>
+    <td>boulder</td>
+    <td>co</td>
+    <td>us</td>
+    <td>40 seconds</td>
+    <td>triangle</td>
+    <td>A trangular craft with several&amp;#44 large&amp;#44 b...</td>
+  </tr>
+  <tr>
+    <th>71</th>
+    <td>01/09/2010</td>
+    <td>london (canada)</td>
+    <td>on</td>
+    <td>ca</td>
+    <td>10-20 mins</td>
+    <td>disk</td>
+    <td>very close encounter with what i truley cant i...</td>
+  </tr>
+  <tr>
+    <th>72</th>
+    <td>01/09/2010</td>
+    <td>cleveland</td>
+    <td>tn</td>
+    <td>us</td>
+    <td>unknown</td>
+    <td>other</td>
+    <td>my daughter went with her mother to look for a...</td>
+  </tr>
+  <tr>
+    <th>73</th>
+    <td>01/09/2010</td>
+    <td>francis creek</td>
+    <td>wi</td>
+    <td>us</td>
+    <td>1 hour</td>
+    <td>light</td>
+    <td>multi-colored pulsating UFO&amp;#44 round white ob...</td>
+  </tr>
+  <tr>
+    <th>74</th>
+    <td>01/09/2010</td>
+    <td>woodbridge</td>
+    <td>nj</td>
+    <td>us</td>
+    <td>nine minutes</td>
+    <td>light</td>
+    <td>Saw two lights that were not planes.</td>
+  </tr>
+  <tr>
+    <th>75</th>
+    <td>01/09/2010</td>
+    <td>seattle</td>
+    <td>wa</td>
+    <td>us</td>
+    <td>1 minute</td>
+    <td>cylinder</td>
+    <td>Reviewing my photos I came across a suspicious...</td>
+  </tr>
+  <tr>
+    <th>76</th>
+    <td>01/09/2010</td>
+    <td>freedom (watsonville)</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>20</td>
+    <td>triangle</td>
+    <td>((HOAX??))  1/9/19 DURATION 20:00 FREEDOM CA  ...</td>
+  </tr>
+  <tr>
+    <th>77</th>
+    <td>01/09/2010</td>
+    <td>santa fe springs</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>6 seconds</td>
+    <td>sphere</td>
+    <td>Sphere like glowing objects hovering and then ...</td>
+  </tr>
+  <tr>
+    <th>78</th>
+    <td>01/09/2010</td>
+    <td>saline</td>
+    <td>mi</td>
+    <td>us</td>
+    <td>several hours</td>
+    <td>formation</td>
+    <td>Southeast sky early in the evening&amp;#44 Blue&amp;#4...</td>
+  </tr>
+  <tr>
+    <th>79</th>
+    <td>01/09/2010</td>
+    <td>buffalo</td>
+    <td>ny</td>
+    <td>us</td>
+    <td>2 seconds</td>
+    <td>light</td>
+    <td>Fast moving light curves in sky</td>
+  </tr>
+  <tr>
+    <th>80</th>
+    <td>01/09/2010</td>
+    <td>cincinnati</td>
+    <td>oh</td>
+    <td>us</td>
+    <td>not sure</td>
+    <td>light</td>
+    <td>cinti&amp;#44ohio      23:00   light in back yard</td>
+  </tr>
+  <tr>
+    <th>81</th>
+    <td>01/09/2010</td>
+    <td>paducah</td>
+    <td>ky</td>
+    <td>us</td>
+    <td>45 minutes</td>
+    <td>unknown</td>
+    <td>I went outside for nightly smoke break and to ...</td>
+  </tr>
+  <tr>
+    <th>82</th>
+    <td>01/10/2010</td>
+    <td>uxbridge</td>
+    <td>ma</td>
+    <td>us</td>
+    <td>5 minutes</td>
+    <td>sphere</td>
+    <td>Unidentified object&amp;#44 roughly spherical&amp;#44 ...</td>
+  </tr>
+  <tr>
+    <th>83</th>
+    <td>01/10/2010</td>
+    <td>round rock</td>
+    <td>tx</td>
+    <td>us</td>
+    <td>2 seconds</td>
+    <td>light</td>
+    <td>3 Fast-moving lights over Round Rock Texas</td>
+  </tr>
+  <tr>
+    <th>84</th>
+    <td>01/10/2010</td>
+    <td>san jacinto</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>5 secondes</td>
+    <td>unknown</td>
+    <td>A bright light hitting us while leaving at hig...</td>
+  </tr>
+  <tr>
+    <th>85</th>
+    <td>01/10/2010</td>
+    <td>norton</td>
+    <td>ma</td>
+    <td>us</td>
+    <td>1 min</td>
+    <td>triangle</td>
+    <td>strange craft with amazing speed.</td>
+  </tr>
+  <tr>
+    <th>86</th>
+    <td>01/10/2010</td>
+    <td>hancock</td>
+    <td>md</td>
+    <td>us</td>
+    <td>2 minutes</td>
+    <td>sphere</td>
+    <td>Photo taken of silver colored sphere in Wester...</td>
+  </tr>
+  <tr>
+    <th>87</th>
+    <td>01/10/2010</td>
+    <td>cary</td>
+    <td>nc</td>
+    <td>us</td>
+    <td>15 min</td>
+    <td>changing</td>
+    <td>Object appears and hovers&amp;#44 strange maneuver...</td>
+  </tr>
+  <tr>
+    <th>88</th>
+    <td>01/10/2010</td>
+    <td>tularosa</td>
+    <td>nm</td>
+    <td>us</td>
+    <td>5 min.</td>
+    <td>other</td>
+    <td>green figure 8 followed by military aircraft</td>
+  </tr>
+  <tr>
+    <th>89</th>
+    <td>01/10/2010</td>
+    <td>eunice</td>
+    <td>la</td>
+    <td>us</td>
+    <td>15:00 mins</td>
+    <td>oval</td>
+    <td>Two objects meet then leave each other one to ...</td>
+  </tr>
+  <tr>
+    <th>90</th>
+    <td>01/10/2010</td>
+    <td>butler</td>
+    <td>mo</td>
+    <td>us</td>
+    <td>1-2 minutes</td>
+    <td>chevron</td>
+    <td>((HOAX??))  I was heading driving to the store...</td>
+  </tr>
+  <tr>
+    <th>91</th>
+    <td>01/10/2010</td>
+    <td>lompoc</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>6 sec</td>
+    <td>fireball</td>
+    <td>huge bright orange sphere appeared and dissape...</td>
+  </tr>
+  <tr>
+    <th>92</th>
+    <td>01/10/2010</td>
+    <td>pratt</td>
+    <td>ks</td>
+    <td>us</td>
+    <td>6 seconds</td>
+    <td>circle</td>
+    <td>4 rings of light accompanied by a single ring ...</td>
+  </tr>
+  <tr>
+    <th>93</th>
+    <td>01/11/2010</td>
+    <td>taunton</td>
+    <td>ma</td>
+    <td>us</td>
+    <td>10 seconds</td>
+    <td>unknown</td>
+    <td>((HOAX??))  saw a strange object in the night sky</td>
+  </tr>
+  <tr>
+    <th>94</th>
+    <td>01/11/2010</td>
+    <td>lakeland</td>
+    <td>fl</td>
+    <td>us</td>
+    <td>1 minute</td>
+    <td>other</td>
+    <td>Neon blue light in the sky disappears and then...</td>
+  </tr>
+  <tr>
+    <th>95</th>
+    <td>01/11/2010</td>
+    <td>fort myers</td>
+    <td>fl</td>
+    <td>us</td>
+    <td>15 seconds</td>
+    <td>fireball</td>
+    <td>Bright fireball seen over Naples area of SW Fl...</td>
+  </tr>
+  <tr>
+    <th>96</th>
+    <td>01/11/2010</td>
+    <td>fairfield</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>unknown</td>
+    <td>oval</td>
+    <td>Shape was black in color</td>
+  </tr>
+  <tr>
+    <th>97</th>
+    <td>01/11/2010</td>
+    <td>joplin</td>
+    <td>mo</td>
+    <td>us</td>
+    <td>5 to 10 sec.</td>
+    <td>triangle</td>
+    <td>V shaped&amp;#44 extreamly fast&amp;#44 silent and the...</td>
+  </tr>
+  <tr>
+    <th>98</th>
+    <td>01/11/2010</td>
+    <td>leatherwood</td>
+    <td>ky</td>
+    <td>us</td>
+    <td>5 minutes</td>
+    <td>other</td>
+    <td>3 SQUARE-SHAPED OBJECTS WITH RED LIGHTS IN A T...</td>
+  </tr>
+  <tr>
+    <th>99</th>
+    <td>01/11/2010</td>
+    <td>ingleside (canada)</td>
+    <td>on</td>
+    <td>ca</td>
+    <td>5 minutes</td>
+    <td>triangle</td>
+    <td>triangle shaped craft with four coloured lights</td>
+  </tr>
+  <tr>
+    <th>100</th>
+    <td>01/12/2010</td>
+    <td>fayetteville</td>
+    <td>wv</td>
+    <td>us</td>
+    <td>7 minuts</td>
+    <td>sphere</td>
+    <td>something followed my family and left a piece ...</td>
+  </tr>
+  <tr>
+    <th>101</th>
+    <td>01/12/2010</td>
+    <td>eugene</td>
+    <td>or</td>
+    <td>us</td>
+    <td>2 minutes</td>
+    <td>unknown</td>
+    <td>Awaken by several episodes of BRIGHT FLASHING ...</td>
+  </tr>
+  <tr>
+    <th>102</th>
+    <td>01/12/2010</td>
+    <td>springfield</td>
+    <td>or</td>
+    <td>us</td>
+    <td>3 minutes</td>
+    <td>changing</td>
+    <td>black floating object with lights</td>
+  </tr>
+  <tr>
+    <th>103</th>
+    <td>01/12/2010</td>
+    <td>alma</td>
+    <td>ar</td>
+    <td>us</td>
+    <td>night</td>
+    <td>other</td>
+    <td>((HOAX??))  a strange ball of fire&amp;#44 like af...</td>
+  </tr>
+  <tr>
+    <th>104</th>
+    <td>01/12/2010</td>
+    <td>wichita</td>
+    <td>ks</td>
+    <td>us</td>
+    <td>5 minutes</td>
+    <td>teardrop</td>
+    <td>Orange teardrop-shape craft</td>
+  </tr>
+  <tr>
+    <th>105</th>
+    <td>01/12/2010</td>
+    <td>deep run</td>
+    <td>nc</td>
+    <td>us</td>
+    <td>10 seconds</td>
+    <td>other</td>
+    <td>Car like object in the sky</td>
+  </tr>
+  <tr>
+    <th>106</th>
+    <td>01/12/2010</td>
+    <td>waukesha</td>
+    <td>wi</td>
+    <td>us</td>
+    <td>15minutes</td>
+    <td>disk</td>
+    <td>five glowning globes over waukesha&amp;#44wi</td>
+  </tr>
+  <tr>
+    <th>107</th>
+    <td>01/12/2010</td>
+    <td>ceres</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>30 seconds</td>
+    <td>fireball</td>
+    <td>Fireballs seen from Ceres&amp;#44 California</td>
+  </tr>
+  <tr>
+    <th>108</th>
+    <td>01/13/2010</td>
+    <td>white oak</td>
+    <td>pa</td>
+    <td>us</td>
+    <td>30 seconds</td>
+    <td>triangle</td>
+    <td>Blinking lights on a rectanglar shaped object ...</td>
+  </tr>
+  <tr>
+    <th>109</th>
+    <td>01/13/2010</td>
+    <td>ackerman</td>
+    <td>ms</td>
+    <td>us</td>
+    <td>2 hours</td>
+    <td>light</td>
+    <td>A bright light hovering in the southwestern sk...</td>
+  </tr>
+  <tr>
+    <th>110</th>
+    <td>01/13/2010</td>
+    <td>gulf breeze</td>
+    <td>fl</td>
+    <td>us</td>
+    <td>4 minutes</td>
+    <td>unknown</td>
+    <td>Bright orange object&amp;#44 rapid speed and direc...</td>
+  </tr>
+  <tr>
+    <th>111</th>
+    <td>01/13/2010</td>
+    <td>denver</td>
+    <td>co</td>
+    <td>us</td>
+    <td>10 seconds</td>
+    <td>disk</td>
+    <td>large object hovering completely still&amp;#44 thr...</td>
+  </tr>
+  <tr>
+    <th>112</th>
+    <td>01/13/2010</td>
+    <td>gregory</td>
+    <td>mi</td>
+    <td>us</td>
+    <td>5min.</td>
+    <td>light</td>
+    <td>four lights in the sky.</td>
+  </tr>
+  <tr>
+    <th>113</th>
+    <td>01/13/2010</td>
+    <td>modesto</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>1 minute</td>
+    <td>other</td>
+    <td>A diamond shapped object dimly lit and moving ...</td>
+  </tr>
+  <tr>
+    <th>114</th>
+    <td>01/14/2010</td>
+    <td>lexington</td>
+    <td>ky</td>
+    <td>us</td>
+    <td>4 minutes</td>
+    <td>fireball</td>
+    <td>HAVE PICTURES</td>
+  </tr>
+  <tr>
+    <th>115</th>
+    <td>01/14/2010</td>
+    <td>holiday island</td>
+    <td>ar</td>
+    <td>us</td>
+    <td>10 minutes</td>
+    <td>triangle</td>
+    <td>Triangular patterned lights over Holiday Islan...</td>
+  </tr>
+  <tr>
+    <th>116</th>
+    <td>01/15/2010</td>
+    <td>carlsbad</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>5 minutes</td>
+    <td>light</td>
+    <td>Bright light changes color from blue to red as...</td>
+  </tr>
+  <tr>
+    <th>117</th>
+    <td>01/15/2010</td>
+    <td>bakersfield</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>8-10 minutes</td>
+    <td>circle</td>
+    <td>Strange brightwhite w/red luminous &amp;amp;quot; ...</td>
+  </tr>
+  <tr>
+    <th>118</th>
+    <td>01/15/2010</td>
+    <td>north san juan</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>30</td>
+    <td>fireball</td>
+    <td>Large bright orange moon looking object hovers...</td>
+  </tr>
+  <tr>
+    <th>119</th>
+    <td>01/15/2010</td>
+    <td>greensboro</td>
+    <td>nc</td>
+    <td>us</td>
+    <td>45</td>
+    <td>light</td>
+    <td>Light shaped reflective star that moving over ...</td>
+  </tr>
+  <tr>
+    <th>120</th>
+    <td>01/15/2010</td>
+    <td>greensboro</td>
+    <td>nc</td>
+    <td>us</td>
+    <td>20 min</td>
+    <td>sphere</td>
+    <td>Broad daylight multiple color changing spheres</td>
+  </tr>
+  <tr>
+    <th>121</th>
+    <td>01/15/2010</td>
+    <td>pinawa (canada)</td>
+    <td>mb</td>
+    <td>ca</td>
+    <td>40 sec</td>
+    <td>light</td>
+    <td>I saw a strange light at our local Girl Guide ...</td>
+  </tr>
+  <tr>
+    <th>122</th>
+    <td>01/15/2010</td>
+    <td>long beach</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>5 minutes +</td>
+    <td>unknown</td>
+    <td>Loud cycling noise followed by multiple helico...</td>
+  </tr>
+  <tr>
+    <th>123</th>
+    <td>01/15/2010</td>
+    <td>tempe</td>
+    <td>az</td>
+    <td>us</td>
+    <td>5 minutes</td>
+    <td>circle</td>
+    <td>Orange&amp;#44 glowing&amp;#44 floating circular objec...</td>
+  </tr>
+  <tr>
+    <th>124</th>
+    <td>01/15/2010</td>
+    <td>whittier</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>20 seconds</td>
+    <td>disk</td>
+    <td>round saucer with bright lights circiling arou...</td>
+  </tr>
+  <tr>
+    <th>125</th>
+    <td>01/15/2010</td>
+    <td>flat creek</td>
+    <td>nc</td>
+    <td>us</td>
+    <td>1:00</td>
+    <td>triangle</td>
+    <td>Triangle craft headed towards Mars Hill&amp;#44 NC</td>
+  </tr>
+  <tr>
+    <th>126</th>
+    <td>01/15/2010</td>
+    <td>yuma</td>
+    <td>az</td>
+    <td>us</td>
+    <td>15 seconds</td>
+    <td>light</td>
+    <td>Three white round lights morphed into two&amp;#44 ...</td>
+  </tr>
+  <tr>
+    <th>127</th>
+    <td>01/15/2010</td>
+    <td>plainville</td>
+    <td>ct</td>
+    <td>us</td>
+    <td>30 seconds</td>
+    <td>rectangle</td>
+    <td>Rectangular object moving across the sky.</td>
+  </tr>
+  <tr>
+    <th>128</th>
+    <td>01/16/2010</td>
+    <td>great falls</td>
+    <td>mt</td>
+    <td>us</td>
+    <td>5</td>
+    <td>triangle</td>
+    <td>Slow&amp;#44 low craft with bright lights in a tri...</td>
+  </tr>
+  <tr>
+    <th>129</th>
+    <td>01/16/2010</td>
+    <td>boise</td>
+    <td>id</td>
+    <td>us</td>
+    <td>2 minutes</td>
+    <td>changing</td>
+    <td>Red Light Above Boise Descends at Tremendous S...</td>
+  </tr>
+  <tr>
+    <th>130</th>
+    <td>01/16/2010</td>
+    <td>corona</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>5 minutes</td>
+    <td>triangle</td>
+    <td>White lights on triangular object over corona</td>
+  </tr>
+  <tr>
+    <th>131</th>
+    <td>01/16/2010</td>
+    <td>corona</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>3 min.</td>
+    <td>unknown</td>
+    <td>CA&amp;#44 Corona White Flashing Lights</td>
+  </tr>
+  <tr>
+    <th>132</th>
+    <td>01/16/2010</td>
+    <td>bellingham</td>
+    <td>ma</td>
+    <td>us</td>
+    <td>2 min</td>
+    <td>light</td>
+    <td>Blinking light zig-zagging across the sky.</td>
+  </tr>
+  <tr>
+    <th>133</th>
+    <td>01/16/2010</td>
+    <td>grass valley</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>1 second</td>
+    <td>unknown</td>
+    <td>I saw a very bright&amp;#44 white light at a very ...</td>
+  </tr>
+  <tr>
+    <th>134</th>
+    <td>01/16/2010</td>
+    <td>henderson</td>
+    <td>nv</td>
+    <td>us</td>
+    <td>6 seconds</td>
+    <td>chevron</td>
+    <td>small stealth bomber shaped object flew overhe...</td>
+  </tr>
+  <tr>
+    <th>135</th>
+    <td>01/17/2010</td>
+    <td>granite falls</td>
+    <td>wa</td>
+    <td>us</td>
+    <td>20 seconds</td>
+    <td>light</td>
+    <td>Bright light coming from the sky with no noise.</td>
+  </tr>
+  <tr>
+    <th>136</th>
+    <td>01/17/2010</td>
+    <td>bayfield</td>
+    <td>wi</td>
+    <td>us</td>
+    <td>15 seconds</td>
+    <td>light</td>
+    <td>at 6:30 pm i was playing outside with my daugh...</td>
+  </tr>
+  <tr>
+    <th>137</th>
+    <td>01/17/2010</td>
+    <td>las vegas</td>
+    <td>nv</td>
+    <td>us</td>
+    <td>20 seconds</td>
+    <td>other</td>
+    <td>Sighting of a Glowing Ring floating down then ...</td>
+  </tr>
+  <tr>
+    <th>138</th>
+    <td>01/17/2010</td>
+    <td>miami</td>
+    <td>fl</td>
+    <td>us</td>
+    <td>1 min</td>
+    <td>rectangle</td>
+    <td>Bright lights and fast moving object&amp;#33</td>
+  </tr>
+  <tr>
+    <th>139</th>
+    <td>01/18/2010</td>
+    <td>pittsburgh</td>
+    <td>pa</td>
+    <td>us</td>
+    <td>4 minutes</td>
+    <td>light</td>
+    <td>Three very intense pulses or flashes of light ...</td>
+  </tr>
+  <tr>
+    <th>140</th>
+    <td>01/18/2010</td>
+    <td>lamar</td>
+    <td>sc</td>
+    <td>us</td>
+    <td>5 minutes</td>
+    <td>cigar</td>
+    <td>Silver Cigar-shaped object at 7:38 am in Lamar...</td>
+  </tr>
+  <tr>
+    <th>141</th>
+    <td>01/18/2010</td>
+    <td>old hickory</td>
+    <td>tn</td>
+    <td>us</td>
+    <td>10:20</td>
+    <td>changing</td>
+    <td>THE FACT THAT THEY WAS TAKEING WATER FOR SOME ...</td>
+  </tr>
+  <tr>
+    <th>142</th>
+    <td>01/18/2010</td>
+    <td>oldwick</td>
+    <td>nj</td>
+    <td>us</td>
+    <td>1 min- 3 min</td>
+    <td>triangle</td>
+    <td>Triangular object with 40+ lights hovering ove...</td>
+  </tr>
+  <tr>
+    <th>143</th>
+    <td>01/18/2010</td>
+    <td>mullica hill</td>
+    <td>nj</td>
+    <td>us</td>
+    <td>5 seconds</td>
+    <td>other</td>
+    <td>I saw what I thought was a plane flying straig...</td>
+  </tr>
+  <tr>
+    <th>144</th>
+    <td>01/18/2010</td>
+    <td>dillon</td>
+    <td>mt</td>
+    <td>us</td>
+    <td>5 seconds</td>
+    <td>oval</td>
+    <td>I was setting in my livingroom reading a book....</td>
+  </tr>
+  <tr>
+    <th>145</th>
+    <td>01/18/2010</td>
+    <td>whitehall</td>
+    <td>mt</td>
+    <td>us</td>
+    <td>a few seconds</td>
+    <td>sphere</td>
+    <td>brightly glowing aqua-greenish sphere comes st...</td>
+  </tr>
+  <tr>
+    <th>146</th>
+    <td>01/18/2010</td>
+    <td>seattle</td>
+    <td>wa</td>
+    <td>us</td>
+    <td>2 minutes</td>
+    <td>light</td>
+    <td>Bright&amp;#44 flickering orange light</td>
+  </tr>
+  <tr>
+    <th>147</th>
+    <td>01/18/2010</td>
+    <td>arroyo grande</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>milisec</td>
+    <td>light</td>
+    <td>Two bluish-green lights moving NNE over Arroyo...</td>
+  </tr>
+  <tr>
+    <th>148</th>
+    <td>01/19/2010</td>
+    <td>elmwood park</td>
+    <td>il</td>
+    <td>us</td>
+    <td>30 seconds</td>
+    <td>flash</td>
+    <td>Two flashes quickly whisk into the sky and away</td>
+  </tr>
+  <tr>
+    <th>149</th>
+    <td>01/19/2010</td>
+    <td>azusa</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>6 minutes</td>
+    <td>light</td>
+    <td>Red lights blinking or turning on/off in an es...</td>
+  </tr>
+  <tr>
+    <th>150</th>
+    <td>01/19/2010</td>
+    <td>amherst</td>
+    <td>va</td>
+    <td>us</td>
+    <td>5 miutes</td>
+    <td>unknown</td>
+    <td>Mother and daughter chase UFO to daughter&amp;#39s...</td>
+  </tr>
+  <tr>
+    <th>151</th>
+    <td>01/20/2010</td>
+    <td>gowanda</td>
+    <td>ny</td>
+    <td>us</td>
+    <td>&lt;5 sec.</td>
+    <td>fireball</td>
+    <td>((HOAX??))  very fast fireballs&amp;#44very scared.</td>
+  </tr>
+  <tr>
+    <th>152</th>
+    <td>01/20/2010</td>
+    <td>walnut</td>
+    <td>ia</td>
+    <td>us</td>
+    <td>1 minute</td>
+    <td>flash</td>
+    <td>HUGE Flash of Pale Blue Light &amp;amp; Loud Crack...</td>
+  </tr>
+  <tr>
+    <th>153</th>
+    <td>01/20/2010</td>
+    <td>san jose</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>1hr</td>
+    <td>disk</td>
+    <td>I was in the back yard with grandkids&amp;#44saw a...</td>
+  </tr>
+  <tr>
+    <th>154</th>
+    <td>01/20/2010</td>
+    <td>north stonington</td>
+    <td>ct</td>
+    <td>us</td>
+    <td>20 minutes</td>
+    <td>light</td>
+    <td>Strange Lights and booming noises in North Sto...</td>
+  </tr>
+  <tr>
+    <th>155</th>
+    <td>01/20/2010</td>
+    <td>bandon</td>
+    <td>or</td>
+    <td>us</td>
+    <td>15 minutes</td>
+    <td>other</td>
+    <td>Close Encounter of the 5th Kind. ((NUFORC Note...</td>
+  </tr>
+  <tr>
+    <th>156</th>
+    <td>01/20/2010</td>
+    <td>poughkeepsie</td>
+    <td>ny</td>
+    <td>us</td>
+    <td>about 15 minutes</td>
+    <td>disk</td>
+    <td>Alien ship appears near synagogue.</td>
+  </tr>
+  <tr>
+    <th>157</th>
+    <td>01/20/2010</td>
+    <td>batesville</td>
+    <td>ar</td>
+    <td>us</td>
+    <td>3 minutes</td>
+    <td>diamond</td>
+    <td>Craft Hovering extremly quite; could have easi...</td>
+  </tr>
+  <tr>
+    <th>158</th>
+    <td>01/20/2010</td>
+    <td>new port richey</td>
+    <td>fl</td>
+    <td>us</td>
+    <td>about 2 minutes</td>
+    <td>fireball</td>
+    <td>Several orange orbs following eachother ACROSS...</td>
+  </tr>
+  <tr>
+    <th>159</th>
+    <td>01/21/2010</td>
+    <td>saint charles</td>
+    <td>ia</td>
+    <td>us</td>
+    <td>15 minutes</td>
+    <td>other</td>
+    <td>Witness soundless flickering lights moving NE ...</td>
+  </tr>
+  <tr>
+    <th>160</th>
+    <td>01/21/2010</td>
+    <td>rochester</td>
+    <td>ny</td>
+    <td>us</td>
+    <td>40+ min</td>
+    <td>circle</td>
+    <td>&amp;quot;Flying Saucer&amp;quot; surrounded by 8 planes</td>
+  </tr>
+  <tr>
+    <th>161</th>
+    <td>01/21/2010</td>
+    <td>san antonio</td>
+    <td>tx</td>
+    <td>us</td>
+    <td>1/2 second</td>
+    <td>sphere</td>
+    <td>comet looking object seen on NW side of San An...</td>
+  </tr>
+  <tr>
+    <th>162</th>
+    <td>01/21/2010</td>
+    <td>bloomfield</td>
+    <td>nj</td>
+    <td>us</td>
+    <td>5 min</td>
+    <td>other</td>
+    <td>3 lights sighted not blinking&amp;#44 moving slow&amp;...</td>
+  </tr>
+  <tr>
+    <th>163</th>
+    <td>01/22/2010</td>
+    <td>riverside</td>
+    <td>nj</td>
+    <td>us</td>
+    <td>10-15 minutes</td>
+    <td>light</td>
+    <td>2 lights apear and the others shoots across sk...</td>
+  </tr>
+  <tr>
+    <th>164</th>
+    <td>01/22/2010</td>
+    <td>boise</td>
+    <td>id</td>
+    <td>us</td>
+    <td>20-25 seconds</td>
+    <td>changing</td>
+    <td>33&amp;#39 Wide White Object seen over Boise&amp;#44 I...</td>
+  </tr>
+  <tr>
+    <th>165</th>
+    <td>01/22/2010</td>
+    <td>lincoln</td>
+    <td>ne</td>
+    <td>us</td>
+    <td>about 15 minutes</td>
+    <td>disk</td>
+    <td>((NUFORC Note:  Student report. PD)) I am a fi...</td>
+  </tr>
+  <tr>
+    <th>166</th>
+    <td>01/22/2010</td>
+    <td>socorro</td>
+    <td>nm</td>
+    <td>us</td>
+    <td>20 minutes</td>
+    <td>light</td>
+    <td>Silent red lights over Socorro&amp;#44 NM.  ((NUFO...</td>
+  </tr>
+  <tr>
+    <th>167</th>
+    <td>01/22/2010</td>
+    <td>southbridge</td>
+    <td>ma</td>
+    <td>us</td>
+    <td>6-7 minutes</td>
+    <td>triangle</td>
+    <td>Wedge shaped&amp;#44 Unusual lights&amp;#44 severe ozo...</td>
+  </tr>
+  <tr>
+    <th>168</th>
+    <td>01/22/2010</td>
+    <td>spring</td>
+    <td>tx</td>
+    <td>us</td>
+    <td>40 min</td>
+    <td>sphere</td>
+    <td>This is a true story&amp;#44 told just as it happe...</td>
+  </tr>
+  <tr>
+    <th>169</th>
+    <td>01/22/2010</td>
+    <td>peekskill</td>
+    <td>ny</td>
+    <td>us</td>
+    <td>30 seconds</td>
+    <td>unknown</td>
+    <td>Flashing amber light flying very low over the ...</td>
+  </tr>
+  <tr>
+    <th>170</th>
+    <td>01/23/2010</td>
+    <td>titusville</td>
+    <td>fl</td>
+    <td>us</td>
+    <td>3 seconds</td>
+    <td>triangle</td>
+    <td>this triangle ufo was transparent and  able to...</td>
+  </tr>
+  <tr>
+    <th>171</th>
+    <td>01/23/2010</td>
+    <td>reno</td>
+    <td>nv</td>
+    <td>us</td>
+    <td>5 minutes</td>
+    <td>cigar</td>
+    <td>bright beam of light may have landed in reno&amp;#...</td>
+  </tr>
+  <tr>
+    <th>172</th>
+    <td>01/23/2010</td>
+    <td>carson city</td>
+    <td>nv</td>
+    <td>us</td>
+    <td>6 sec</td>
+    <td>light</td>
+    <td>3 blue lights over carson city in the vicinity...</td>
+  </tr>
+  <tr>
+    <th>173</th>
+    <td>01/23/2010</td>
+    <td>lakewood</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>picture</td>
+    <td>disk</td>
+    <td>seen strange saucer shaped object  in a pictur...</td>
+  </tr>
+  <tr>
+    <th>174</th>
+    <td>01/23/2010</td>
+    <td>pacific grove</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>8 minutes</td>
+    <td>light</td>
+    <td>Observed 17 small light moving below the moon ...</td>
+  </tr>
+  <tr>
+    <th>175</th>
+    <td>01/24/2010</td>
+    <td>tampa</td>
+    <td>fl</td>
+    <td>us</td>
+    <td>5-6 minutes</td>
+    <td>circle</td>
+    <td>Multi-colored illuminated circular object hove...</td>
+  </tr>
+  <tr>
+    <th>176</th>
+    <td>01/25/2010</td>
+    <td>lashburn (canada)</td>
+    <td>sk</td>
+    <td>ca</td>
+    <td>ongoing</td>
+    <td>triangle</td>
+    <td>Star moving in circular motion counterclockwis...</td>
+  </tr>
+  <tr>
+    <th>177</th>
+    <td>01/25/2010</td>
+    <td>iroquois falls (canada)</td>
+    <td>on</td>
+    <td>ca</td>
+    <td>1/4 second</td>
+    <td>unknown</td>
+    <td>Your site was refered by the Rhine Research Ce...</td>
+  </tr>
+  <tr>
+    <th>178</th>
+    <td>01/25/2010</td>
+    <td>lake stevens</td>
+    <td>wa</td>
+    <td>us</td>
+    <td>15min.</td>
+    <td>unknown</td>
+    <td>Monday the 25th and the 26th. I am up at 4:45a...</td>
+  </tr>
+  <tr>
+    <th>179</th>
+    <td>01/25/2010</td>
+    <td>miami</td>
+    <td>fl</td>
+    <td>us</td>
+    <td>seconds</td>
+    <td>other</td>
+    <td>Watching the 5:30 news here in Miami on channe...</td>
+  </tr>
+  <tr>
+    <th>180</th>
+    <td>01/25/2010</td>
+    <td>keaau</td>
+    <td>hi</td>
+    <td>us</td>
+    <td>couple minutes</td>
+    <td>light</td>
+    <td>Golden round light flying quietly&amp;#44 small si...</td>
+  </tr>
+  <tr>
+    <th>181</th>
+    <td>01/25/2010</td>
+    <td>naples</td>
+    <td>fl</td>
+    <td>us</td>
+    <td>1 min</td>
+    <td>light</td>
+    <td>Amber light floats over Naples UFO or ???</td>
+  </tr>
+  <tr>
+    <th>182</th>
+    <td>01/25/2010</td>
+    <td>clayton</td>
+    <td>nc</td>
+    <td>us</td>
+    <td>3 seconds</td>
+    <td>light</td>
+    <td>1 light ver fast then gone</td>
+  </tr>
+  <tr>
+    <th>183</th>
+    <td>01/25/2010</td>
+    <td>raleigh</td>
+    <td>nc</td>
+    <td>us</td>
+    <td>5 min</td>
+    <td>sphere</td>
+    <td>I have one picture of green spheres near the m...</td>
+  </tr>
+  <tr>
+    <th>184</th>
+    <td>01/26/2010</td>
+    <td>austin</td>
+    <td>tx</td>
+    <td>us</td>
+    <td>2 minutes</td>
+    <td>other</td>
+    <td>Two objects over Austin</td>
+  </tr>
+  <tr>
+    <th>185</th>
+    <td>01/26/2010</td>
+    <td>miami</td>
+    <td>fl</td>
+    <td>us</td>
+    <td>less than 2 sec</td>
+    <td>light</td>
+    <td>Saw first magnitude pinpoint moving south to n...</td>
+  </tr>
+  <tr>
+    <th>186</th>
+    <td>01/26/2010</td>
+    <td>chico</td>
+    <td>wa</td>
+    <td>us</td>
+    <td>3 minutes</td>
+    <td>triangle</td>
+    <td>Two lights joined by a third to form a triangu...</td>
+  </tr>
+  <tr>
+    <th>187</th>
+    <td>01/27/2010</td>
+    <td>greensboro</td>
+    <td>nc</td>
+    <td>us</td>
+    <td>20 min</td>
+    <td>sphere</td>
+    <td>Round object maybe 5 miles away with an altitu...</td>
+  </tr>
+  <tr>
+    <th>188</th>
+    <td>01/27/2010</td>
+    <td>fort collins</td>
+    <td>co</td>
+    <td>us</td>
+    <td>8 min</td>
+    <td>light</td>
+    <td>Very Bright in due West&amp;#44 Hovered about 2 mi...</td>
+  </tr>
+  <tr>
+    <th>189</th>
+    <td>01/27/2010</td>
+    <td>santa fe springs</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>3 minutes</td>
+    <td>sphere</td>
+    <td>UFO manuvering directly in LAX final approach</td>
+  </tr>
+  <tr>
+    <th>190</th>
+    <td>01/27/2010</td>
+    <td>charlotte</td>
+    <td>nc</td>
+    <td>us</td>
+    <td>20:30-20:31</td>
+    <td>fireball</td>
+    <td>Weird object goes across sky and boards a sati...</td>
+  </tr>
+  <tr>
+    <th>191</th>
+    <td>01/28/2010</td>
+    <td>south bend</td>
+    <td>in</td>
+    <td>us</td>
+    <td>20 sec</td>
+    <td>triangle</td>
+    <td>triangle over south bend</td>
+  </tr>
+  <tr>
+    <th>192</th>
+    <td>01/28/2010</td>
+    <td>reedsville</td>
+    <td>oh</td>
+    <td>us</td>
+    <td>20 minutes</td>
+    <td>light</td>
+    <td>Strange rotating bright light appears&amp;#44 disa...</td>
+  </tr>
+  <tr>
+    <th>193</th>
+    <td>01/28/2010</td>
+    <td>santa ana</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>5 seconds</td>
+    <td>sphere</td>
+    <td>Two white spheres flying over an orange county...</td>
+  </tr>
+  <tr>
+    <th>194</th>
+    <td>01/28/2010</td>
+    <td>houston</td>
+    <td>tx</td>
+    <td>us</td>
+    <td>45 sec</td>
+    <td>circle</td>
+    <td>2 spheres flying around each other&amp;#44 on a ro...</td>
+  </tr>
+  <tr>
+    <th>195</th>
+    <td>01/28/2010</td>
+    <td>perris</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>10 minutes</td>
+    <td>triangle</td>
+    <td>Large black triangle hovering between 1500-250...</td>
+  </tr>
+  <tr>
+    <th>196</th>
+    <td>01/28/2010</td>
+    <td>folsom</td>
+    <td>nj</td>
+    <td>us</td>
+    <td>30 seconds</td>
+    <td>sphere</td>
+    <td>reflective object leaves light trail&amp;#44 disap...</td>
+  </tr>
+  <tr>
+    <th>197</th>
+    <td>01/28/2010</td>
+    <td>stillwater</td>
+    <td>mn</td>
+    <td>us</td>
+    <td>15 minutes</td>
+    <td>light</td>
+    <td>Bright lights over St. Croix River/Bayport are...</td>
+  </tr>
+  <tr>
+    <th>198</th>
+    <td>01/29/2010</td>
+    <td>bayfield (canada)</td>
+    <td>on</td>
+    <td>ca</td>
+    <td>less than 2 hours</td>
+    <td>unknown</td>
+    <td>wake up browsed with cuts one arm from wrist t...</td>
+  </tr>
+  <tr>
+    <th>199</th>
+    <td>01/29/2010</td>
+    <td>maple valley</td>
+    <td>wa</td>
+    <td>us</td>
+    <td>all night and still conti</td>
+    <td>changing</td>
+    <td>strange lights make half diamond shape in sky ...</td>
+  </tr>
+  <tr>
+    <th>200</th>
+    <td>01/29/2010</td>
+    <td>punxsutawney</td>
+    <td>pa</td>
+    <td>us</td>
+    <td>12-15 minutes</td>
+    <td>light</td>
+    <td>Large white light surrounded by flashing red/g...</td>
+  </tr>
+  <tr>
+    <th>201</th>
+    <td>01/29/2010</td>
+    <td>madison county</td>
+    <td>nc</td>
+    <td>us</td>
+    <td>1 minute</td>
+    <td>diamond</td>
+    <td>I was driving down the road came to a stop sig...</td>
+  </tr>
+  <tr>
+    <th>202</th>
+    <td>01/29/2010</td>
+    <td>jefferson</td>
+    <td>md</td>
+    <td>us</td>
+    <td>1-2minutes</td>
+    <td>oval</td>
+    <td>Oval shaped object sighted hovering over a field</td>
+  </tr>
+  <tr>
+    <th>203</th>
+    <td>01/29/2010</td>
+    <td>edinburg</td>
+    <td>tx</td>
+    <td>us</td>
+    <td>5 minutes</td>
+    <td>cigar</td>
+    <td>At about 7:40pm a cigar shaped object at a gre...</td>
+  </tr>
+  <tr>
+    <th>204</th>
+    <td>01/30/2010</td>
+    <td>kennebunk beach</td>
+    <td>me</td>
+    <td>us</td>
+    <td>3 plus hours</td>
+    <td>cylinder</td>
+    <td>Tall white colum of extremely bright light app...</td>
+  </tr>
+  <tr>
+    <th>205</th>
+    <td>01/30/2010</td>
+    <td>walkerton (canada)</td>
+    <td>on</td>
+    <td>ca</td>
+    <td>1 min</td>
+    <td>rectangle</td>
+    <td>rectangle and orange. thought it was a fire bu...</td>
+  </tr>
+  <tr>
+    <th>206</th>
+    <td>01/30/2010</td>
+    <td>oakland</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>5-10 sec</td>
+    <td>triangle</td>
+    <td>Three transluscent&amp;#44 reddish-colored&amp;#44 orb...</td>
+  </tr>
+  <tr>
+    <th>207</th>
+    <td>01/31/2010</td>
+    <td>milwaukee</td>
+    <td>wi</td>
+    <td>us</td>
+    <td>4-6 min</td>
+    <td>light</td>
+    <td>Very large&amp;#44 bright moving searchlight&amp;#44 b...</td>
+  </tr>
+  <tr>
+    <th>208</th>
+    <td>01/31/2010</td>
+    <td>stone mountain</td>
+    <td>ga</td>
+    <td>us</td>
+    <td>60-70 seconds</td>
+    <td>triangle</td>
+    <td>Triangular object hovers&amp;#44 darts away&amp;#44  t...</td>
+  </tr>
+  <tr>
+    <th>209</th>
+    <td>01/31/2010</td>
+    <td>delray beach</td>
+    <td>fl</td>
+    <td>us</td>
+    <td>15 minutes</td>
+    <td>egg</td>
+    <td>The most memorable part of the experience was ...</td>
+  </tr>
+  <tr>
+    <th>210</th>
+    <td>02/01/2010</td>
+    <td>socorro (west of&amp;#44 on hwy 60)</td>
+    <td>nm</td>
+    <td>us</td>
+    <td>5 minutes?</td>
+    <td>rectangle</td>
+    <td>Followed by at very close range&amp;#44 rectangula...</td>
+  </tr>
+  <tr>
+    <th>211</th>
+    <td>02/01/2010</td>
+    <td>clovis</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>3 min</td>
+    <td>sphere</td>
+    <td>A bright gold light that zoomed toward me when...</td>
+  </tr>
+  <tr>
+    <th>212</th>
+    <td>02/01/2010</td>
+    <td>ansonia</td>
+    <td>ct</td>
+    <td>us</td>
+    <td>minute</td>
+    <td>oval</td>
+    <td>Oval hovering disk</td>
+  </tr>
+  <tr>
+    <th>213</th>
+    <td>02/01/2010</td>
+    <td>marana</td>
+    <td>az</td>
+    <td>us</td>
+    <td>3 mins</td>
+    <td>light</td>
+    <td>Orange lights in night sky.</td>
+  </tr>
+  <tr>
+    <th>214</th>
+    <td>02/01/2010</td>
+    <td>wendell</td>
+    <td>id</td>
+    <td>us</td>
+    <td>20 minutes</td>
+    <td>light</td>
+    <td>Amber lights moving in a diagnal angle seen so...</td>
+  </tr>
+  <tr>
+    <th>215</th>
+    <td>02/02/2010</td>
+    <td>oakland park</td>
+    <td>fl</td>
+    <td>us</td>
+    <td>1 minute</td>
+    <td>formation</td>
+    <td>4 lights scramble together and shoot out in va...</td>
+  </tr>
+  <tr>
+    <th>216</th>
+    <td>02/02/2010</td>
+    <td>beckwourth</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>15 minutes</td>
+    <td>unknown</td>
+    <td>Two large blinking orange lights 20 feet high ...</td>
+  </tr>
+  <tr>
+    <th>217</th>
+    <td>02/02/2010</td>
+    <td>wendell</td>
+    <td>id</td>
+    <td>us</td>
+    <td>20 min approx.</td>
+    <td>light</td>
+    <td>Amber lights appearing in the skies over Wende...</td>
+  </tr>
+  <tr>
+    <th>218</th>
+    <td>02/02/2010</td>
+    <td>youngsville</td>
+    <td>la</td>
+    <td>us</td>
+    <td>4 minutes</td>
+    <td>fireball</td>
+    <td>On February 2&amp;#44 2010&amp;#44 at approximately 8:...</td>
+  </tr>
+  <tr>
+    <th>219</th>
+    <td>02/02/2010</td>
+    <td>leawood</td>
+    <td>ks</td>
+    <td>us</td>
+    <td>20 min</td>
+    <td>circle</td>
+    <td>I could see that it had lights all around it a...</td>
+  </tr>
+  <tr>
+    <th>220</th>
+    <td>02/03/2010</td>
+    <td>ocala</td>
+    <td>fl</td>
+    <td>us</td>
+    <td>10 min</td>
+    <td>circle</td>
+    <td>((HOAX??))  perfect circle  with middle invisible</td>
+  </tr>
+  <tr>
+    <th>221</th>
+    <td>02/03/2010</td>
+    <td>atlanta</td>
+    <td>ga</td>
+    <td>us</td>
+    <td>2 to 3 mins</td>
+    <td>circle</td>
+    <td>A big ring-like object with bright lights in A...</td>
+  </tr>
+  <tr>
+    <th>222</th>
+    <td>02/03/2010</td>
+    <td>porter ranch</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>2 seconds</td>
+    <td>light</td>
+    <td>White object streaked across sky&amp;#44 broke apa...</td>
+  </tr>
+  <tr>
+    <th>223</th>
+    <td>02/04/2010</td>
+    <td>monmouth</td>
+    <td>or</td>
+    <td>us</td>
+    <td>~1 minute</td>
+    <td>fireball</td>
+    <td>Yellow-orange-white-ish fireball without tail ...</td>
+  </tr>
+  <tr>
+    <th>224</th>
+    <td>02/04/2010</td>
+    <td>los angeles</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>5-7 mins</td>
+    <td>light</td>
+    <td>Bright white object without strobe/wing lights...</td>
+  </tr>
+  <tr>
+    <th>225</th>
+    <td>02/04/2010</td>
+    <td>spencerport</td>
+    <td>ny</td>
+    <td>us</td>
+    <td>about 15-20 seconds</td>
+    <td>disk</td>
+    <td>Saucer like craft with round top and bottom. S...</td>
+  </tr>
+  <tr>
+    <th>226</th>
+    <td>02/04/2010</td>
+    <td>grove city</td>
+    <td>oh</td>
+    <td>us</td>
+    <td>more than a hour</td>
+    <td>sphere</td>
+    <td>((HOAX??))  white lights flying around the moo...</td>
+  </tr>
+  <tr>
+    <th>227</th>
+    <td>02/04/2010</td>
+    <td>chicago</td>
+    <td>il</td>
+    <td>us</td>
+    <td>1.5 seconds</td>
+    <td>disk</td>
+    <td>FLAT BLACK COLOR DISC.</td>
+  </tr>
+  <tr>
+    <th>228</th>
+    <td>02/05/2010</td>
+    <td>boulder</td>
+    <td>co</td>
+    <td>us</td>
+    <td>2 hours</td>
+    <td>light</td>
+    <td>large and bright blinking star begin to move&amp;#...</td>
+  </tr>
+  <tr>
+    <th>229</th>
+    <td>02/05/2010</td>
+    <td>langley</td>
+    <td>wa</td>
+    <td>us</td>
+    <td>3 hours plus</td>
+    <td>triangle</td>
+    <td>Triangles of colored lights&amp;#44 two fairly sta...</td>
+  </tr>
+  <tr>
+    <th>230</th>
+    <td>02/05/2010</td>
+    <td>benton city</td>
+    <td>wa</td>
+    <td>us</td>
+    <td>3-5 min</td>
+    <td>sphere</td>
+    <td>Bright orange and white lights low in the sky ...</td>
+  </tr>
+  <tr>
+    <th>231</th>
+    <td>02/05/2010</td>
+    <td>tatum</td>
+    <td>tx</td>
+    <td>us</td>
+    <td>5-10 minutes</td>
+    <td>other</td>
+    <td>Planes or UFO&amp;#39s in East Texas?</td>
+  </tr>
+  <tr>
+    <th>232</th>
+    <td>02/05/2010</td>
+    <td>pittsburgh</td>
+    <td>pa</td>
+    <td>us</td>
+    <td>on and off for 5 hours</td>
+    <td>unknown</td>
+    <td>Power went out and bright red and blue lights ...</td>
+  </tr>
+  <tr>
+    <th>233</th>
+    <td>02/06/2010</td>
+    <td>ellsworth</td>
+    <td>me</td>
+    <td>us</td>
+    <td>20 seconds</td>
+    <td>unknown</td>
+    <td>Green light and buzzing sound</td>
+  </tr>
+  <tr>
+    <th>234</th>
+    <td>02/06/2010</td>
+    <td>vernon</td>
+    <td>nj</td>
+    <td>us</td>
+    <td>3 minutes</td>
+    <td>triangle</td>
+    <td>On 02/06/2010 at about 6:30 pm while driveing ...</td>
+  </tr>
+  <tr>
+    <th>235</th>
+    <td>02/06/2010</td>
+    <td>cistern</td>
+    <td>tx</td>
+    <td>us</td>
+    <td>6min</td>
+    <td>sphere</td>
+    <td>5 low flying shperes seen in afternnon sky by ...</td>
+  </tr>
+  <tr>
+    <th>236</th>
+    <td>02/06/2010</td>
+    <td>albuquerque</td>
+    <td>nm</td>
+    <td>us</td>
+    <td>10 min</td>
+    <td>oval</td>
+    <td>Oval ship flying over northwest albuquerque br...</td>
+  </tr>
+  <tr>
+    <th>237</th>
+    <td>02/06/2010</td>
+    <td>elkins</td>
+    <td>wv</td>
+    <td>us</td>
+    <td>15 seconds</td>
+    <td>light</td>
+    <td>3 white lights in triangular formation + rapid...</td>
+  </tr>
+  <tr>
+    <th>238</th>
+    <td>02/06/2010</td>
+    <td>monterey</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>10 min</td>
+    <td>light</td>
+    <td>2 lights&amp;#44 green and blue&amp;#44 crazy movement...</td>
+  </tr>
+  <tr>
+    <th>239</th>
+    <td>02/06/2010</td>
+    <td>woodbridge</td>
+    <td>va</td>
+    <td>us</td>
+    <td>1 minute</td>
+    <td>light</td>
+    <td>bright yellow lights in the sky that moved wit...</td>
+  </tr>
+  <tr>
+    <th>240</th>
+    <td>02/07/2010</td>
+    <td>cando (canada)</td>
+    <td>sk</td>
+    <td>ca</td>
+    <td>2 minutes</td>
+    <td>cylinder</td>
+    <td>A big red UFO flew past the house followed by ...</td>
+  </tr>
+  <tr>
+    <th>241</th>
+    <td>02/07/2010</td>
+    <td>cicero</td>
+    <td>il</td>
+    <td>us</td>
+    <td>15 seconds</td>
+    <td>triangle</td>
+    <td>A loud black triangle with red lights seen in ...</td>
+  </tr>
+  <tr>
+    <th>242</th>
+    <td>02/07/2010</td>
+    <td>modesto</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>20 min or more</td>
+    <td>sphere</td>
+    <td>2 UFO IN MODESTO.  ((NUFORC Note:  Possible ho...</td>
+  </tr>
+  <tr>
+    <th>243</th>
+    <td>02/07/2010</td>
+    <td>philadelphia</td>
+    <td>pa</td>
+    <td>us</td>
+    <td>10 seconds</td>
+    <td>other</td>
+    <td>Flying Red Lights</td>
+  </tr>
+  <tr>
+    <th>244</th>
+    <td>02/08/2010</td>
+    <td>hyde park</td>
+    <td>ny</td>
+    <td>us</td>
+    <td>unknown</td>
+    <td>circle</td>
+    <td>Small&amp;#44 flashing&amp;#44 moving light over hyde ...</td>
+  </tr>
+  <tr>
+    <th>245</th>
+    <td>02/08/2010</td>
+    <td>riverhead</td>
+    <td>ny</td>
+    <td>us</td>
+    <td>2 minutes or less</td>
+    <td>circle</td>
+    <td>small silver/white light &amp;#44 making rapid zig...</td>
+  </tr>
+  <tr>
+    <th>246</th>
+    <td>02/08/2010</td>
+    <td>hobe sound</td>
+    <td>fl</td>
+    <td>us</td>
+    <td>15 min.</td>
+    <td>circle</td>
+    <td>Two White Star-like Shapes</td>
+  </tr>
+  <tr>
+    <th>247</th>
+    <td>02/08/2010</td>
+    <td>saylorsburg</td>
+    <td>pa</td>
+    <td>us</td>
+    <td>2 minutes</td>
+    <td>disk</td>
+    <td>Bright lights on craft over Saylorsburg&amp;#44 Pe...</td>
+  </tr>
+  <tr>
+    <th>248</th>
+    <td>02/08/2010</td>
+    <td>santa maria</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>20 minutes</td>
+    <td>oval</td>
+    <td>UFO sighting Santa Maria&amp;#44 CA</td>
+  </tr>
+  <tr>
+    <th>249</th>
+    <td>02/08/2010</td>
+    <td>gilbert</td>
+    <td>az</td>
+    <td>us</td>
+    <td>1 minute</td>
+    <td>unknown</td>
+    <td>Gliding silent set of lights over Gilbert&amp;#44 AZ.</td>
+  </tr>
+  <tr>
+    <th>250</th>
+    <td>02/09/2010</td>
+    <td>kettleman city</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>15 seconds</td>
+    <td>triangle</td>
+    <td>Red lights in a triangle over Kettleman City&amp;#...</td>
+  </tr>
+  <tr>
+    <th>251</th>
+    <td>02/09/2010</td>
+    <td>bedford</td>
+    <td>tx</td>
+    <td>us</td>
+    <td>1 min</td>
+    <td>light</td>
+    <td>Bright red lights moving south</td>
+  </tr>
+  <tr>
+    <th>252</th>
+    <td>02/09/2010</td>
+    <td>modesto</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>15 min</td>
+    <td>changing</td>
+    <td>Blue UFO in North Modesto&amp;#44 Ca.</td>
+  </tr>
+  <tr>
+    <th>253</th>
+    <td>02/10/2010</td>
+    <td>eaton rapids</td>
+    <td>mi</td>
+    <td>us</td>
+    <td>3 seconds</td>
+    <td>other</td>
+    <td>About 3:00 am I got up to use the bathroom.  A...</td>
+  </tr>
+  <tr>
+    <th>254</th>
+    <td>02/10/2010</td>
+    <td>carthage</td>
+    <td>tn</td>
+    <td>us</td>
+    <td>3 hours</td>
+    <td>light</td>
+    <td>A small yellowish-white light was hovering in ...</td>
+  </tr>
+  <tr>
+    <th>255</th>
+    <td>02/11/2010</td>
+    <td>weymouth</td>
+    <td>ma</td>
+    <td>us</td>
+    <td>2 minutes</td>
+    <td>triangle</td>
+    <td>At approx. 8:35 pm I was out on my deck having...</td>
+  </tr>
+  <tr>
+    <th>256</th>
+    <td>02/12/2010</td>
+    <td>seattle</td>
+    <td>wa</td>
+    <td>us</td>
+    <td>10 seconds</td>
+    <td>triangle</td>
+    <td>I saw a dark triangular object with lights aro...</td>
+  </tr>
+  <tr>
+    <th>257</th>
+    <td>02/12/2010</td>
+    <td>san antonio</td>
+    <td>tx</td>
+    <td>us</td>
+    <td>15 minutes</td>
+    <td>light</td>
+    <td>star like object</td>
+  </tr>
+  <tr>
+    <th>258</th>
+    <td>02/12/2010</td>
+    <td>sharon</td>
+    <td>vt</td>
+    <td>us</td>
+    <td>30 to 45 seconds</td>
+    <td>light</td>
+    <td>Airplane-like light which seemed to spawn larg...</td>
+  </tr>
+  <tr>
+    <th>259</th>
+    <td>02/12/2010</td>
+    <td>yakima</td>
+    <td>wa</td>
+    <td>us</td>
+    <td>10-15 seconds</td>
+    <td>fireball</td>
+    <td>Bright ball of light heading north very fast.</td>
+  </tr>
+  <tr>
+    <th>260</th>
+    <td>02/12/2010</td>
+    <td>seattle</td>
+    <td>wa</td>
+    <td>us</td>
+    <td>45 seconds</td>
+    <td>light</td>
+    <td>Blue Green object streaking across the sky</td>
+  </tr>
+  <tr>
+    <th>261</th>
+    <td>02/12/2010</td>
+    <td>santa nella</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>1 minute</td>
+    <td>formation</td>
+    <td>Two low flying green lights near Hwy. 5 disapp...</td>
+  </tr>
+  <tr>
+    <th>262</th>
+    <td>02/12/2010</td>
+    <td>goose creek</td>
+    <td>sc</td>
+    <td>us</td>
+    <td>15 minutes</td>
+    <td>flash</td>
+    <td>Brillant flashes of light</td>
+  </tr>
+  <tr>
+    <th>263</th>
+    <td>02/12/2010</td>
+    <td>sullivan city</td>
+    <td>tx</td>
+    <td>us</td>
+    <td>4 min</td>
+    <td>formation</td>
+    <td>Red flashing lights in Sullivan City&amp;#44 TX.</td>
+  </tr>
+  <tr>
+    <th>264</th>
+    <td>02/12/2010</td>
+    <td>topeka</td>
+    <td>ks</td>
+    <td>us</td>
+    <td>several days</td>
+    <td>unknown</td>
+    <td>bright star like light&amp;#44 moves unlike nothin...</td>
+  </tr>
+  <tr>
+    <th>265</th>
+    <td>02/12/2010</td>
+    <td>ft. bragg</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>30 seconds</td>
+    <td>cross</td>
+    <td>T shaped&amp;#44 twinkeling lights&amp;#44 and then va...</td>
+  </tr>
+  <tr>
+    <th>266</th>
+    <td>02/13/2010</td>
+    <td>san bernardino</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>10 minutes</td>
+    <td>fireball</td>
+    <td>I saw three orange lights that came at differe...</td>
+  </tr>
+  <tr>
+    <th>267</th>
+    <td>02/13/2010</td>
+    <td>davenport</td>
+    <td>ia</td>
+    <td>us</td>
+    <td>two at 10 sec. each</td>
+    <td>light</td>
+    <td>Bright concentrated lights in two bursts&amp;#44 e...</td>
+  </tr>
+  <tr>
+    <th>268</th>
+    <td>02/13/2010</td>
+    <td>los angeles</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>about 20 min.</td>
+    <td>circle</td>
+    <td>5 white circular things in the L.A. sky on the...</td>
+  </tr>
+  <tr>
+    <th>269</th>
+    <td>02/13/2010</td>
+    <td>nacogdoches</td>
+    <td>tx</td>
+    <td>us</td>
+    <td>15 to 20 seconds</td>
+    <td>formation</td>
+    <td>ufo spotted Nacogdoches tx. bright silver with...</td>
+  </tr>
+  <tr>
+    <th>270</th>
+    <td>02/13/2010</td>
+    <td>sunnyvale</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>15 seconds</td>
+    <td>formation</td>
+    <td>witnessed formation of 30-40 dim objects fly i...</td>
+  </tr>
+  <tr>
+    <th>271</th>
+    <td>02/13/2010</td>
+    <td>melbourne</td>
+    <td>fl</td>
+    <td>us</td>
+    <td>1 minute</td>
+    <td>sphere</td>
+    <td>Three orange lights on top and four yellow lig...</td>
+  </tr>
+  <tr>
+    <th>272</th>
+    <td>02/14/2010</td>
+    <td>abilene</td>
+    <td>tx</td>
+    <td>us</td>
+    <td>30 minutes</td>
+    <td>changing</td>
+    <td>My friend took pictures with night vision came...</td>
+  </tr>
+  <tr>
+    <th>273</th>
+    <td>02/14/2010</td>
+    <td>atco</td>
+    <td>nj</td>
+    <td>us</td>
+    <td>3 minutes</td>
+    <td>light</td>
+    <td>Strange light seen over Atco&amp;#44 NJ.</td>
+  </tr>
+  <tr>
+    <th>274</th>
+    <td>02/14/2010</td>
+    <td>conover</td>
+    <td>nc</td>
+    <td>us</td>
+    <td>20 sec</td>
+    <td>circle</td>
+    <td>several round objects moving real fast across ...</td>
+  </tr>
+  <tr>
+    <th>275</th>
+    <td>02/14/2010</td>
+    <td>miami</td>
+    <td>fl</td>
+    <td>us</td>
+    <td>4 minutes</td>
+    <td>unknown</td>
+    <td>Unknown  red  light objects  in the sky observ...</td>
+  </tr>
+  <tr>
+    <th>276</th>
+    <td>02/14/2010</td>
+    <td>brandon</td>
+    <td>fl</td>
+    <td>us</td>
+    <td>4-5 seconds</td>
+    <td>fireball</td>
+    <td>Green Fireball streaking acros the sky from ES...</td>
+  </tr>
+  <tr>
+    <th>277</th>
+    <td>02/14/2010</td>
+    <td>redding</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>7 minutes</td>
+    <td>circle</td>
+    <td>Round ball of light type object floating silen...</td>
+  </tr>
+  <tr>
+    <th>278</th>
+    <td>02/14/2010</td>
+    <td>gautier</td>
+    <td>ms</td>
+    <td>us</td>
+    <td>several hours</td>
+    <td>formation</td>
+    <td>Four yellow and red objects in the night sky f...</td>
+  </tr>
+  <tr>
+    <th>279</th>
+    <td>02/15/2010</td>
+    <td>ottawa (canada)</td>
+    <td>on</td>
+    <td>ca</td>
+    <td>5 sec.</td>
+    <td>oval</td>
+    <td>Flashing blue lights in Ottawa&amp;#44 what could ...</td>
+  </tr>
+  <tr>
+    <th>280</th>
+    <td>02/15/2010</td>
+    <td>nashville (near)</td>
+    <td>tn</td>
+    <td>us</td>
+    <td>minutes</td>
+    <td>unknown</td>
+    <td>UFO CASEBOOK REPORT:  Alien Encounter in Tenne...</td>
+  </tr>
+  <tr>
+    <th>281</th>
+    <td>02/15/2010</td>
+    <td>renton</td>
+    <td>wa</td>
+    <td>us</td>
+    <td>15+ min</td>
+    <td>unknown</td>
+    <td>UFO sighting Feb 15&amp;#44 2010 over Lake Washing...</td>
+  </tr>
+  <tr>
+    <th>282</th>
+    <td>02/15/2010</td>
+    <td>clearwater</td>
+    <td>ks</td>
+    <td>us</td>
+    <td>15 minutes</td>
+    <td>circle</td>
+    <td>Circular object approx the size of 3-4 basebal...</td>
+  </tr>
+  <tr>
+    <th>283</th>
+    <td>02/15/2010</td>
+    <td>las vegas</td>
+    <td>nv</td>
+    <td>us</td>
+    <td>5 seconds</td>
+    <td>circle</td>
+    <td>I was outside when my dad and I were looking u...</td>
+  </tr>
+  <tr>
+    <th>284</th>
+    <td>02/15/2010</td>
+    <td>cold lake (canada)</td>
+    <td>ab</td>
+    <td>ca</td>
+    <td>5 min</td>
+    <td>light</td>
+    <td>Gold  color slow moving star no noise over CFB...</td>
+  </tr>
+  <tr>
+    <th>285</th>
+    <td>02/15/2010</td>
+    <td>long beach</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>10 minutes</td>
+    <td>sphere</td>
+    <td>UFO sighting Long Beach&amp;#44 CA - Small spheric...</td>
+  </tr>
+  <tr>
+    <th>286</th>
+    <td>02/16/2010</td>
+    <td>fontana</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>4:10</td>
+    <td>light</td>
+    <td>Just not the same as a jet landing in Ontario ...</td>
+  </tr>
+  <tr>
+    <th>287</th>
+    <td>02/16/2010</td>
+    <td>denver</td>
+    <td>co</td>
+    <td>us</td>
+    <td>20 mins</td>
+    <td>unknown</td>
+    <td>Bright star looking object moved in sky and tu...</td>
+  </tr>
+  <tr>
+    <th>288</th>
+    <td>02/16/2010</td>
+    <td>austin</td>
+    <td>tx</td>
+    <td>us</td>
+    <td>3-4 min.</td>
+    <td>sphere</td>
+    <td>Noticed a total of 6 ball shape orange glow ex...</td>
+  </tr>
+  <tr>
+    <th>289</th>
+    <td>02/16/2010</td>
+    <td>mesquite</td>
+    <td>tx</td>
+    <td>us</td>
+    <td>30 seconds</td>
+    <td>rectangle</td>
+    <td>Rectangle UFO with 4 Dim Red Lights</td>
+  </tr>
+  <tr>
+    <th>290</th>
+    <td>02/16/2010</td>
+    <td>winnie</td>
+    <td>tx</td>
+    <td>us</td>
+    <td>17 minutes</td>
+    <td>changing</td>
+    <td>Very eerily silent&amp;#44 complete vulnarability&amp;...</td>
+  </tr>
+  <tr>
+    <th>291</th>
+    <td>02/16/2010</td>
+    <td>winnie</td>
+    <td>tx</td>
+    <td>us</td>
+    <td>17 minutes</td>
+    <td>triangle</td>
+    <td>Silent&amp;#44 pulsating  lights flying parallel t...</td>
+  </tr>
+  <tr>
+    <th>292</th>
+    <td>02/17/2010</td>
+    <td>concord</td>
+    <td>nh</td>
+    <td>us</td>
+    <td>half minute</td>
+    <td>chevron</td>
+    <td>roll of lights in the sky</td>
+  </tr>
+  <tr>
+    <th>293</th>
+    <td>02/17/2010</td>
+    <td>covington</td>
+    <td>la</td>
+    <td>us</td>
+    <td>1 minute</td>
+    <td>triangle</td>
+    <td>Slow moving triangular object with bright ligh...</td>
+  </tr>
+  <tr>
+    <th>294</th>
+    <td>02/18/2010</td>
+    <td>blanchard</td>
+    <td>mi</td>
+    <td>us</td>
+    <td>1 hour</td>
+    <td>light</td>
+    <td>I&amp;#39m still seeing those flickering lights&amp;#4...</td>
+  </tr>
+  <tr>
+    <th>295</th>
+    <td>02/18/2010</td>
+    <td>ellerslie</td>
+    <td>ga</td>
+    <td>us</td>
+    <td>2 minutes</td>
+    <td>light</td>
+    <td>Red lights in the sky</td>
+  </tr>
+  <tr>
+    <th>296</th>
+    <td>02/18/2010</td>
+    <td>raeford</td>
+    <td>nc</td>
+    <td>us</td>
+    <td>1 minute</td>
+    <td>other</td>
+    <td>Three identical white shapes far off in sky - ...</td>
+  </tr>
+  <tr>
+    <th>297</th>
+    <td>02/18/2010</td>
+    <td>mojave (21 mi. nw of)</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>0:30</td>
+    <td>sphere</td>
+    <td>My companion and I had taken a well marked tra...</td>
+  </tr>
+  <tr>
+    <th>298</th>
+    <td>02/18/2010</td>
+    <td>san diego</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>3 minutes</td>
+    <td>light</td>
+    <td>light moving slowly changes speed and directio...</td>
+  </tr>
+  <tr>
+    <th>299</th>
+    <td>02/18/2010</td>
+    <td>westwood</td>
+    <td>ma</td>
+    <td>us</td>
+    <td>5 minutes</td>
+    <td>cylinder</td>
+    <td>bright white light&amp;#44 cylindrical shape&amp;#44 f...</td>
+  </tr>
+  <tr>
+    <th>300</th>
+    <td>02/18/2010</td>
+    <td>shelbyville</td>
+    <td>il</td>
+    <td>us</td>
+    <td>3 minutes</td>
+    <td>unknown</td>
+    <td>4 white lights in  large square shape with 3 r...</td>
+  </tr>
+  <tr>
+    <th>301</th>
+    <td>02/18/2010</td>
+    <td>bellingham</td>
+    <td>wa</td>
+    <td>us</td>
+    <td>5 seconds</td>
+    <td>triangle</td>
+    <td>Triangular object over Bellingham&amp;#44 wa. Near...</td>
+  </tr>
+  <tr>
+    <th>302</th>
+    <td>02/19/2010</td>
+    <td>silverton</td>
+    <td>or</td>
+    <td>us</td>
+    <td>4 minutes</td>
+    <td>light</td>
+    <td>3 orange orbs flying over silverton oregon</td>
+  </tr>
+  <tr>
+    <th>303</th>
+    <td>02/19/2010</td>
+    <td>woodland hills</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>1 min</td>
+    <td>oval</td>
+    <td>observed six flying objects with no wings trav...</td>
+  </tr>
+  <tr>
+    <th>304</th>
+    <td>02/19/2010</td>
+    <td>seattle (ballard)</td>
+    <td>wa</td>
+    <td>us</td>
+    <td>1 minute</td>
+    <td>triangle</td>
+    <td>v-shaped craft&amp;#44 no lights&amp;#44 no sound&amp;#44 ...</td>
+  </tr>
+  <tr>
+    <th>305</th>
+    <td>02/19/2010</td>
+    <td>frankfort</td>
+    <td>il</td>
+    <td>us</td>
+    <td>15 - 20 minutes</td>
+    <td>triangle</td>
+    <td>Multiple Crafts (7-8) - 3 Super Bright White S...</td>
+  </tr>
+  <tr>
+    <th>306</th>
+    <td>02/19/2010</td>
+    <td>vernon hills</td>
+    <td>il</td>
+    <td>us</td>
+    <td>few minutes</td>
+    <td>light</td>
+    <td>Red light object sighted over east Vernon Hill...</td>
+  </tr>
+  <tr>
+    <th>307</th>
+    <td>02/20/2010</td>
+    <td>dalton</td>
+    <td>ga</td>
+    <td>us</td>
+    <td>3-5 minutes</td>
+    <td>fireball</td>
+    <td>Five firballs that dissapeared into the sky.</td>
+  </tr>
+  <tr>
+    <th>308</th>
+    <td>02/20/2010</td>
+    <td>randsburg</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>3 minutes</td>
+    <td>teardrop</td>
+    <td>Unknown object flying at unusual pattern</td>
+  </tr>
+  <tr>
+    <th>309</th>
+    <td>02/20/2010</td>
+    <td>toronto (canada)</td>
+    <td>on</td>
+    <td>ca</td>
+    <td>1.5 seconds</td>
+    <td>light</td>
+    <td>Super large bright light moving at hyperveloci...</td>
+  </tr>
+  <tr>
+    <th>310</th>
+    <td>02/20/2010</td>
+    <td>venetia</td>
+    <td>pa</td>
+    <td>us</td>
+    <td>very brief</td>
+    <td>sphere</td>
+    <td>Very bright yellow/white round light in the du...</td>
+  </tr>
+  <tr>
+    <th>311</th>
+    <td>02/20/2010</td>
+    <td>marshall</td>
+    <td>mn</td>
+    <td>us</td>
+    <td>6-10 seconds</td>
+    <td>light</td>
+    <td>Green&amp;#44 orb-like UFO spotted outside Marshal...</td>
+  </tr>
+  <tr>
+    <th>312</th>
+    <td>02/21/2010</td>
+    <td>severn</td>
+    <td>md</td>
+    <td>us</td>
+    <td>2 minutes</td>
+    <td>disk</td>
+    <td>unknown object drifts over roof line then disa...</td>
+  </tr>
+  <tr>
+    <th>313</th>
+    <td>02/21/2010</td>
+    <td>plum</td>
+    <td>pa</td>
+    <td>us</td>
+    <td>10 seconds</td>
+    <td>light</td>
+    <td>small white light in Plum&amp;#44 PA</td>
+  </tr>
+  <tr>
+    <th>314</th>
+    <td>02/21/2010</td>
+    <td>darlington</td>
+    <td>sc</td>
+    <td>us</td>
+    <td>ufo</td>
+    <td>circle</td>
+    <td>((HOAX??))  this was a alien vessel</td>
+  </tr>
+  <tr>
+    <th>315</th>
+    <td>02/21/2010</td>
+    <td>stanardsville</td>
+    <td>va</td>
+    <td>us</td>
+    <td>2 minutes</td>
+    <td>triangle</td>
+    <td>The whitest light poured into our home&amp;#44 fol...</td>
+  </tr>
+  <tr>
+    <th>316</th>
+    <td>02/21/2010</td>
+    <td>belton</td>
+    <td>tx</td>
+    <td>us</td>
+    <td>3-5 minutes</td>
+    <td>light</td>
+    <td>Bright object crossing sky from east to west a...</td>
+  </tr>
+  <tr>
+    <th>317</th>
+    <td>02/22/2010</td>
+    <td>new york city (manhattan)</td>
+    <td>ny</td>
+    <td>us</td>
+    <td>15 seconds</td>
+    <td>disk</td>
+    <td>High speed flying object seen over Hudson river</td>
+  </tr>
+  <tr>
+    <th>318</th>
+    <td>02/22/2010</td>
+    <td>swarthmore</td>
+    <td>pa</td>
+    <td>us</td>
+    <td>~15 seconds</td>
+    <td>flash</td>
+    <td>blue-green explosions? light up sky in Swarthm...</td>
+  </tr>
+  <tr>
+    <th>319</th>
+    <td>02/23/2010</td>
+    <td>ewa beach</td>
+    <td>hi</td>
+    <td>us</td>
+    <td>5-10 min</td>
+    <td>triangle</td>
+    <td>Two unnaturally bright UFO&amp;#39s over Ewa Beach</td>
+  </tr>
+  <tr>
+    <th>320</th>
+    <td>02/23/2010</td>
+    <td>galveston</td>
+    <td>tx</td>
+    <td>us</td>
+    <td>2 minutes</td>
+    <td>fireball</td>
+    <td>Myself and 2 others observed a neon blue meteo...</td>
+  </tr>
+  <tr>
+    <th>321</th>
+    <td>02/24/2010</td>
+    <td>arden</td>
+    <td>ar</td>
+    <td>us</td>
+    <td>20 minutes</td>
+    <td>formation</td>
+    <td>Without knowing I disturbed the same lighted a...</td>
+  </tr>
+  <tr>
+    <th>322</th>
+    <td>02/24/2010</td>
+    <td>springvale</td>
+    <td>me</td>
+    <td>us</td>
+    <td>1-3 hours</td>
+    <td>sphere</td>
+    <td>Multiple sightings of a variety of shapes of U...</td>
+  </tr>
+  <tr>
+    <th>323</th>
+    <td>02/24/2010</td>
+    <td>santa rosa</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>2 minutes</td>
+    <td>diamond</td>
+    <td>small shiny diamond hovers</td>
+  </tr>
+  <tr>
+    <th>324</th>
+    <td>02/24/2010</td>
+    <td>rising star</td>
+    <td>tx</td>
+    <td>us</td>
+    <td>10 minutes</td>
+    <td>light</td>
+    <td>Strange lights appeared in the sky near Rising...</td>
+  </tr>
+  <tr>
+    <th>325</th>
+    <td>02/25/2010</td>
+    <td>brockton</td>
+    <td>ma</td>
+    <td>us</td>
+    <td>4 hours</td>
+    <td>light</td>
+    <td>Next to Route 24 I was out on my balcony havin...</td>
+  </tr>
+  <tr>
+    <th>326</th>
+    <td>02/25/2010</td>
+    <td>twin peaks</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>20 seconds</td>
+    <td>circle</td>
+    <td>strange loud aircraft with green neon on it&amp;#3...</td>
+  </tr>
+  <tr>
+    <th>327</th>
+    <td>02/25/2010</td>
+    <td>wisconsin rapids</td>
+    <td>wi</td>
+    <td>us</td>
+    <td>4 minutes</td>
+    <td>unknown</td>
+    <td>Bright light flying accross the sky at speeds ...</td>
+  </tr>
+  <tr>
+    <th>328</th>
+    <td>02/25/2010</td>
+    <td>temple city</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>3-4 minutes</td>
+    <td>light</td>
+    <td>my lady &amp;amp; I witnessed a orange light float...</td>
+  </tr>
+  <tr>
+    <th>329</th>
+    <td>02/26/2010</td>
+    <td>homestead</td>
+    <td>fl</td>
+    <td>us</td>
+    <td>5 minutes</td>
+    <td>sphere</td>
+    <td>4 extremely bright white&amp;#44 large objects&amp;#44...</td>
+  </tr>
+  <tr>
+    <th>330</th>
+    <td>02/26/2010</td>
+    <td>keaau</td>
+    <td>hi</td>
+    <td>us</td>
+    <td>10 seconds</td>
+    <td>sphere</td>
+    <td>BRIGHT GREEN SPHERE-BALL SHAPED OBJECT</td>
+  </tr>
+  <tr>
+    <th>331</th>
+    <td>02/26/2010</td>
+    <td>sonoma</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>30 min.</td>
+    <td>egg</td>
+    <td>Large unidentified craft observed in the Napa ...</td>
+  </tr>
+  <tr>
+    <th>332</th>
+    <td>02/26/2010</td>
+    <td>las vegas</td>
+    <td>nv</td>
+    <td>us</td>
+    <td>20 minutes</td>
+    <td>oval</td>
+    <td>2 dark color ovals hovering very high in the s...</td>
+  </tr>
+  <tr>
+    <th>333</th>
+    <td>02/27/2010</td>
+    <td>lawrence</td>
+    <td>ks</td>
+    <td>us</td>
+    <td>15 seconds</td>
+    <td>light</td>
+    <td>Two orange objects spotted floating over Lawre...</td>
+  </tr>
+  <tr>
+    <th>334</th>
+    <td>02/27/2010</td>
+    <td>corpus christi</td>
+    <td>tx</td>
+    <td>us</td>
+    <td>10 seconds</td>
+    <td>circle</td>
+    <td>2-round objects caught  with night vision scop...</td>
+  </tr>
+  <tr>
+    <th>335</th>
+    <td>02/27/2010</td>
+    <td>tampa</td>
+    <td>fl</td>
+    <td>us</td>
+    <td>1 hour</td>
+    <td>rectangle</td>
+    <td>Sorry for the false information but I didn&amp;#39...</td>
+  </tr>
+  <tr>
+    <th>336</th>
+    <td>02/27/2010</td>
+    <td>lawrenceville</td>
+    <td>ga</td>
+    <td>us</td>
+    <td>5 seconds</td>
+    <td>circle</td>
+    <td>Strangely behaving Light in the early evening</td>
+  </tr>
+  <tr>
+    <th>337</th>
+    <td>02/27/2010</td>
+    <td>litchfield beach</td>
+    <td>sc</td>
+    <td>us</td>
+    <td>10 minutes</td>
+    <td>light</td>
+    <td>Three white lights hovered over the beach.</td>
+  </tr>
+  <tr>
+    <th>338</th>
+    <td>02/27/2010</td>
+    <td>spicewood</td>
+    <td>tx</td>
+    <td>us</td>
+    <td>4 minutes</td>
+    <td>circle</td>
+    <td>Large flaming light pulsed dim to bright then ...</td>
+  </tr>
+  <tr>
+    <th>339</th>
+    <td>02/28/2010</td>
+    <td>batavia</td>
+    <td>ia</td>
+    <td>us</td>
+    <td>15 minutes</td>
+    <td>sphere</td>
+    <td>A UFO was seen to the north of our house.</td>
+  </tr>
+  <tr>
+    <th>340</th>
+    <td>02/28/2010</td>
+    <td>homestead</td>
+    <td>fl</td>
+    <td>us</td>
+    <td>55 sec</td>
+    <td>teardrop</td>
+    <td>object like fire falling from the sky</td>
+  </tr>
+  <tr>
+    <th>341</th>
+    <td>02/28/2010</td>
+    <td>ward</td>
+    <td>ar</td>
+    <td>us</td>
+    <td>60 seconds</td>
+    <td>unknown</td>
+    <td>Fast black UFO.</td>
+  </tr>
+  <tr>
+    <th>342</th>
+    <td>02/28/2010</td>
+    <td>homestead</td>
+    <td>fl</td>
+    <td>us</td>
+    <td>3 minutes</td>
+    <td>unknown</td>
+    <td>Driving south on Florida Turnpike and noticed ...</td>
+  </tr>
+  <tr>
+    <th>343</th>
+    <td>02/28/2010</td>
+    <td>church point</td>
+    <td>la</td>
+    <td>us</td>
+    <td>2 minutes</td>
+    <td>cylinder</td>
+    <td>No Sound&amp;#44 Movement&amp;#44 or reflection from s...</td>
+  </tr>
+  <tr>
+    <th>344</th>
+    <td>02/28/2010</td>
+    <td>miami</td>
+    <td>fl</td>
+    <td>us</td>
+    <td>roughly 10 min</td>
+    <td>circle</td>
+    <td>From one huge light to three and then five&amp;#44...</td>
+  </tr>
+  <tr>
+    <th>345</th>
+    <td>02/28/2010</td>
+    <td>silverdale</td>
+    <td>wa</td>
+    <td>us</td>
+    <td>5-10 min</td>
+    <td>changing</td>
+    <td>Strange Object spotted in sky over trailer par...</td>
+  </tr>
+  <tr>
+    <th>346</th>
+    <td>02/28/2010</td>
+    <td>spring city</td>
+    <td>tn</td>
+    <td>us</td>
+    <td>about 1 minute</td>
+    <td>oval</td>
+    <td>6-8 ufo&amp;#39s waiting on one ufo to reach the g...</td>
+  </tr>
+  <tr>
+    <th>347</th>
+    <td>02/28/2010</td>
+    <td>everett</td>
+    <td>wa</td>
+    <td>us</td>
+    <td>unknown</td>
+    <td>unknown</td>
+    <td>GREEN BEAM OF LIGHT OVER EVERETT WASHINGTON</td>
+  </tr>
+  <tr>
+    <th>348</th>
+    <td>02/28/2010</td>
+    <td>little river</td>
+    <td>sc</td>
+    <td>us</td>
+    <td>3 hours</td>
+    <td>light</td>
+    <td>Red blue green and white light slowly floating...</td>
+  </tr>
+  <tr>
+    <th>349</th>
+    <td>03/01/2010</td>
+    <td>longview</td>
+    <td>tx</td>
+    <td>us</td>
+    <td>5 minutes</td>
+    <td>other</td>
+    <td>Hello i&amp;#39ve recently stumbled upon this webs...</td>
+  </tr>
+  <tr>
+    <th>350</th>
+    <td>03/01/2010</td>
+    <td>san diego</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>2.5 hour</td>
+    <td>other</td>
+    <td>Chemtrails over San Diego&amp;#44 Ca. the morning ...</td>
+  </tr>
+  <tr>
+    <th>351</th>
+    <td>03/01/2010</td>
+    <td>hernando</td>
+    <td>fl</td>
+    <td>us</td>
+    <td>15 seconds</td>
+    <td>light</td>
+    <td>White Light (Solid) slowly moving about 5-10 m...</td>
+  </tr>
+  <tr>
+    <th>352</th>
+    <td>03/01/2010</td>
+    <td>oakville</td>
+    <td>mo</td>
+    <td>us</td>
+    <td>3 minutes</td>
+    <td>other</td>
+    <td>Low frequency hum&amp;#44 then low flying helicopt...</td>
+  </tr>
+  <tr>
+    <th>353</th>
+    <td>03/01/2010</td>
+    <td>cook</td>
+    <td>mn</td>
+    <td>us</td>
+    <td>10 minutes</td>
+    <td>light</td>
+    <td>Abnormal lights in the northern sky.</td>
+  </tr>
+  <tr>
+    <th>354</th>
+    <td>03/01/2010</td>
+    <td>visalia</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>5 minutes</td>
+    <td>unknown</td>
+    <td>Very wide&amp;#44 low flying and silent&amp;#33&amp;#33 Tw...</td>
+  </tr>
+  <tr>
+    <th>355</th>
+    <td>03/01/2010</td>
+    <td>davenport</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>1 minute or so</td>
+    <td>fireball</td>
+    <td>star turned into a bright flare gradually chan...</td>
+  </tr>
+  <tr>
+    <th>356</th>
+    <td>03/01/2010</td>
+    <td>pittsburg</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>3 min</td>
+    <td>triangle</td>
+    <td>Huge triangle over Pittsburg&amp;#44 CA and Large ...</td>
+  </tr>
+  <tr>
+    <th>357</th>
+    <td>03/02/2010</td>
+    <td>austin</td>
+    <td>tx</td>
+    <td>us</td>
+    <td>30 seconds</td>
+    <td>unknown</td>
+    <td>Object with unusually large and luminous light...</td>
+  </tr>
+  <tr>
+    <th>358</th>
+    <td>03/03/2010</td>
+    <td>rio rancho</td>
+    <td>nm</td>
+    <td>us</td>
+    <td>10 minutes</td>
+    <td>fireball</td>
+    <td>A fireball in the sky</td>
+  </tr>
+  <tr>
+    <th>359</th>
+    <td>03/03/2010</td>
+    <td>cleveland</td>
+    <td>oh</td>
+    <td>us</td>
+    <td>15 minutes</td>
+    <td>unknown</td>
+    <td>It was late at night and I was over my grandmo...</td>
+  </tr>
+  <tr>
+    <th>360</th>
+    <td>03/03/2010</td>
+    <td>phoenix</td>
+    <td>az</td>
+    <td>us</td>
+    <td>approx 15 min</td>
+    <td>unknown</td>
+    <td>2 white objects in Phoenix&amp;#44 one changes col...</td>
+  </tr>
+  <tr>
+    <th>361</th>
+    <td>03/03/2010</td>
+    <td>crete</td>
+    <td>il</td>
+    <td>us</td>
+    <td>half hour</td>
+    <td>formation</td>
+    <td>possibly many crafts</td>
+  </tr>
+  <tr>
+    <th>362</th>
+    <td>03/03/2010</td>
+    <td>alma</td>
+    <td>ar</td>
+    <td>us</td>
+    <td>45 seconds</td>
+    <td>unknown</td>
+    <td>fast moving object wobbling at times at relati...</td>
+  </tr>
+  <tr>
+    <th>363</th>
+    <td>03/04/2010</td>
+    <td>canyon lake</td>
+    <td>tx</td>
+    <td>us</td>
+    <td>2 seconds</td>
+    <td>other</td>
+    <td>Large object falls straight down then jetfight...</td>
+  </tr>
+  <tr>
+    <th>364</th>
+    <td>03/04/2010</td>
+    <td>north little rock</td>
+    <td>ar</td>
+    <td>us</td>
+    <td>45 seconds</td>
+    <td>unknown</td>
+    <td>I just went outside to my carport for a cigare...</td>
+  </tr>
+  <tr>
+    <th>365</th>
+    <td>03/04/2010</td>
+    <td>ontario</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>12-15 sec</td>
+    <td>flash</td>
+    <td>Brilliant white light race across the sky at a...</td>
+  </tr>
+  <tr>
+    <th>366</th>
+    <td>03/04/2010</td>
+    <td>ballston lake</td>
+    <td>ny</td>
+    <td>us</td>
+    <td>1-2 seconds</td>
+    <td>fireball</td>
+    <td>Bright green fireball appears at the end of a ...</td>
+  </tr>
+  <tr>
+    <th>367</th>
+    <td>03/05/2010</td>
+    <td>tacoma</td>
+    <td>wa</td>
+    <td>us</td>
+    <td>2 minutes</td>
+    <td>fireball</td>
+    <td>Fireball over Tacoma Wa.</td>
+  </tr>
+  <tr>
+    <th>368</th>
+    <td>03/05/2010</td>
+    <td>proctor</td>
+    <td>ar</td>
+    <td>us</td>
+    <td>6 minutes</td>
+    <td>disk</td>
+    <td>Young woman see strange object with lights nea...</td>
+  </tr>
+  <tr>
+    <th>369</th>
+    <td>03/05/2010</td>
+    <td>fort smith</td>
+    <td>ar</td>
+    <td>us</td>
+    <td>1 hour</td>
+    <td>other</td>
+    <td>I noticed what appeared to be a star and just ...</td>
+  </tr>
+  <tr>
+    <th>370</th>
+    <td>03/05/2010</td>
+    <td>springboro</td>
+    <td>oh</td>
+    <td>us</td>
+    <td>45 sec.</td>
+    <td>other</td>
+    <td>I saw 4 small lights moving in a pattern.  ((N...</td>
+  </tr>
+  <tr>
+    <th>371</th>
+    <td>03/05/2010</td>
+    <td>hicksville</td>
+    <td>ny</td>
+    <td>us</td>
+    <td>90 seconds</td>
+    <td>oval</td>
+    <td>Black oval shaped object above Hicksville&amp;#44 NY.</td>
+  </tr>
+  <tr>
+    <th>372</th>
+    <td>03/05/2010</td>
+    <td>new hartford</td>
+    <td>ct</td>
+    <td>us</td>
+    <td>5 minutes</td>
+    <td>light</td>
+    <td>Two extreme bright lights in the sky and sudde...</td>
+  </tr>
+  <tr>
+    <th>373</th>
+    <td>03/05/2010</td>
+    <td>phoenix</td>
+    <td>az</td>
+    <td>us</td>
+    <td>5 minutes</td>
+    <td>other</td>
+    <td>Black object hovering over central Phoenix</td>
+  </tr>
+  <tr>
+    <th>374</th>
+    <td>03/05/2010</td>
+    <td>bath</td>
+    <td>nh</td>
+    <td>us</td>
+    <td>5 minutes</td>
+    <td>light</td>
+    <td>Bright white light traveling west to east&amp;#44 ...</td>
+  </tr>
+  <tr>
+    <th>375</th>
+    <td>03/05/2010</td>
+    <td>port townsend</td>
+    <td>wa</td>
+    <td>us</td>
+    <td>4 minutes</td>
+    <td>formation</td>
+    <td>7 bright orange lights in formation travel acr...</td>
+  </tr>
+  <tr>
+    <th>376</th>
+    <td>03/05/2010</td>
+    <td>buffalo (near)</td>
+    <td>tx</td>
+    <td>us</td>
+    <td>10 seconds</td>
+    <td>light</td>
+    <td>Changing Light near Buffalo&amp;#44 Texas</td>
+  </tr>
+  <tr>
+    <th>377</th>
+    <td>03/05/2010</td>
+    <td>kihei</td>
+    <td>hi</td>
+    <td>us</td>
+    <td>15 minutes</td>
+    <td>circle</td>
+    <td>An unusual cloud with round discs and moving f...</td>
+  </tr>
+  <tr>
+    <th>378</th>
+    <td>03/05/2010</td>
+    <td>kihei</td>
+    <td>hi</td>
+    <td>us</td>
+    <td>15 minutes</td>
+    <td>circle</td>
+    <td>6 yr-old daughter and Mom spotted 4 spaceships...</td>
+  </tr>
+  <tr>
+    <th>379</th>
+    <td>03/05/2010</td>
+    <td>plattsmouth</td>
+    <td>ne</td>
+    <td>us</td>
+    <td>3-4 mins</td>
+    <td>light</td>
+    <td>Orange sphere by platte river</td>
+  </tr>
+  <tr>
+    <th>380</th>
+    <td>03/05/2010</td>
+    <td>romeo</td>
+    <td>mi</td>
+    <td>us</td>
+    <td>on going</td>
+    <td>sphere</td>
+    <td>A sphere shape&amp;#44 changing colors very quickl...</td>
+  </tr>
+  <tr>
+    <th>381</th>
+    <td>03/05/2010</td>
+    <td>hansville</td>
+    <td>wa</td>
+    <td>us</td>
+    <td>20 seconds</td>
+    <td>light</td>
+    <td>Bright white light moving west to east over Ha...</td>
+  </tr>
+  <tr>
+    <th>382</th>
+    <td>03/05/2010</td>
+    <td>west chester</td>
+    <td>pa</td>
+    <td>us</td>
+    <td>30 minutes</td>
+    <td>triangle</td>
+    <td>Small triangular object with multi-color light...</td>
+  </tr>
+  <tr>
+    <th>383</th>
+    <td>03/05/2010</td>
+    <td>romeo</td>
+    <td>mi</td>
+    <td>us</td>
+    <td>2 minutes</td>
+    <td>diamond</td>
+    <td>Diamond shaped lights observed in the southwes...</td>
+  </tr>
+  <tr>
+    <th>384</th>
+    <td>03/05/2010</td>
+    <td>olympia</td>
+    <td>wa</td>
+    <td>us</td>
+    <td>4 minutes</td>
+    <td>light</td>
+    <td>Stationary circle of star-shaped lights.</td>
+  </tr>
+  <tr>
+    <th>385</th>
+    <td>03/05/2010</td>
+    <td>lockport</td>
+    <td>il</td>
+    <td>us</td>
+    <td>3 hours</td>
+    <td>triangle</td>
+    <td>Triangular  Object</td>
+  </tr>
+  <tr>
+    <th>386</th>
+    <td>03/05/2010</td>
+    <td>oak harbor</td>
+    <td>wa</td>
+    <td>us</td>
+    <td>still happening</td>
+    <td>other</td>
+    <td>4 lights seen clearly many difrent colors that...</td>
+  </tr>
+  <tr>
+    <th>387</th>
+    <td>03/06/2010</td>
+    <td>yakima</td>
+    <td>wa</td>
+    <td>us</td>
+    <td>10-15 seconds</td>
+    <td>light</td>
+    <td>bright star-like light just disappeared</td>
+  </tr>
+  <tr>
+    <th>388</th>
+    <td>03/06/2010</td>
+    <td>berryville</td>
+    <td>va</td>
+    <td>us</td>
+    <td>4 minutes</td>
+    <td>cylinder</td>
+    <td>I was driving back home to Purcerville from my...</td>
+  </tr>
+  <tr>
+    <th>389</th>
+    <td>03/06/2010</td>
+    <td>moses lake</td>
+    <td>wa</td>
+    <td>us</td>
+    <td>10 seconds</td>
+    <td>other</td>
+    <td>Intense blue light in grassy field</td>
+  </tr>
+  <tr>
+    <th>390</th>
+    <td>03/06/2010</td>
+    <td>kissimmee</td>
+    <td>fl</td>
+    <td>us</td>
+    <td>8-9 minutes</td>
+    <td>disk</td>
+    <td>17 small&amp;#44 silver&amp;#44 disk shaped objects&amp;#4...</td>
+  </tr>
+  <tr>
+    <th>391</th>
+    <td>03/06/2010</td>
+    <td>eureka</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>one minute</td>
+    <td>fireball</td>
+    <td>Orange light in the sky&amp;#44 two smaller orange...</td>
+  </tr>
+  <tr>
+    <th>392</th>
+    <td>03/06/2010</td>
+    <td>northwest</td>
+    <td>nc</td>
+    <td>us</td>
+    <td>1 hour</td>
+    <td>sphere</td>
+    <td>2 different UFO&amp;#39s visible at the same time.</td>
+  </tr>
+  <tr>
+    <th>393</th>
+    <td>03/06/2010</td>
+    <td>rochester</td>
+    <td>wa</td>
+    <td>us</td>
+    <td>6 minutes</td>
+    <td>triangle</td>
+    <td>triangular shape with lights&amp;#44 several other...</td>
+  </tr>
+  <tr>
+    <th>394</th>
+    <td>03/06/2010</td>
+    <td>silverton</td>
+    <td>or</td>
+    <td>us</td>
+    <td>30 seconds</td>
+    <td>triangle</td>
+    <td>Three dancing &amp;amp; twirling reddish lights</td>
+  </tr>
+  <tr>
+    <th>395</th>
+    <td>03/06/2010</td>
+    <td>fairfax</td>
+    <td>va</td>
+    <td>us</td>
+    <td>2 seconds</td>
+    <td>other</td>
+    <td>Fast moving two humped camel back light source</td>
+  </tr>
+  <tr>
+    <th>396</th>
+    <td>03/06/2010</td>
+    <td>niles</td>
+    <td>mi</td>
+    <td>us</td>
+    <td>still there</td>
+    <td>unknown</td>
+    <td>Object moved like a plane then stopped &amp;#44 ho...</td>
+  </tr>
+  <tr>
+    <th>397</th>
+    <td>03/06/2010</td>
+    <td>englewood</td>
+    <td>nj</td>
+    <td>us</td>
+    <td>6-8 seconds</td>
+    <td>circle</td>
+    <td>a ball of light shot into clear view paused fo...</td>
+  </tr>
+  <tr>
+    <th>398</th>
+    <td>03/06/2010</td>
+    <td>cape neddick</td>
+    <td>me</td>
+    <td>us</td>
+    <td>.4 sec</td>
+    <td>circle</td>
+    <td>Ocean-bound low-flying saucer glimpsed in Maine</td>
+  </tr>
+  <tr>
+    <th>399</th>
+    <td>03/07/2010</td>
+    <td>cramerton</td>
+    <td>nc</td>
+    <td>us</td>
+    <td>2 minutes</td>
+    <td>triangle</td>
+    <td>Large Triangular Object near Charlotte.</td>
+  </tr>
+  <tr>
+    <th>400</th>
+    <td>03/07/2010</td>
+    <td>longwood</td>
+    <td>fl</td>
+    <td>us</td>
+    <td>15 minutes</td>
+    <td>flash</td>
+    <td>Flashes in sky</td>
+  </tr>
+  <tr>
+    <th>401</th>
+    <td>03/07/2010</td>
+    <td>liverpool</td>
+    <td>ny</td>
+    <td>us</td>
+    <td>1 minute</td>
+    <td>changing</td>
+    <td>Shape changing object spinning counter clockwi...</td>
+  </tr>
+  <tr>
+    <th>402</th>
+    <td>03/07/2010</td>
+    <td>missoula</td>
+    <td>mt</td>
+    <td>us</td>
+    <td>5 minutes</td>
+    <td>triangle</td>
+    <td>Bright Red Triangle object hovering in sky.</td>
+  </tr>
+  <tr>
+    <th>403</th>
+    <td>03/08/2010</td>
+    <td>dyersburg</td>
+    <td>tn</td>
+    <td>us</td>
+    <td>5 seconds</td>
+    <td>fireball</td>
+    <td>Fireball over Dyersburg TN</td>
+  </tr>
+  <tr>
+    <th>404</th>
+    <td>03/08/2010</td>
+    <td>green bay</td>
+    <td>wi</td>
+    <td>us</td>
+    <td>15 seconds</td>
+    <td>circle</td>
+    <td>Possible UFO over Green Bay&amp;#44 WI.</td>
+  </tr>
+  <tr>
+    <th>405</th>
+    <td>03/09/2010</td>
+    <td>middlefield</td>
+    <td>oh</td>
+    <td>us</td>
+    <td>20 seconds</td>
+    <td>triangle</td>
+    <td>Triangle aircraft observed with Night Vision G...</td>
+  </tr>
+  <tr>
+    <th>406</th>
+    <td>03/09/2010</td>
+    <td>riesel</td>
+    <td>tx</td>
+    <td>us</td>
+    <td>5 minutes</td>
+    <td>sphere</td>
+    <td>Screeching noise with bright light.</td>
+  </tr>
+  <tr>
+    <th>407</th>
+    <td>03/09/2010</td>
+    <td>bethlehem</td>
+    <td>pa</td>
+    <td>us</td>
+    <td>2 minutes</td>
+    <td>cylinder</td>
+    <td>My second sighting of a chrome-colored craft d...</td>
+  </tr>
+  <tr>
+    <th>408</th>
+    <td>03/09/2010</td>
+    <td>bethlehem</td>
+    <td>pa</td>
+    <td>us</td>
+    <td>45 seconds</td>
+    <td>changing</td>
+    <td>large&amp;#44 bright white lights with one red lig...</td>
+  </tr>
+  <tr>
+    <th>409</th>
+    <td>03/09/2010</td>
+    <td>san antonio</td>
+    <td>tx</td>
+    <td>us</td>
+    <td>30 minutes</td>
+    <td>sphere</td>
+    <td>3 Morphing Red Sphere Lights No Sounds.</td>
+  </tr>
+  <tr>
+    <th>410</th>
+    <td>03/09/2010</td>
+    <td>la palma</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>5 minutes</td>
+    <td>cigar</td>
+    <td>Lights over orange county</td>
+  </tr>
+  <tr>
+    <th>411</th>
+    <td>03/10/2010</td>
+    <td>huson</td>
+    <td>mt</td>
+    <td>us</td>
+    <td>several minutes</td>
+    <td>circle</td>
+    <td>Three large circular crafts moving towards Mis...</td>
+  </tr>
+  <tr>
+    <th>412</th>
+    <td>03/10/2010</td>
+    <td>anaheim</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>5 seconds</td>
+    <td>disk</td>
+    <td>Flying Saucer Seen Cruising Over I-5 Near Anah...</td>
+  </tr>
+  <tr>
+    <th>413</th>
+    <td>03/10/2010</td>
+    <td>moravian falls</td>
+    <td>nc</td>
+    <td>us</td>
+    <td>5 seconds</td>
+    <td>light</td>
+    <td>Bright white light over Moravian Falls changes...</td>
+  </tr>
+  <tr>
+    <th>414</th>
+    <td>03/10/2010</td>
+    <td>west liberty</td>
+    <td>il</td>
+    <td>us</td>
+    <td>45min</td>
+    <td>triangle</td>
+    <td>A star wars aeronautic spectacle.</td>
+  </tr>
+  <tr>
+    <th>415</th>
+    <td>03/10/2010</td>
+    <td>livermore</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>hours.</td>
+    <td>flash</td>
+    <td>Round ball of flashing lights for three nights...</td>
+  </tr>
+  <tr>
+    <th>416</th>
+    <td>03/10/2010</td>
+    <td>wentzville</td>
+    <td>mo</td>
+    <td>us</td>
+    <td>5 minutes</td>
+    <td>light</td>
+    <td>Bright amber light dim to bright</td>
+  </tr>
+  <tr>
+    <th>417</th>
+    <td>03/11/2010</td>
+    <td>carlisle</td>
+    <td>pa</td>
+    <td>us</td>
+    <td>aprox. 15 min.</td>
+    <td>triangle</td>
+    <td>Triangle-shaped object above suburban area fly...</td>
+  </tr>
+  <tr>
+    <th>418</th>
+    <td>03/11/2010</td>
+    <td>havre</td>
+    <td>mt</td>
+    <td>us</td>
+    <td>30 minutes</td>
+    <td>light</td>
+    <td>Multiple sightings in the Havre area&amp;#44 3 kno...</td>
+  </tr>
+  <tr>
+    <th>419</th>
+    <td>03/11/2010</td>
+    <td>havre</td>
+    <td>mt</td>
+    <td>us</td>
+    <td>1 hour</td>
+    <td>other</td>
+    <td>3 Bright yellow lights and 2 small red ones</td>
+  </tr>
+  <tr>
+    <th>420</th>
+    <td>03/12/2010</td>
+    <td>tukwila</td>
+    <td>wa</td>
+    <td>us</td>
+    <td>90 sec</td>
+    <td>light</td>
+    <td>bright light travels over Seattle and seems to...</td>
+  </tr>
+  <tr>
+    <th>421</th>
+    <td>03/12/2010</td>
+    <td>erie</td>
+    <td>pa</td>
+    <td>us</td>
+    <td>5 minutes</td>
+    <td>changing</td>
+    <td>3/12/10Viewed a comet like object very bright ...</td>
+  </tr>
+  <tr>
+    <th>422</th>
+    <td>03/12/2010</td>
+    <td>erie</td>
+    <td>pa</td>
+    <td>us</td>
+    <td>5 minutes</td>
+    <td>changing</td>
+    <td>Viewed Cigar 2 light object change into a Comp...</td>
+  </tr>
+  <tr>
+    <th>423</th>
+    <td>03/12/2010</td>
+    <td>mckenzie</td>
+    <td>al</td>
+    <td>us</td>
+    <td>10 minutes</td>
+    <td>triangle</td>
+    <td>Large amber lights in upside down triangle for...</td>
+  </tr>
+  <tr>
+    <th>424</th>
+    <td>03/12/2010</td>
+    <td>destin</td>
+    <td>fl</td>
+    <td>us</td>
+    <td>4-5 minutes</td>
+    <td>light</td>
+    <td>5 stationary lights suspended above the ground...</td>
+  </tr>
+  <tr>
+    <th>425</th>
+    <td>03/12/2010</td>
+    <td>destin</td>
+    <td>fl</td>
+    <td>us</td>
+    <td>10 minutes</td>
+    <td>circle</td>
+    <td>3 objects looked like a fire in the sky</td>
+  </tr>
+  <tr>
+    <th>426</th>
+    <td>03/12/2010</td>
+    <td>crestview</td>
+    <td>fl</td>
+    <td>us</td>
+    <td>10 minutes</td>
+    <td>circle</td>
+    <td>We seen two orange lights in sky which other p...</td>
+  </tr>
+  <tr>
+    <th>427</th>
+    <td>03/12/2010</td>
+    <td>ogden</td>
+    <td>ut</td>
+    <td>us</td>
+    <td>approx  18 min</td>
+    <td>light</td>
+    <td>10-20 orange spheres of light viewed by 8 witn...</td>
+  </tr>
+  <tr>
+    <th>428</th>
+    <td>03/13/2010</td>
+    <td>south charleston</td>
+    <td>oh</td>
+    <td>us</td>
+    <td>10 mins</td>
+    <td>unknown</td>
+    <td>Bright Flashes of Light</td>
+  </tr>
+  <tr>
+    <th>429</th>
+    <td>03/13/2010</td>
+    <td>medway</td>
+    <td>me</td>
+    <td>us</td>
+    <td>1 second</td>
+    <td>circle</td>
+    <td>A large green circle flew directly over my house.</td>
+  </tr>
+  <tr>
+    <th>430</th>
+    <td>03/13/2010</td>
+    <td>memphis</td>
+    <td>tn</td>
+    <td>us</td>
+    <td>none</td>
+    <td>circle</td>
+    <td>ufo spoted in google earth</td>
+  </tr>
+  <tr>
+    <th>431</th>
+    <td>03/13/2010</td>
+    <td>ephrata</td>
+    <td>wa</td>
+    <td>us</td>
+    <td>1 sec</td>
+    <td>light</td>
+    <td>i was looking out my window to the west. i was...</td>
+  </tr>
+  <tr>
+    <th>432</th>
+    <td>03/13/2010</td>
+    <td>new york city (staten island)</td>
+    <td>ny</td>
+    <td>us</td>
+    <td>half hour</td>
+    <td>sphere</td>
+    <td>Strange lights during storm in staten island</td>
+  </tr>
+  <tr>
+    <th>433</th>
+    <td>03/13/2010</td>
+    <td>lynnwood</td>
+    <td>wa</td>
+    <td>us</td>
+    <td>1 minute</td>
+    <td>light</td>
+    <td>Amber light formation in sky above Lynnwood&amp;#4...</td>
+  </tr>
+  <tr>
+    <th>434</th>
+    <td>03/13/2010</td>
+    <td>edmonds</td>
+    <td>wa</td>
+    <td>us</td>
+    <td>15 minutes</td>
+    <td>oval</td>
+    <td>20-30 orange&amp;#44 flame colored objects seen fo...</td>
+  </tr>
+  <tr>
+    <th>435</th>
+    <td>03/13/2010</td>
+    <td>edmonds</td>
+    <td>wa</td>
+    <td>us</td>
+    <td>15 minutes</td>
+    <td>circle</td>
+    <td>Bright red lights totalling about 40 moving ov...</td>
+  </tr>
+  <tr>
+    <th>436</th>
+    <td>03/13/2010</td>
+    <td>bonita springs</td>
+    <td>fl</td>
+    <td>us</td>
+    <td>5-8 minutes</td>
+    <td>sphere</td>
+    <td>High altitude amber balls of light move across...</td>
+  </tr>
+  <tr>
+    <th>437</th>
+    <td>03/13/2010</td>
+    <td>metairie</td>
+    <td>la</td>
+    <td>us</td>
+    <td>3 mins</td>
+    <td>fireball</td>
+    <td>7 to 9 objects glowing bright red yellow fadin...</td>
+  </tr>
+  <tr>
+    <th>438</th>
+    <td>03/13/2010</td>
+    <td>cleveland</td>
+    <td>oh</td>
+    <td>us</td>
+    <td>1.5 minutes</td>
+    <td>oval</td>
+    <td>Ufos seen in cleveland ohio&amp;#44 changed color ...</td>
+  </tr>
+  <tr>
+    <th>439</th>
+    <td>03/14/2010</td>
+    <td>corvallis</td>
+    <td>or</td>
+    <td>us</td>
+    <td>2 minutes</td>
+    <td>chevron</td>
+    <td>A hovering flashing orange chevron shaped airc...</td>
+  </tr>
+  <tr>
+    <th>440</th>
+    <td>03/14/2010</td>
+    <td>carmel-by-the-sea</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>approx. 5 min.</td>
+    <td>flash</td>
+    <td>Stationary intermitient flashes</td>
+  </tr>
+  <tr>
+    <th>441</th>
+    <td>03/14/2010</td>
+    <td>florence</td>
+    <td>ms</td>
+    <td>us</td>
+    <td>60 sec. or less</td>
+    <td>other</td>
+    <td>Dart-like craft emerged from tail of a fireball</td>
+  </tr>
+  <tr>
+    <th>442</th>
+    <td>03/14/2010</td>
+    <td>honolulu</td>
+    <td>hi</td>
+    <td>us</td>
+    <td>4 minutes</td>
+    <td>cylinder</td>
+    <td>Flying Cylinder moving in broad daylight from ...</td>
+  </tr>
+  <tr>
+    <th>443</th>
+    <td>03/14/2010</td>
+    <td>pasadena</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>25 minutes</td>
+    <td>changing</td>
+    <td>White Glowing Object Changing Shape Over Pasad...</td>
+  </tr>
+  <tr>
+    <th>444</th>
+    <td>03/14/2010</td>
+    <td>east dundee</td>
+    <td>il</td>
+    <td>us</td>
+    <td>15-20 seconds</td>
+    <td>triangle</td>
+    <td>I clearly saw a triangle craft that glided ove...</td>
+  </tr>
+  <tr>
+    <th>445</th>
+    <td>03/14/2010</td>
+    <td>bozeman</td>
+    <td>mt</td>
+    <td>us</td>
+    <td>5 mins</td>
+    <td>light</td>
+    <td>Bright light in sky then fades</td>
+  </tr>
+  <tr>
+    <th>446</th>
+    <td>03/14/2010</td>
+    <td>great falls</td>
+    <td>mt</td>
+    <td>us</td>
+    <td>3-4 seconds</td>
+    <td>light</td>
+    <td>2 or 3 orange lights moved from west to east o...</td>
+  </tr>
+  <tr>
+    <th>447</th>
+    <td>03/15/2010</td>
+    <td>tijeras (south of&amp;#44 on hwy s.14)</td>
+    <td>nm</td>
+    <td>us</td>
+    <td>5 minutes</td>
+    <td>rectangle</td>
+    <td>football field size and shape silent craft flo...</td>
+  </tr>
+  <tr>
+    <th>448</th>
+    <td>03/15/2010</td>
+    <td>crestline</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>2 minutes</td>
+    <td>disk</td>
+    <td>Bright UFO between 2 jets</td>
+  </tr>
+  <tr>
+    <th>449</th>
+    <td>03/15/2010</td>
+    <td>modesto</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>7 minutes</td>
+    <td>rectangle</td>
+    <td>Blue Neon Light appeared and vanished while ho...</td>
+  </tr>
+  <tr>
+    <th>450</th>
+    <td>03/16/2010</td>
+    <td>pensacola</td>
+    <td>fl</td>
+    <td>us</td>
+    <td>5 mins</td>
+    <td>light</td>
+    <td>Dividing Lights Over Pensacola Beach</td>
+  </tr>
+  <tr>
+    <th>451</th>
+    <td>03/16/2010</td>
+    <td>chicago</td>
+    <td>il</td>
+    <td>us</td>
+    <td>30 seconds</td>
+    <td>unknown</td>
+    <td>Appeared At First Like An Airplane&amp;#44 But Was...</td>
+  </tr>
+  <tr>
+    <th>452</th>
+    <td>03/16/2010</td>
+    <td>skokie</td>
+    <td>il</td>
+    <td>us</td>
+    <td>3-5 seconds</td>
+    <td>chevron</td>
+    <td>shooting stars?  - or - was it?</td>
+  </tr>
+  <tr>
+    <th>453</th>
+    <td>03/16/2010</td>
+    <td>canton</td>
+    <td>ms</td>
+    <td>us</td>
+    <td>5 minutes</td>
+    <td>light</td>
+    <td>what appeared to be a twinkling star moved qui...</td>
+  </tr>
+  <tr>
+    <th>454</th>
+    <td>03/16/2010</td>
+    <td>wilmington</td>
+    <td>vt</td>
+    <td>us</td>
+    <td>2 minutes</td>
+    <td>cross</td>
+    <td>3 opaque white objects appeared from a jet che...</td>
+  </tr>
+  <tr>
+    <th>455</th>
+    <td>03/16/2010</td>
+    <td>westerly</td>
+    <td>ri</td>
+    <td>us</td>
+    <td>10</td>
+    <td>circle</td>
+    <td>Object flying along side an airplane disappear...</td>
+  </tr>
+  <tr>
+    <th>456</th>
+    <td>03/16/2010</td>
+    <td>hewlett</td>
+    <td>ny</td>
+    <td>us</td>
+    <td>30-45 seconds</td>
+    <td>sphere</td>
+    <td>2 round&amp;#44 shiny objects flying close to each...</td>
+  </tr>
+  <tr>
+    <th>457</th>
+    <td>03/16/2010</td>
+    <td>tempe</td>
+    <td>az</td>
+    <td>us</td>
+    <td>50-70 seconds</td>
+    <td>unknown</td>
+    <td>At approximately 4:45 PM on Tuesday March 16th...</td>
+  </tr>
+  <tr>
+    <th>458</th>
+    <td>03/16/2010</td>
+    <td>rochester</td>
+    <td>in</td>
+    <td>us</td>
+    <td>3-5 mins.</td>
+    <td>light</td>
+    <td>We were stargazing and we saw a v-formation of...</td>
+  </tr>
+  <tr>
+    <th>459</th>
+    <td>03/16/2010</td>
+    <td>long beach</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>15 secs</td>
+    <td>triangle</td>
+    <td>Triangular object seen in Long Beach&amp;#44 CA</td>
+  </tr>
+  <tr>
+    <th>460</th>
+    <td>03/16/2010</td>
+    <td>milford</td>
+    <td>ct</td>
+    <td>us</td>
+    <td>3 seconds</td>
+    <td>circle</td>
+    <td>Pale circular object imoving in upper atmosphe...</td>
+  </tr>
+  <tr>
+    <th>461</th>
+    <td>03/16/2010</td>
+    <td>pittsboro</td>
+    <td>nc</td>
+    <td>us</td>
+    <td>5 minutes</td>
+    <td>other</td>
+    <td>Silent craft with Red&amp;#44 White&amp;#44 and Blue l...</td>
+  </tr>
+  <tr>
+    <th>462</th>
+    <td>03/16/2010</td>
+    <td>little neck</td>
+    <td>ny</td>
+    <td>us</td>
+    <td>2 hours</td>
+    <td>unknown</td>
+    <td>multiple ufo sightings</td>
+  </tr>
+  <tr>
+    <th>463</th>
+    <td>03/17/2010</td>
+    <td>highland</td>
+    <td>ny</td>
+    <td>us</td>
+    <td>15 seconds</td>
+    <td>light</td>
+    <td>v formation lights looks like glowing geese fl...</td>
+  </tr>
+  <tr>
+    <th>464</th>
+    <td>03/17/2010</td>
+    <td>cincinnati</td>
+    <td>oh</td>
+    <td>us</td>
+    <td>present</td>
+    <td>sphere</td>
+    <td>spherical object with changing light pattern v...</td>
+  </tr>
+  <tr>
+    <th>465</th>
+    <td>03/17/2010</td>
+    <td>riverside</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>5 minutes</td>
+    <td>other</td>
+    <td>Flat football shaped object hoving over passin...</td>
+  </tr>
+  <tr>
+    <th>466</th>
+    <td>03/17/2010</td>
+    <td>irvine</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>10</td>
+    <td>unknown</td>
+    <td>3 crafts hovering in Irvine&amp;#44Ca close to the...</td>
+  </tr>
+  <tr>
+    <th>467</th>
+    <td>03/17/2010</td>
+    <td>las vegas</td>
+    <td>nv</td>
+    <td>us</td>
+    <td>15-20 min</td>
+    <td>circle</td>
+    <td>Slow/upward moving dark&amp;#44 circular object ob...</td>
+  </tr>
+  <tr>
+    <th>468</th>
+    <td>03/17/2010</td>
+    <td>avon</td>
+    <td>ma</td>
+    <td>us</td>
+    <td>30 seconds</td>
+    <td>light</td>
+    <td>bright drifting light fading away into sky</td>
+  </tr>
+  <tr>
+    <th>469</th>
+    <td>03/17/2010</td>
+    <td>anderson</td>
+    <td>in</td>
+    <td>us</td>
+    <td>4 hr</td>
+    <td>light</td>
+    <td>Dont kno what it is but in the SW sky tward in...</td>
+  </tr>
+  <tr>
+    <th>470</th>
+    <td>03/18/2010</td>
+    <td>converse</td>
+    <td>tx</td>
+    <td>us</td>
+    <td>2 min</td>
+    <td>disk</td>
+    <td>I saw a disk like a mirror&amp;#44 big&amp;#44fast and...</td>
+  </tr>
+  <tr>
+    <th>471</th>
+    <td>03/18/2010</td>
+    <td>barberton</td>
+    <td>oh</td>
+    <td>us</td>
+    <td>55 minutes</td>
+    <td>sphere</td>
+    <td>I spotted a dark sphere with random flashing w...</td>
+  </tr>
+  <tr>
+    <th>472</th>
+    <td>03/18/2010</td>
+    <td>chicago</td>
+    <td>il</td>
+    <td>us</td>
+    <td>30 seconds</td>
+    <td>other</td>
+    <td>Saw a strange&amp;#44 fast flying object with NO l...</td>
+  </tr>
+  <tr>
+    <th>473</th>
+    <td>03/18/2010</td>
+    <td>ashtabula</td>
+    <td>oh</td>
+    <td>us</td>
+    <td>5 minutes and 9 seconds</td>
+    <td>unknown</td>
+    <td>Bright object observed in the morning sky unti...</td>
+  </tr>
+  <tr>
+    <th>474</th>
+    <td>03/18/2010</td>
+    <td>carlisle</td>
+    <td>pa</td>
+    <td>us</td>
+    <td>4-5 minutes</td>
+    <td>light</td>
+    <td>2 very bright objects spotted  on sunny &amp;#44cl...</td>
+  </tr>
+  <tr>
+    <th>475</th>
+    <td>03/18/2010</td>
+    <td>jonesboro</td>
+    <td>in</td>
+    <td>us</td>
+    <td>4 mins</td>
+    <td>light</td>
+    <td>Bright light /Object moving Across sky</td>
+  </tr>
+  <tr>
+    <th>476</th>
+    <td>03/18/2010</td>
+    <td>fort madison</td>
+    <td>ia</td>
+    <td>us</td>
+    <td>5 seconds</td>
+    <td>flash</td>
+    <td>UFO Crashland in Fort Madison Iowa high school...</td>
+  </tr>
+  <tr>
+    <th>477</th>
+    <td>03/18/2010</td>
+    <td>meridian</td>
+    <td>id</td>
+    <td>us</td>
+    <td>1 hour</td>
+    <td>fireball</td>
+    <td>looks like hundreds of lights in a circle and ...</td>
+  </tr>
+  <tr>
+    <th>478</th>
+    <td>03/18/2010</td>
+    <td>eureka</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>5-10 minutes</td>
+    <td>light</td>
+    <td>Large&amp;#44 bright light moving over Samoa Beach...</td>
+  </tr>
+  <tr>
+    <th>479</th>
+    <td>03/18/2010</td>
+    <td>haylow</td>
+    <td>ga</td>
+    <td>us</td>
+    <td>2 mins.</td>
+    <td>circle</td>
+    <td>((HOAX??))  184 mies south of Macon&amp;#44Ga.&amp;#44...</td>
+  </tr>
+  <tr>
+    <th>480</th>
+    <td>03/19/2010</td>
+    <td>florence</td>
+    <td>nj</td>
+    <td>us</td>
+    <td>fast</td>
+    <td>light</td>
+    <td>fast green downward</td>
+  </tr>
+  <tr>
+    <th>481</th>
+    <td>03/19/2010</td>
+    <td>franklin</td>
+    <td>tn</td>
+    <td>us</td>
+    <td>20 sec.</td>
+    <td>rectangle</td>
+    <td>fast moving green square darted sky to hill to...</td>
+  </tr>
+  <tr>
+    <th>482</th>
+    <td>03/19/2010</td>
+    <td>sewell</td>
+    <td>nj</td>
+    <td>us</td>
+    <td>2</td>
+    <td>diamond</td>
+    <td>a green light zoomed across the sky making no ...</td>
+  </tr>
+  <tr>
+    <th>483</th>
+    <td>03/19/2010</td>
+    <td>tallahassee</td>
+    <td>fl</td>
+    <td>us</td>
+    <td>10 mina</td>
+    <td>chevron</td>
+    <td>Bullet and V Shaped UFOs seen over Tallahassee</td>
+  </tr>
+  <tr>
+    <th>484</th>
+    <td>03/19/2010</td>
+    <td>mays landing</td>
+    <td>nj</td>
+    <td>us</td>
+    <td>on going</td>
+    <td>unknown</td>
+    <td>Points of light in the night sky moving errati...</td>
+  </tr>
+  <tr>
+    <th>485</th>
+    <td>03/19/2010</td>
+    <td>statham</td>
+    <td>ga</td>
+    <td>us</td>
+    <td>20 minutes</td>
+    <td>circle</td>
+    <td>2 bright circular lights seen hovering at dusk...</td>
+  </tr>
+  <tr>
+    <th>486</th>
+    <td>03/19/2010</td>
+    <td>simi valley</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>4+ minutes</td>
+    <td>unknown</td>
+    <td>Very Bright orange/red light seen overhead in ...</td>
+  </tr>
+  <tr>
+    <th>487</th>
+    <td>03/19/2010</td>
+    <td>annapolis</td>
+    <td>md</td>
+    <td>us</td>
+    <td>3 minutes</td>
+    <td>disk</td>
+    <td>UFO Sighting Report  I was doing some night ph...</td>
+  </tr>
+  <tr>
+    <th>488</th>
+    <td>03/19/2010</td>
+    <td>rockmart</td>
+    <td>ga</td>
+    <td>us</td>
+    <td>30 seconds</td>
+    <td>unknown</td>
+    <td>Bright lighted object zigzagged quickly and su...</td>
+  </tr>
+  <tr>
+    <th>489</th>
+    <td>03/19/2010</td>
+    <td>smackover</td>
+    <td>ar</td>
+    <td>us</td>
+    <td>seconds</td>
+    <td>triangle</td>
+    <td>Triangle UFO</td>
+  </tr>
+  <tr>
+    <th>490</th>
+    <td>03/19/2010</td>
+    <td>wilmington</td>
+    <td>de</td>
+    <td>us</td>
+    <td>approx. 3 seconds</td>
+    <td>sphere</td>
+    <td>A quick moving green glowing ball seen while d...</td>
+  </tr>
+  <tr>
+    <th>491</th>
+    <td>03/19/2010</td>
+    <td>lafayette (?) (near)</td>
+    <td>in</td>
+    <td>us</td>
+    <td>minutes</td>
+    <td>triangle</td>
+    <td>Low&amp;#44 slow moving triangular aircraft hovers...</td>
+  </tr>
+  <tr>
+    <th>492</th>
+    <td>03/19/2010</td>
+    <td>buffalo</td>
+    <td>ny</td>
+    <td>us</td>
+    <td>10 sec</td>
+    <td>formation</td>
+    <td>5 Bright lights float over home</td>
+  </tr>
+  <tr>
+    <th>493</th>
+    <td>03/20/2010</td>
+    <td>key largo</td>
+    <td>fl</td>
+    <td>us</td>
+    <td>3 mins</td>
+    <td>fireball</td>
+    <td>7 orange orbs in key largo FL night sky moving...</td>
+  </tr>
+  <tr>
+    <th>494</th>
+    <td>03/20/2010</td>
+    <td>venus</td>
+    <td>fl</td>
+    <td>us</td>
+    <td>2 minutes</td>
+    <td>circle</td>
+    <td>((hoax??))  In the past we have seen many stra...</td>
+  </tr>
+  <tr>
+    <th>495</th>
+    <td>03/20/2010</td>
+    <td>hopkins</td>
+    <td>sc</td>
+    <td>us</td>
+    <td>15-20 seconds</td>
+    <td>changing</td>
+    <td>my husband and I were standing in a parking lo...</td>
+  </tr>
+  <tr>
+    <th>496</th>
+    <td>03/20/2010</td>
+    <td>eldersburg</td>
+    <td>md</td>
+    <td>us</td>
+    <td>30 seconds</td>
+    <td>disk</td>
+    <td>Saucer shaped UFO with circularly flashing lig...</td>
+  </tr>
+  <tr>
+    <th>497</th>
+    <td>03/20/2010</td>
+    <td>laconia</td>
+    <td>nh</td>
+    <td>us</td>
+    <td>1hr 30  min.</td>
+    <td>changing</td>
+    <td>UFO Sighting in Laconia</td>
+  </tr>
+  <tr>
+    <th>498</th>
+    <td>03/20/2010</td>
+    <td>laconia</td>
+    <td>nh</td>
+    <td>us</td>
+    <td>1hr and 30 min.</td>
+    <td>changing</td>
+    <td>UFO Sighting in  Laconia</td>
+  </tr>
+  <tr>
+    <th>499</th>
+    <td>03/21/2010</td>
+    <td>depoe bay</td>
+    <td>or</td>
+    <td>us</td>
+    <td>about 2 mins</td>
+    <td>cylinder</td>
+    <td>Red light bouncing in the  sky.</td>
+  </tr>
+  <tr>
+    <th>500</th>
+    <td>03/21/2010</td>
+    <td>issaquah</td>
+    <td>wa</td>
+    <td>us</td>
+    <td>5 to 10 seconds</td>
+    <td>circle</td>
+    <td>White orbs in the clouds&amp;#44 both as big as a ...</td>
+  </tr>
+  <tr>
+    <th>501</th>
+    <td>03/21/2010</td>
+    <td>issaquah</td>
+    <td>wa</td>
+    <td>us</td>
+    <td>15 to 20 seconds</td>
+    <td>other</td>
+    <td>flying object  viewded from I-90 westbound nea...</td>
+  </tr>
+  <tr>
+    <th>502</th>
+    <td>03/21/2010</td>
+    <td>stockton</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>15 seconds</td>
+    <td>circle</td>
+    <td>White object flying overhead.</td>
+  </tr>
+  <tr>
+    <th>503</th>
+    <td>03/22/2010</td>
+    <td>fountain inn</td>
+    <td>sc</td>
+    <td>us</td>
+    <td>9 min</td>
+    <td>disk</td>
+    <td>i saw a ufo&amp;#33&amp;#33&amp;#33</td>
+  </tr>
+  <tr>
+    <th>504</th>
+    <td>03/22/2010</td>
+    <td>dublin</td>
+    <td>tx</td>
+    <td>us</td>
+    <td>30sec</td>
+    <td>light</td>
+    <td>5 balls of light  faded in then out over dubli...</td>
+  </tr>
+  <tr>
+    <th>505</th>
+    <td>03/22/2010</td>
+    <td>portage</td>
+    <td>mi</td>
+    <td>us</td>
+    <td>30 seconds</td>
+    <td>sphere</td>
+    <td>Spherical&amp;#44 silent&amp;#44 quick&amp;#44 lit up from...</td>
+  </tr>
+  <tr>
+    <th>506</th>
+    <td>03/22/2010</td>
+    <td>biloxi</td>
+    <td>ms</td>
+    <td>us</td>
+    <td>5 min. +</td>
+    <td>triangle</td>
+    <td>Triangular craft observed near Biloxi</td>
+  </tr>
+  <tr>
+    <th>507</th>
+    <td>03/22/2010</td>
+    <td>knappa</td>
+    <td>or</td>
+    <td>us</td>
+    <td>1 hour</td>
+    <td>other</td>
+    <td>Very Bright Orange Lights</td>
+  </tr>
+  <tr>
+    <th>508</th>
+    <td>03/23/2010</td>
+    <td>el paso</td>
+    <td>tx</td>
+    <td>us</td>
+    <td>unkown</td>
+    <td>changing</td>
+    <td>Bright white light along the side of mountain&amp;...</td>
+  </tr>
+  <tr>
+    <th>509</th>
+    <td>03/23/2010</td>
+    <td>winter haven</td>
+    <td>fl</td>
+    <td>us</td>
+    <td>1 minute</td>
+    <td>light</td>
+    <td>i was driving down the road and seen a round c...</td>
+  </tr>
+  <tr>
+    <th>510</th>
+    <td>03/23/2010</td>
+    <td>chippewa falls</td>
+    <td>wi</td>
+    <td>us</td>
+    <td>around 1 minute</td>
+    <td>triangle</td>
+    <td>Unidentified Triangle shaped craft with lights...</td>
+  </tr>
+  <tr>
+    <th>511</th>
+    <td>03/23/2010</td>
+    <td>tulsa</td>
+    <td>ok</td>
+    <td>us</td>
+    <td>15 minutes</td>
+    <td>light</td>
+    <td>Two different colored lights&amp;#44 stationary &amp;a...</td>
+  </tr>
+  <tr>
+    <th>512</th>
+    <td>03/23/2010</td>
+    <td>oregon</td>
+    <td>oh</td>
+    <td>us</td>
+    <td>10 sec</td>
+    <td>unknown</td>
+    <td>cloaked craft with 3 dim tail lights silently ...</td>
+  </tr>
+  <tr>
+    <th>513</th>
+    <td>03/24/2010</td>
+    <td>eden</td>
+    <td>nc</td>
+    <td>us</td>
+    <td>10 minutes</td>
+    <td>circle</td>
+    <td>An unidentified flying object in circular shap...</td>
+  </tr>
+  <tr>
+    <th>514</th>
+    <td>03/24/2010</td>
+    <td>waukegan</td>
+    <td>il</td>
+    <td>us</td>
+    <td>30 min</td>
+    <td>other</td>
+    <td>Black Helicopter at local airport</td>
+  </tr>
+  <tr>
+    <th>515</th>
+    <td>03/24/2010</td>
+    <td>mesa</td>
+    <td>az</td>
+    <td>us</td>
+    <td>less than a minute</td>
+    <td>sphere</td>
+    <td>Yellowish amber spheres of light seen over the...</td>
+  </tr>
+  <tr>
+    <th>516</th>
+    <td>03/24/2010</td>
+    <td>stockton</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>5-6 mins</td>
+    <td>light</td>
+    <td>2 Lights In The Night Sky</td>
+  </tr>
+  <tr>
+    <th>517</th>
+    <td>03/25/2010</td>
+    <td>sachse</td>
+    <td>tx</td>
+    <td>us</td>
+    <td>45 seconds</td>
+    <td>sphere</td>
+    <td>GIANT ORB AT AFTERNOON TIME...NO MISTAKE IN ID...</td>
+  </tr>
+  <tr>
+    <th>518</th>
+    <td>03/25/2010</td>
+    <td>colcord</td>
+    <td>ok</td>
+    <td>us</td>
+    <td>2 minutes</td>
+    <td>changing</td>
+    <td>strange lights in Oklahoma sky outside Siloam ...</td>
+  </tr>
+  <tr>
+    <th>519</th>
+    <td>03/25/2010</td>
+    <td>south bend</td>
+    <td>in</td>
+    <td>us</td>
+    <td>3 minutes</td>
+    <td>unknown</td>
+    <td>Object travelling in night sky below cloud dec...</td>
+  </tr>
+  <tr>
+    <th>520</th>
+    <td>03/25/2010</td>
+    <td>edmond</td>
+    <td>ok</td>
+    <td>us</td>
+    <td>10:55 - 11:05 pm</td>
+    <td>unknown</td>
+    <td>Two UFO&amp;#39s appear within ten minutes of each...</td>
+  </tr>
+  <tr>
+    <th>521</th>
+    <td>03/26/2010</td>
+    <td>bloomington</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>5 hours</td>
+    <td>light</td>
+    <td>Larger craft dropping off smaller crafts that ...</td>
+  </tr>
+  <tr>
+    <th>522</th>
+    <td>03/26/2010</td>
+    <td>del mar</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>10 minutes</td>
+    <td>other</td>
+    <td>Large object floating in from over the Pacific...</td>
+  </tr>
+  <tr>
+    <th>523</th>
+    <td>03/26/2010</td>
+    <td>ephrata</td>
+    <td>wa</td>
+    <td>us</td>
+    <td>50 minutes</td>
+    <td>light</td>
+    <td>i was looking to the west and saw an orange li...</td>
+  </tr>
+  <tr>
+    <th>524</th>
+    <td>03/26/2010</td>
+    <td>san francisco</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>30 seconds?</td>
+    <td>unknown</td>
+    <td>Small white dot flying through sky in San Fran...</td>
+  </tr>
+  <tr>
+    <th>525</th>
+    <td>03/26/2010</td>
+    <td>broadway</td>
+    <td>va</td>
+    <td>us</td>
+    <td>5 minutes</td>
+    <td>light</td>
+    <td>Strange ball of light in sky over Pendelton Co...</td>
+  </tr>
+  <tr>
+    <th>526</th>
+    <td>03/26/2010</td>
+    <td>san jose</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>a few seconds</td>
+    <td>light</td>
+    <td>Two lights dropping vertically in unison; flas...</td>
+  </tr>
+  <tr>
+    <th>527</th>
+    <td>03/26/2010</td>
+    <td>delray beach</td>
+    <td>fl</td>
+    <td>us</td>
+    <td>5 minutes</td>
+    <td>sphere</td>
+    <td>quiet glowing spherical light floated close th...</td>
+  </tr>
+  <tr>
+    <th>528</th>
+    <td>03/27/2010</td>
+    <td>valencia</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>2 hours?</td>
+    <td>cylinder</td>
+    <td>Brilliant Blue UFO with three levels of lights...</td>
+  </tr>
+  <tr>
+    <th>529</th>
+    <td>03/27/2010</td>
+    <td>shepherdsville</td>
+    <td>ky</td>
+    <td>us</td>
+    <td>20 minutes</td>
+    <td>triangle</td>
+    <td>Shepherdsville&amp;#44 Ky  13 triangle crafts hove...</td>
+  </tr>
+  <tr>
+    <th>530</th>
+    <td>03/27/2010</td>
+    <td>bakersfield</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>2 seconds</td>
+    <td>flash</td>
+    <td>UFO FLYING OVER RACEWAY IN CA.</td>
+  </tr>
+  <tr>
+    <th>531</th>
+    <td>03/27/2010</td>
+    <td>ewa beach</td>
+    <td>hi</td>
+    <td>us</td>
+    <td>15 minutes</td>
+    <td>unknown</td>
+    <td>Strange light in Ewa Beach&amp;#44 Oahu&amp;#44 Hawaii</td>
+  </tr>
+  <tr>
+    <th>532</th>
+    <td>03/27/2010</td>
+    <td>tampa</td>
+    <td>fl</td>
+    <td>us</td>
+    <td>1:45</td>
+    <td>formation</td>
+    <td>It appeared as aircraft&amp;#44 but at least at 10...</td>
+  </tr>
+  <tr>
+    <th>533</th>
+    <td>03/27/2010</td>
+    <td>los angeles</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>45 sec</td>
+    <td>unknown</td>
+    <td>A group of lights (10 to 13) moved from southw...</td>
+  </tr>
+  <tr>
+    <th>534</th>
+    <td>03/27/2010</td>
+    <td>east hartford</td>
+    <td>ct</td>
+    <td>us</td>
+    <td>nit time</td>
+    <td>fireball</td>
+    <td>I thout.it was air plen.it was fear a way it l...</td>
+  </tr>
+  <tr>
+    <th>535</th>
+    <td>03/28/2010</td>
+    <td>beach park</td>
+    <td>il</td>
+    <td>us</td>
+    <td>5 seconds</td>
+    <td>circle</td>
+    <td>Hovered and shook then rapidly shot to the sou...</td>
+  </tr>
+  <tr>
+    <th>536</th>
+    <td>03/28/2010</td>
+    <td>modesto</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>a little over 6 minutes</td>
+    <td>oval</td>
+    <td>Oval object advancing towards me</td>
+  </tr>
+  <tr>
+    <th>537</th>
+    <td>03/28/2010</td>
+    <td>monterey</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>20 min</td>
+    <td>light</td>
+    <td>Wife and I observed three bright dot s of ligh...</td>
+  </tr>
+  <tr>
+    <th>538</th>
+    <td>03/28/2010</td>
+    <td>burbank</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>4 seconds</td>
+    <td>disk</td>
+    <td>Sunday 28march2010 9:50pm Burbank Ca USA  2nd ...</td>
+  </tr>
+  <tr>
+    <th>539</th>
+    <td>03/28/2010</td>
+    <td>colchester</td>
+    <td>vt</td>
+    <td>us</td>
+    <td>15 seconds</td>
+    <td>oval</td>
+    <td>blimp shaped craft hovering in sky</td>
+  </tr>
+  <tr>
+    <th>540</th>
+    <td>03/29/2010</td>
+    <td>los angeles</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>15 minutes</td>
+    <td>light</td>
+    <td>Several Small lights at Different intervals</td>
+  </tr>
+  <tr>
+    <th>541</th>
+    <td>03/29/2010</td>
+    <td>oro valley</td>
+    <td>az</td>
+    <td>us</td>
+    <td>2 minutes</td>
+    <td>formation</td>
+    <td>Three pulsating lights scene around Tucson AZ</td>
+  </tr>
+  <tr>
+    <th>542</th>
+    <td>03/29/2010</td>
+    <td>calgary (canada)</td>
+    <td>ab</td>
+    <td>ca</td>
+    <td>10 seconds</td>
+    <td>light</td>
+    <td>7-8 UFO&amp;#39s and a pterodactyl sighting.</td>
+  </tr>
+  <tr>
+    <th>543</th>
+    <td>03/29/2010</td>
+    <td>arlington</td>
+    <td>tx</td>
+    <td>us</td>
+    <td>2 minutes</td>
+    <td>light</td>
+    <td>Reddish-lights traveling erractically.</td>
+  </tr>
+  <tr>
+    <th>544</th>
+    <td>03/30/2010</td>
+    <td>gaylord</td>
+    <td>mi</td>
+    <td>us</td>
+    <td>10 seconds</td>
+    <td>light</td>
+    <td>Odd light formation</td>
+  </tr>
+  <tr>
+    <th>545</th>
+    <td>03/30/2010</td>
+    <td>port charlotte</td>
+    <td>fl</td>
+    <td>us</td>
+    <td>20 mins</td>
+    <td>light</td>
+    <td>bright light spotted in port charlotte FL</td>
+  </tr>
+  <tr>
+    <th>546</th>
+    <td>03/30/2010</td>
+    <td>clearwater</td>
+    <td>fl</td>
+    <td>us</td>
+    <td>10secs</td>
+    <td>sphere</td>
+    <td>Bright Blue/Green Light&amp;#44 looked like a sear...</td>
+  </tr>
+  <tr>
+    <th>547</th>
+    <td>03/30/2010</td>
+    <td>joplin</td>
+    <td>mo</td>
+    <td>us</td>
+    <td>about 2 minutes</td>
+    <td>triangle</td>
+    <td>Triangle-shaped craft 4 lights.</td>
+  </tr>
+  <tr>
+    <th>548</th>
+    <td>03/30/2010</td>
+    <td>wise</td>
+    <td>va</td>
+    <td>us</td>
+    <td>5 to 10 mins</td>
+    <td>light</td>
+    <td>Ufo sighting in a small town</td>
+  </tr>
+  <tr>
+    <th>549</th>
+    <td>03/30/2010</td>
+    <td>mt. pleasant</td>
+    <td>pa</td>
+    <td>us</td>
+    <td>1 hour</td>
+    <td>light</td>
+    <td>Flashing red&amp;#44 blue&amp;#44 and green&amp;#44 swiftl...</td>
+  </tr>
+  <tr>
+    <th>550</th>
+    <td>03/31/2010</td>
+    <td>chapel hill</td>
+    <td>nc</td>
+    <td>us</td>
+    <td>0:00-0:45</td>
+    <td>cone</td>
+    <td>Bright white light flashing repeatedly in the ...</td>
+  </tr>
+  <tr>
+    <th>551</th>
+    <td>03/31/2010</td>
+    <td>portage</td>
+    <td>mi</td>
+    <td>us</td>
+    <td>5 seconds</td>
+    <td>fireball</td>
+    <td>very large yellowish fireball lasting 5+ seconds</td>
+  </tr>
+  <tr>
+    <th>552</th>
+    <td>03/31/2010</td>
+    <td>modesto</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>15 min</td>
+    <td>light</td>
+    <td>answer for the modesto lights in the sky</td>
+  </tr>
+  <tr>
+    <th>553</th>
+    <td>03/31/2010</td>
+    <td>annandale</td>
+    <td>nj</td>
+    <td>us</td>
+    <td>5 min</td>
+    <td>light</td>
+    <td>star like light that moved and changed directi...</td>
+  </tr>
+  <tr>
+    <th>554</th>
+    <td>03/31/2010</td>
+    <td>glen rose</td>
+    <td>tx</td>
+    <td>us</td>
+    <td>10 minutes</td>
+    <td>light</td>
+    <td>Orange orbs west of Glen Rose</td>
+  </tr>
+  <tr>
+    <th>555</th>
+    <td>03/31/2010</td>
+    <td>new kensington</td>
+    <td>pa</td>
+    <td>us</td>
+    <td>5-10 minutes</td>
+    <td>other</td>
+    <td>Disappearing plane.</td>
+  </tr>
+  <tr>
+    <th>556</th>
+    <td>03/31/2010</td>
+    <td>north hollywood</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>8 seconds</td>
+    <td>changing</td>
+    <td>huge silvery light  flys into atmosphere&amp;#44 t...</td>
+  </tr>
+  <tr>
+    <th>557</th>
+    <td>03/31/2010</td>
+    <td>abilene</td>
+    <td>tx</td>
+    <td>us</td>
+    <td>2 minutes</td>
+    <td>light</td>
+    <td>Bright Orange Lights in South East Sky around ...</td>
+  </tr>
+  <tr>
+    <th>558</th>
+    <td>03/31/2010</td>
+    <td>international falls</td>
+    <td>mn</td>
+    <td>us</td>
+    <td>45 min</td>
+    <td>cross</td>
+    <td>It was just after 10pm. and I was going to bed...</td>
+  </tr>
+  <tr>
+    <th>559</th>
+    <td>04/01/2010</td>
+    <td>mt. hood (ski bowl)</td>
+    <td>or</td>
+    <td>us</td>
+    <td>~10 minutes</td>
+    <td>light</td>
+    <td>Portland.</td>
+  </tr>
+  <tr>
+    <th>560</th>
+    <td>04/01/2010</td>
+    <td>kittitas</td>
+    <td>wa</td>
+    <td>us</td>
+    <td>20 seconds</td>
+    <td>other</td>
+    <td>Strange lights seen near Ellensburg Washington...</td>
+  </tr>
+  <tr>
+    <th>561</th>
+    <td>04/01/2010</td>
+    <td>naples</td>
+    <td>fl</td>
+    <td>us</td>
+    <td>5 minutes</td>
+    <td>circle</td>
+    <td>White&amp;#44 slow circle</td>
+  </tr>
+  <tr>
+    <th>562</th>
+    <td>04/01/2010</td>
+    <td>reynoldsburg</td>
+    <td>oh</td>
+    <td>us</td>
+    <td>5 minutes</td>
+    <td>other</td>
+    <td>Huge doughnut shaped object hovering over the ...</td>
+  </tr>
+  <tr>
+    <th>563</th>
+    <td>04/01/2010</td>
+    <td>somers</td>
+    <td>ct</td>
+    <td>us</td>
+    <td>10 minutes</td>
+    <td>other</td>
+    <td>Military flyovers more common&amp;#44 no miltary b...</td>
+  </tr>
+  <tr>
+    <th>564</th>
+    <td>04/01/2010</td>
+    <td>milton</td>
+    <td>ma</td>
+    <td>us</td>
+    <td>10 seconds</td>
+    <td>fireball</td>
+    <td>I just saw a green fireball going across the s...</td>
+  </tr>
+  <tr>
+    <th>565</th>
+    <td>04/01/2010</td>
+    <td>niagara falls (canada)</td>
+    <td>on</td>
+    <td>ca</td>
+    <td>1 minute</td>
+    <td>other</td>
+    <td>Bright colorful Shooting Light.</td>
+  </tr>
+  <tr>
+    <th>566</th>
+    <td>04/02/2010</td>
+    <td>wallaceburg (canada)</td>
+    <td>on</td>
+    <td>ca</td>
+    <td>i don&amp;#39t know</td>
+    <td>light</td>
+    <td>Stationary rectangle of light below the clouds...</td>
+  </tr>
+  <tr>
+    <th>567</th>
+    <td>04/02/2010</td>
+    <td>santa ana</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>10 min</td>
+    <td>triangle</td>
+    <td>i was walking to my car to check my tire becau...</td>
+  </tr>
+  <tr>
+    <th>568</th>
+    <td>04/02/2010</td>
+    <td>gallatin</td>
+    <td>tn</td>
+    <td>us</td>
+    <td>5 seconds</td>
+    <td>unknown</td>
+    <td>saw a mass of objects&amp;#44 grouped together in ...</td>
+  </tr>
+  <tr>
+    <th>569</th>
+    <td>04/02/2010</td>
+    <td>vancouver</td>
+    <td>wa</td>
+    <td>us</td>
+    <td>30 seconds</td>
+    <td>triangle</td>
+    <td>a dark&amp;#44 silent&amp;#44 triangular aircraft cros...</td>
+  </tr>
+  <tr>
+    <th>570</th>
+    <td>04/02/2010</td>
+    <td>tamarac</td>
+    <td>fl</td>
+    <td>us</td>
+    <td>60 seconds</td>
+    <td>light</td>
+    <td>My son and I were in my yard when we saw a lig...</td>
+  </tr>
+  <tr>
+    <th>571</th>
+    <td>04/02/2010</td>
+    <td>greenville</td>
+    <td>ri</td>
+    <td>us</td>
+    <td>5 minutes</td>
+    <td>formation</td>
+    <td>orange lights over Greenville RI started in fo...</td>
+  </tr>
+  <tr>
+    <th>572</th>
+    <td>04/02/2010</td>
+    <td>la quinta</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>15 minutes</td>
+    <td>formation</td>
+    <td>Three bright circles of light with centre acti...</td>
+  </tr>
+  <tr>
+    <th>573</th>
+    <td>04/02/2010</td>
+    <td>mandeville</td>
+    <td>la</td>
+    <td>us</td>
+    <td>10-12 seconds</td>
+    <td>light</td>
+    <td>3 lights&amp;#44 pale green in color&amp;#44 traveling...</td>
+  </tr>
+  <tr>
+    <th>574</th>
+    <td>04/02/2010</td>
+    <td>howell</td>
+    <td>mi</td>
+    <td>us</td>
+    <td>2 minutes</td>
+    <td>light</td>
+    <td>Intense red light aura around flying from Sout...</td>
+  </tr>
+  <tr>
+    <th>575</th>
+    <td>04/02/2010</td>
+    <td>colorado springs</td>
+    <td>co</td>
+    <td>us</td>
+    <td>3 minutes</td>
+    <td>light</td>
+    <td>Flashing rotating lights</td>
+  </tr>
+  <tr>
+    <th>576</th>
+    <td>04/03/2010</td>
+    <td>lubbock</td>
+    <td>tx</td>
+    <td>us</td>
+    <td>5 seconds</td>
+    <td>triangle</td>
+    <td>That was no falling  star&amp;#33&amp;#33</td>
+  </tr>
+  <tr>
+    <th>577</th>
+    <td>04/03/2010</td>
+    <td>milwaukee</td>
+    <td>wi</td>
+    <td>us</td>
+    <td>90 seconds</td>
+    <td>light</td>
+    <td>Ball of light floating in sky near main freewa...</td>
+  </tr>
+  <tr>
+    <th>578</th>
+    <td>04/03/2010</td>
+    <td>monterey</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>0:10</td>
+    <td>egg</td>
+    <td>Lights that flashed in the sky and flickered. ...</td>
+  </tr>
+  <tr>
+    <th>579</th>
+    <td>04/03/2010</td>
+    <td>punta gorda</td>
+    <td>fl</td>
+    <td>us</td>
+    <td>4 min</td>
+    <td>light</td>
+    <td>Pulsating light traveling steady with abrupt c...</td>
+  </tr>
+  <tr>
+    <th>580</th>
+    <td>04/03/2010</td>
+    <td>las vegas</td>
+    <td>nv</td>
+    <td>us</td>
+    <td>10 seconds</td>
+    <td>light</td>
+    <td>i saw strange lights over las vegas.</td>
+  </tr>
+  <tr>
+    <th>581</th>
+    <td>04/03/2010</td>
+    <td>wesley chapel</td>
+    <td>fl</td>
+    <td>us</td>
+    <td>3 to 4 sec</td>
+    <td>other</td>
+    <td>bright light moving at an extremely high rate ...</td>
+  </tr>
+  <tr>
+    <th>582</th>
+    <td>04/03/2010</td>
+    <td>moncton (50.42km before) (canada)</td>
+    <td>nb</td>
+    <td>ca</td>
+    <td>30 sec</td>
+    <td>other</td>
+    <td>Large Square UFO over Car Ahead of Me&amp;#44 on R...</td>
+  </tr>
+  <tr>
+    <th>583</th>
+    <td>04/03/2010</td>
+    <td>muskegon</td>
+    <td>mi</td>
+    <td>us</td>
+    <td>30-60seconds</td>
+    <td>changing</td>
+    <td>Star clusters moves and changes shape</td>
+  </tr>
+  <tr>
+    <th>584</th>
+    <td>04/03/2010</td>
+    <td>miramichi (canada)</td>
+    <td>nb</td>
+    <td>ca</td>
+    <td>2-5 min</td>
+    <td>triangle</td>
+    <td>Triangle ufo seen flying of the city of mirami...</td>
+  </tr>
+  <tr>
+    <th>585</th>
+    <td>04/04/2010</td>
+    <td>georgetown</td>
+    <td>tx</td>
+    <td>us</td>
+    <td>5-6 seconds</td>
+    <td>triangle</td>
+    <td>Observed on a clear&amp;#44 cloudless night sky (1...</td>
+  </tr>
+  <tr>
+    <th>586</th>
+    <td>04/04/2010</td>
+    <td>modesto</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>hour</td>
+    <td>light</td>
+    <td>HOAX IN MODESTO??</td>
+  </tr>
+  <tr>
+    <th>587</th>
+    <td>04/04/2010</td>
+    <td>haddam</td>
+    <td>ct</td>
+    <td>us</td>
+    <td>5 minutes</td>
+    <td>cigar</td>
+    <td>Multiple zigzagging white objects far up in th...</td>
+  </tr>
+  <tr>
+    <th>588</th>
+    <td>04/04/2010</td>
+    <td>los angeles</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>4 - 6 minutes</td>
+    <td>unknown</td>
+    <td>4 orbs converge into 1 orb.  ((NUFORC Note:  P...</td>
+  </tr>
+  <tr>
+    <th>589</th>
+    <td>04/05/2010</td>
+    <td>lexington</td>
+    <td>oh</td>
+    <td>us</td>
+    <td>4 or 5 mins</td>
+    <td>disk</td>
+    <td>large unknown object with red outer lights fol...</td>
+  </tr>
+  <tr>
+    <th>590</th>
+    <td>04/05/2010</td>
+    <td>lynn</td>
+    <td>ma</td>
+    <td>us</td>
+    <td>30 seconds</td>
+    <td>circle</td>
+    <td>I seen a bright white circular object moving t...</td>
+  </tr>
+  <tr>
+    <th>591</th>
+    <td>04/05/2010</td>
+    <td>marshfield</td>
+    <td>ma</td>
+    <td>us</td>
+    <td>half hour</td>
+    <td>sphere</td>
+    <td>witnessed drones watching us from a couple mil...</td>
+  </tr>
+  <tr>
+    <th>592</th>
+    <td>04/05/2010</td>
+    <td>scott</td>
+    <td>ar</td>
+    <td>us</td>
+    <td>5-8 minutes</td>
+    <td>light</td>
+    <td>Green Light</td>
+  </tr>
+  <tr>
+    <th>593</th>
+    <td>04/05/2010</td>
+    <td>burnsville</td>
+    <td>nc</td>
+    <td>us</td>
+    <td>1 second</td>
+    <td>unknown</td>
+    <td>super fast &amp;#44 moving  light</td>
+  </tr>
+  <tr>
+    <th>594</th>
+    <td>04/05/2010</td>
+    <td>wilmington</td>
+    <td>nc</td>
+    <td>us</td>
+    <td>2 hours</td>
+    <td>oval</td>
+    <td>Stationary flashing object in the sky.</td>
+  </tr>
+  <tr>
+    <th>595</th>
+    <td>04/05/2010</td>
+    <td>springfield</td>
+    <td>mo</td>
+    <td>us</td>
+    <td>7 seconds</td>
+    <td>sphere</td>
+    <td>Yellow Orb</td>
+  </tr>
+  <tr>
+    <th>596</th>
+    <td>04/05/2010</td>
+    <td>terre haute</td>
+    <td>in</td>
+    <td>us</td>
+    <td>15-20 seconds</td>
+    <td>light</td>
+    <td>A very bright point of light seen in north sky.</td>
+  </tr>
+  <tr>
+    <th>597</th>
+    <td>04/06/2010</td>
+    <td>columbus</td>
+    <td>oh</td>
+    <td>us</td>
+    <td>12 seconds</td>
+    <td>triangle</td>
+    <td>((HOAX??))  A yellow triangle that made a big ...</td>
+  </tr>
+  <tr>
+    <th>598</th>
+    <td>04/06/2010</td>
+    <td>san marcos</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>30 seconds</td>
+    <td>oval</td>
+    <td>Out of this world looking craft&amp;#33</td>
+  </tr>
+  <tr>
+    <th>599</th>
+    <td>04/06/2010</td>
+    <td>cleveland</td>
+    <td>oh</td>
+    <td>us</td>
+    <td>3-5min</td>
+    <td>fireball</td>
+    <td>green fireball over cleveland&amp;#44ohio</td>
+  </tr>
+  <tr>
+    <th>600</th>
+    <td>04/06/2010</td>
+    <td>wallaceburg (canada)</td>
+    <td>on</td>
+    <td>ca</td>
+    <td>4 to 6 seconds</td>
+    <td>light</td>
+    <td>I guess I just seen a green meteor&amp;#44 no big ...</td>
+  </tr>
+  <tr>
+    <th>601</th>
+    <td>04/06/2010</td>
+    <td>toronto (canada)</td>
+    <td>on</td>
+    <td>ca</td>
+    <td>0:30</td>
+    <td>cigar</td>
+    <td>A cigar shaped object that made no sound&amp;#44 h...</td>
+  </tr>
+  <tr>
+    <th>602</th>
+    <td>04/07/2010</td>
+    <td>pomona</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>2-3 minutes</td>
+    <td>light</td>
+    <td>bright light moving across morning sky.</td>
+  </tr>
+  <tr>
+    <th>603</th>
+    <td>04/07/2010</td>
+    <td>burns</td>
+    <td>or</td>
+    <td>us</td>
+    <td>secounts</td>
+    <td>disk</td>
+    <td>April 2nd 2010  We were traveling in the mount...</td>
+  </tr>
+  <tr>
+    <th>604</th>
+    <td>04/07/2010</td>
+    <td>tulsa</td>
+    <td>ok</td>
+    <td>us</td>
+    <td>8 to 10 seconds</td>
+    <td>light</td>
+    <td>This is the best I can do. If straight above m...</td>
+  </tr>
+  <tr>
+    <th>605</th>
+    <td>04/07/2010</td>
+    <td>montmagny (canada)</td>
+    <td>qc</td>
+    <td>ca</td>
+    <td>2 hours</td>
+    <td>disk</td>
+    <td>Colorful object very high in the sky&amp;#44 seen ...</td>
+  </tr>
+  <tr>
+    <th>606</th>
+    <td>04/07/2010</td>
+    <td>tulsa</td>
+    <td>ok</td>
+    <td>us</td>
+    <td>8-10 seconds</td>
+    <td>light</td>
+    <td>I saw the object at approx. 60 degrees to the ...</td>
+  </tr>
+  <tr>
+    <th>607</th>
+    <td>04/08/2010</td>
+    <td>bunnell</td>
+    <td>fl</td>
+    <td>us</td>
+    <td>5/10 minutes</td>
+    <td>changing</td>
+    <td>midnight  April 8th&amp;#44 our home lost power th...</td>
+  </tr>
+  <tr>
+    <th>608</th>
+    <td>04/08/2010</td>
+    <td>atascocita</td>
+    <td>tx</td>
+    <td>us</td>
+    <td>1 minute</td>
+    <td>disk</td>
+    <td>It was a circular object completely black exce...</td>
+  </tr>
+  <tr>
+    <th>609</th>
+    <td>04/08/2010</td>
+    <td>amelia</td>
+    <td>oh</td>
+    <td>us</td>
+    <td>10 seconds</td>
+    <td>triangle</td>
+    <td>Strange triangular shaped object over Cincinna...</td>
+  </tr>
+  <tr>
+    <th>610</th>
+    <td>04/08/2010</td>
+    <td>westchester</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>10-15 seconds</td>
+    <td>circle</td>
+    <td>Four circular objects emitting a dim redish li...</td>
+  </tr>
+  <tr>
+    <th>611</th>
+    <td>04/08/2010</td>
+    <td>downey</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>1 hour</td>
+    <td>sphere</td>
+    <td>Orb hovers for more than an hour</td>
+  </tr>
+  <tr>
+    <th>612</th>
+    <td>04/08/2010</td>
+    <td>salinas</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>51 minutes</td>
+    <td>cigar</td>
+    <td>sightings of moving crafts over salinas califo...</td>
+  </tr>
+  <tr>
+    <th>613</th>
+    <td>04/08/2010</td>
+    <td>san diego</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>3 hours</td>
+    <td>triangle</td>
+    <td>4 Triangle UFO&amp;#39s Over San Diego&amp;#44 CA on A...</td>
+  </tr>
+  <tr>
+    <th>614</th>
+    <td>04/08/2010</td>
+    <td>dripping springs</td>
+    <td>tx</td>
+    <td>us</td>
+    <td>45 seconds</td>
+    <td>oval</td>
+    <td>Pulsating light flew over Dripping Springs&amp;#44...</td>
+  </tr>
+  <tr>
+    <th>615</th>
+    <td>04/08/2010</td>
+    <td>dripping springs</td>
+    <td>tx</td>
+    <td>us</td>
+    <td>45 seconds</td>
+    <td>oval</td>
+    <td>Pulsating light flew over Dripping Springs&amp;#44...</td>
+  </tr>
+  <tr>
+    <th>616</th>
+    <td>04/08/2010</td>
+    <td>pomona</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>20 minutes</td>
+    <td>fireball</td>
+    <td>It was a light orange round ball of light with...</td>
+  </tr>
+  <tr>
+    <th>617</th>
+    <td>04/08/2010</td>
+    <td>cotulla</td>
+    <td>tx</td>
+    <td>us</td>
+    <td>1 min</td>
+    <td>triangle</td>
+    <td>Bright yellowish/orange in color lights&amp;#44 fo...</td>
+  </tr>
+  <tr>
+    <th>618</th>
+    <td>04/08/2010</td>
+    <td>evergreen</td>
+    <td>co</td>
+    <td>us</td>
+    <td>20 minutes</td>
+    <td>light</td>
+    <td>2 vertical lights changing color and moving er...</td>
+  </tr>
+  <tr>
+    <th>619</th>
+    <td>04/08/2010</td>
+    <td>shreveport</td>
+    <td>la</td>
+    <td>us</td>
+    <td>ten minutes</td>
+    <td>other</td>
+    <td>Mandolin shaped soundless craft&amp;#44 with color...</td>
+  </tr>
+  <tr>
+    <th>620</th>
+    <td>04/08/2010</td>
+    <td>brady</td>
+    <td>wa</td>
+    <td>us</td>
+    <td>10 minutes</td>
+    <td>light</td>
+    <td>A very bright maneuvering light moving at a hi...</td>
+  </tr>
+  <tr>
+    <th>621</th>
+    <td>04/08/2010</td>
+    <td>brady</td>
+    <td>wa</td>
+    <td>us</td>
+    <td>10 minutes</td>
+    <td>light</td>
+    <td>Correction to the report submitted on this eve...</td>
+  </tr>
+  <tr>
+    <th>622</th>
+    <td>04/08/2010</td>
+    <td>brady</td>
+    <td>wa</td>
+    <td>us</td>
+    <td>8 minutes</td>
+    <td>light</td>
+    <td>I saw an unidentified bright light flying over us</td>
+  </tr>
+  <tr>
+    <th>623</th>
+    <td>04/09/2010</td>
+    <td>west monroe</td>
+    <td>la</td>
+    <td>us</td>
+    <td>1 hour</td>
+    <td>light</td>
+    <td>bright orbs of light in the sky</td>
+  </tr>
+  <tr>
+    <th>624</th>
+    <td>04/09/2010</td>
+    <td>oakland</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>4-6 seconds</td>
+    <td>triangle</td>
+    <td>Triangle of lights speeding accross the sky fr...</td>
+  </tr>
+  <tr>
+    <th>625</th>
+    <td>04/09/2010</td>
+    <td>evansville</td>
+    <td>in</td>
+    <td>us</td>
+    <td>5 minutes</td>
+    <td>light</td>
+    <td>bright light spotted moving quickly over the m...</td>
+  </tr>
+  <tr>
+    <th>626</th>
+    <td>04/09/2010</td>
+    <td>independence</td>
+    <td>mo</td>
+    <td>us</td>
+    <td>20 secs</td>
+    <td>light</td>
+    <td>7 to 10 lights in the sky an hour before sunse...</td>
+  </tr>
+  <tr>
+    <th>627</th>
+    <td>04/09/2010</td>
+    <td>wenden</td>
+    <td>az</td>
+    <td>us</td>
+    <td>1minute</td>
+    <td>disk</td>
+    <td>We saw a very large read illumination of light...</td>
+  </tr>
+  <tr>
+    <th>628</th>
+    <td>04/09/2010</td>
+    <td>yuma</td>
+    <td>az</td>
+    <td>us</td>
+    <td>40 secs</td>
+    <td>circle</td>
+    <td>3 silent&amp;#44 cloaked circular objects</td>
+  </tr>
+  <tr>
+    <th>629</th>
+    <td>04/09/2010</td>
+    <td>winnipeg (canada)</td>
+    <td>mb</td>
+    <td>ca</td>
+    <td>5 min</td>
+    <td>unknown</td>
+    <td>irratically moving objects very high in the sk...</td>
+  </tr>
+  <tr>
+    <th>630</th>
+    <td>04/09/2010</td>
+    <td>indianapolis</td>
+    <td>in</td>
+    <td>us</td>
+    <td>1 minute driving past</td>
+    <td>triangle</td>
+    <td>Black Triaglular aircraft with two white light...</td>
+  </tr>
+  <tr>
+    <th>631</th>
+    <td>04/09/2010</td>
+    <td>plainview</td>
+    <td>ny</td>
+    <td>us</td>
+    <td>3-5 minutes</td>
+    <td>unknown</td>
+    <td>Strange pattern of white&amp;#44 green&amp;#44 and red...</td>
+  </tr>
+  <tr>
+    <th>632</th>
+    <td>04/09/2010</td>
+    <td>san antonio</td>
+    <td>tx</td>
+    <td>us</td>
+    <td>25-30 sec.</td>
+    <td>triangle</td>
+    <td>Triangular lights directly overhead moving sil...</td>
+  </tr>
+  <tr>
+    <th>633</th>
+    <td>04/10/2010</td>
+    <td>warwick</td>
+    <td>ri</td>
+    <td>us</td>
+    <td>10 minutes</td>
+    <td>disk</td>
+    <td>bright light hovering over the warwick mall</td>
+  </tr>
+  <tr>
+    <th>634</th>
+    <td>04/10/2010</td>
+    <td>new york city (queens)</td>
+    <td>ny</td>
+    <td>us</td>
+    <td>15 minutes</td>
+    <td>oval</td>
+    <td>Four oval shape lights in the sky (very large ...</td>
+  </tr>
+  <tr>
+    <th>635</th>
+    <td>04/10/2010</td>
+    <td>greenville</td>
+    <td>nc</td>
+    <td>us</td>
+    <td>7 minutes</td>
+    <td>unknown</td>
+    <td>Daytime moving star seen over Pitt County</td>
+  </tr>
+  <tr>
+    <th>636</th>
+    <td>04/10/2010</td>
+    <td>rutland</td>
+    <td>vt</td>
+    <td>us</td>
+    <td>10 mins</td>
+    <td>sphere</td>
+    <td>Strange phenomenon in sky over rutland vermont...</td>
+  </tr>
+  <tr>
+    <th>637</th>
+    <td>04/10/2010</td>
+    <td>augusta</td>
+    <td>ga</td>
+    <td>us</td>
+    <td>5 sec</td>
+    <td>oval</td>
+    <td>small round object very far away  very white  ...</td>
+  </tr>
+  <tr>
+    <th>638</th>
+    <td>04/10/2010</td>
+    <td>san diego</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>1 minute</td>
+    <td>chevron</td>
+    <td>Chevron-shaped craft spotted passing over Cali...</td>
+  </tr>
+  <tr>
+    <th>639</th>
+    <td>04/10/2010</td>
+    <td>branson</td>
+    <td>mo</td>
+    <td>us</td>
+    <td>about 3-5 minutes</td>
+    <td>light</td>
+    <td>We saw a bright &amp;quot;star&amp;quot; next to the s...</td>
+  </tr>
+  <tr>
+    <th>640</th>
+    <td>04/10/2010</td>
+    <td>excelsior springs</td>
+    <td>mo</td>
+    <td>us</td>
+    <td>15</td>
+    <td>unknown</td>
+    <td>I witnessed a possible satellite collision or ...</td>
+  </tr>
+  <tr>
+    <th>641</th>
+    <td>04/10/2010</td>
+    <td>cheyenne</td>
+    <td>wy</td>
+    <td>us</td>
+    <td>minutes</td>
+    <td>triangle</td>
+    <td>2 low slow flying black triangles</td>
+  </tr>
+  <tr>
+    <th>642</th>
+    <td>04/10/2010</td>
+    <td>fargo</td>
+    <td>nd</td>
+    <td>us</td>
+    <td>10 - 15 seconds</td>
+    <td>formation</td>
+    <td>Six pairs of side by side amber lights moving ...</td>
+  </tr>
+  <tr>
+    <th>643</th>
+    <td>04/10/2010</td>
+    <td>grove city</td>
+    <td>mn</td>
+    <td>us</td>
+    <td>5 seconds</td>
+    <td>triangle</td>
+    <td>Noiseless flying Triangular craft over town.</td>
+  </tr>
+  <tr>
+    <th>644</th>
+    <td>04/10/2010</td>
+    <td>arlington</td>
+    <td>tx</td>
+    <td>us</td>
+    <td>10 sec.</td>
+    <td>chevron</td>
+    <td>out of the night eastern sky&amp;#44it appears to ...</td>
+  </tr>
+  <tr>
+    <th>645</th>
+    <td>04/10/2010</td>
+    <td>charlotte</td>
+    <td>tx</td>
+    <td>us</td>
+    <td>1 minute</td>
+    <td>sphere</td>
+    <td>A red  Sphere Followed my car &amp;#44 then vanish...</td>
+  </tr>
+  <tr>
+    <th>646</th>
+    <td>04/11/2010</td>
+    <td>rialto</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>45 sec to 1 min</td>
+    <td>sphere</td>
+    <td>BRIGHT ORB LIKE SPHERE WAS SEEN DESCENDING FRO...</td>
+  </tr>
+  <tr>
+    <th>647</th>
+    <td>04/11/2010</td>
+    <td>hudson</td>
+    <td>ny</td>
+    <td>us</td>
+    <td>10 minutes</td>
+    <td>triangle</td>
+    <td>Blinking red&amp;#44 constant green&amp;#44 and glowin...</td>
+  </tr>
+  <tr>
+    <th>648</th>
+    <td>04/11/2010</td>
+    <td>riverview</td>
+    <td>mi</td>
+    <td>us</td>
+    <td>aprox. 15 minutes</td>
+    <td>light</td>
+    <td>Very bright light 5-10 miles away from Rivervi...</td>
+  </tr>
+  <tr>
+    <th>649</th>
+    <td>04/11/2010</td>
+    <td>terre haute</td>
+    <td>in</td>
+    <td>us</td>
+    <td>30 min</td>
+    <td>triangle</td>
+    <td>Triangular object with about 3 lights that cha...</td>
+  </tr>
+  <tr>
+    <th>650</th>
+    <td>04/11/2010</td>
+    <td>concord</td>
+    <td>nc</td>
+    <td>us</td>
+    <td>45+ minutes</td>
+    <td>oval</td>
+    <td>Object changing colors over the Charlotte area</td>
+  </tr>
+  <tr>
+    <th>651</th>
+    <td>04/12/2010</td>
+    <td>camillus</td>
+    <td>ny</td>
+    <td>us</td>
+    <td>10 minutes</td>
+    <td>cigar</td>
+    <td>((SERIOUS REPORT??))  The ships were humming a...</td>
+  </tr>
+  <tr>
+    <th>652</th>
+    <td>04/12/2010</td>
+    <td>waxahachie</td>
+    <td>tx</td>
+    <td>us</td>
+    <td>3-4 mins</td>
+    <td>triangle</td>
+    <td>Green Light Over Waxahachie&amp;#44 very quick.</td>
+  </tr>
+  <tr>
+    <th>653</th>
+    <td>04/12/2010</td>
+    <td>sunset beach</td>
+    <td>nc</td>
+    <td>us</td>
+    <td>20 minutes</td>
+    <td>circle</td>
+    <td>Orange stationary orbs accompanied by small wh...</td>
+  </tr>
+  <tr>
+    <th>654</th>
+    <td>04/12/2010</td>
+    <td>rutland</td>
+    <td>vt</td>
+    <td>us</td>
+    <td>3 seconds</td>
+    <td>triangle</td>
+    <td>Triangle with three lights sighted in Vermont</td>
+  </tr>
+  <tr>
+    <th>655</th>
+    <td>04/12/2010</td>
+    <td>salem</td>
+    <td>or</td>
+    <td>us</td>
+    <td>15 seconds</td>
+    <td>light</td>
+    <td>it seem to sway back and forth slightly as it ...</td>
+  </tr>
+  <tr>
+    <th>656</th>
+    <td>04/13/2010</td>
+    <td>aiken</td>
+    <td>sc</td>
+    <td>us</td>
+    <td>30 seconds</td>
+    <td>triangle</td>
+    <td>Triangle shaped object moved slowly with no so...</td>
+  </tr>
+  <tr>
+    <th>657</th>
+    <td>04/13/2010</td>
+    <td>rutland</td>
+    <td>ma</td>
+    <td>us</td>
+    <td>2 days</td>
+    <td>circle</td>
+    <td>flashing light in the sky barely moved during ...</td>
+  </tr>
+  <tr>
+    <th>658</th>
+    <td>04/13/2010</td>
+    <td>waterville</td>
+    <td>vt</td>
+    <td>us</td>
+    <td>5 mins</td>
+    <td>cigar</td>
+    <td>two missles traveling east</td>
+  </tr>
+  <tr>
+    <th>659</th>
+    <td>04/13/2010</td>
+    <td>moses lake</td>
+    <td>wa</td>
+    <td>us</td>
+    <td>unknown</td>
+    <td>sphere</td>
+    <td>Watching south park when my dormmate rushed in...</td>
+  </tr>
+  <tr>
+    <th>660</th>
+    <td>04/13/2010</td>
+    <td>northfield</td>
+    <td>vt</td>
+    <td>us</td>
+    <td>2 mins</td>
+    <td>unknown</td>
+    <td>Fast Moving UFO&amp;#39s over mountains of Vermont.</td>
+  </tr>
+  <tr>
+    <th>661</th>
+    <td>04/13/2010</td>
+    <td>mahomet</td>
+    <td>il</td>
+    <td>us</td>
+    <td>15 minutes</td>
+    <td>triangle</td>
+    <td>Changing lights over central ILLINOIS</td>
+  </tr>
+  <tr>
+    <th>662</th>
+    <td>04/13/2010</td>
+    <td>sunnyside</td>
+    <td>wa</td>
+    <td>us</td>
+    <td>15 seconds</td>
+    <td>fireball</td>
+    <td>Two dark orange balls moving eastward over Sun...</td>
+  </tr>
+  <tr>
+    <th>663</th>
+    <td>04/13/2010</td>
+    <td>hugo</td>
+    <td>mn</td>
+    <td>us</td>
+    <td>1 minute</td>
+    <td>sphere</td>
+    <td>Two red&amp;#44 glowing spheres were traveling in ...</td>
+  </tr>
+  <tr>
+    <th>664</th>
+    <td>04/13/2010</td>
+    <td>jersey city</td>
+    <td>nj</td>
+    <td>us</td>
+    <td>three seconds</td>
+    <td>light</td>
+    <td>A light appeared and shot across a small porti...</td>
+  </tr>
+  <tr>
+    <th>665</th>
+    <td>04/14/2010</td>
+    <td>east wenatchee</td>
+    <td>wa</td>
+    <td>us</td>
+    <td>5 min</td>
+    <td>triangle</td>
+    <td>Black triangle spotted over home after I heard...</td>
+  </tr>
+  <tr>
+    <th>666</th>
+    <td>04/14/2010</td>
+    <td>andover</td>
+    <td>ny</td>
+    <td>us</td>
+    <td>15 to 20 seconds</td>
+    <td>cylinder</td>
+    <td>CYLINDRICAL STEEL LIKE  AIRCRAFT. NO WINGS&amp;#44...</td>
+  </tr>
+  <tr>
+    <th>667</th>
+    <td>04/14/2010</td>
+    <td>auburn</td>
+    <td>ny</td>
+    <td>us</td>
+    <td>45-55 seconds</td>
+    <td>changing</td>
+    <td>A Single craft with 4 lights changing shape go...</td>
+  </tr>
+  <tr>
+    <th>668</th>
+    <td>04/14/2010</td>
+    <td>bowling green</td>
+    <td>ky</td>
+    <td>us</td>
+    <td>1 hour 30 minutes</td>
+    <td>fireball</td>
+    <td>We saw flying fireballs in the sky.</td>
+  </tr>
+  <tr>
+    <th>669</th>
+    <td>04/14/2010</td>
+    <td>kent</td>
+    <td>wa</td>
+    <td>us</td>
+    <td>3 minutes</td>
+    <td>other</td>
+    <td>fast moving objects making different triangles</td>
+  </tr>
+  <tr>
+    <th>670</th>
+    <td>04/14/2010</td>
+    <td>centerton</td>
+    <td>ar</td>
+    <td>us</td>
+    <td>20 minutes</td>
+    <td>light</td>
+    <td>We watched what looked to be stars moving acro...</td>
+  </tr>
+  <tr>
+    <th>671</th>
+    <td>04/14/2010</td>
+    <td>santa cruz</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>4 minutes</td>
+    <td>diamond</td>
+    <td>dimly lit diamond shape crafts fly a loop and ...</td>
+  </tr>
+  <tr>
+    <th>672</th>
+    <td>04/14/2010</td>
+    <td>remington (near)</td>
+    <td>in</td>
+    <td>us</td>
+    <td>7 secnds</td>
+    <td>fireball</td>
+    <td>Yellow/grfeed light in the shape of a spinning...</td>
+  </tr>
+  <tr>
+    <th>673</th>
+    <td>04/14/2010</td>
+    <td>auburn</td>
+    <td>ny</td>
+    <td>us</td>
+    <td>1 minute</td>
+    <td>changing</td>
+    <td>4 lights defining a large craft changing shape...</td>
+  </tr>
+  <tr>
+    <th>674</th>
+    <td>04/14/2010</td>
+    <td>little neck (queens)</td>
+    <td>ny</td>
+    <td>us</td>
+    <td>all night</td>
+    <td>other</td>
+    <td>numerous UFO sighting</td>
+  </tr>
+  <tr>
+    <th>675</th>
+    <td>04/14/2010</td>
+    <td>rochester</td>
+    <td>mn</td>
+    <td>us</td>
+    <td>5-10 seconds</td>
+    <td>sphere</td>
+    <td>Bluish bright ball of light soars over low clo...</td>
+  </tr>
+  <tr>
+    <th>676</th>
+    <td>04/14/2010</td>
+    <td>coralville</td>
+    <td>ia</td>
+    <td>us</td>
+    <td>30 secs</td>
+    <td>fireball</td>
+    <td>large greenish ball with trailing sparks movin...</td>
+  </tr>
+  <tr>
+    <th>677</th>
+    <td>04/14/2010</td>
+    <td>moline</td>
+    <td>il</td>
+    <td>us</td>
+    <td>38 seconds</td>
+    <td>circle</td>
+    <td>fire ball crashes in flooded field... local ne...</td>
+  </tr>
+  <tr>
+    <th>678</th>
+    <td>04/14/2010</td>
+    <td>lamoni</td>
+    <td>ia</td>
+    <td>us</td>
+    <td>10 seconds</td>
+    <td>fireball</td>
+    <td>Large green/red fireball over Lamoni&amp;#44 IA vi...</td>
+  </tr>
+  <tr>
+    <th>679</th>
+    <td>04/14/2010</td>
+    <td>onalaska</td>
+    <td>wi</td>
+    <td>us</td>
+    <td>20 seconds</td>
+    <td>flash</td>
+    <td>Night sky turns blue as objects shoot from the...</td>
+  </tr>
+  <tr>
+    <th>680</th>
+    <td>04/14/2010</td>
+    <td>orion</td>
+    <td>il</td>
+    <td>us</td>
+    <td>12</td>
+    <td>fireball</td>
+    <td>fireball falling from the sky</td>
+  </tr>
+  <tr>
+    <th>681</th>
+    <td>04/14/2010</td>
+    <td>festus</td>
+    <td>mo</td>
+    <td>us</td>
+    <td>&lt;1 minute</td>
+    <td>circle</td>
+    <td>Neon Blue Circle Light in Jefferson County&amp;#44...</td>
+  </tr>
+  <tr>
+    <th>682</th>
+    <td>04/14/2010</td>
+    <td>ogdensburg</td>
+    <td>wi</td>
+    <td>us</td>
+    <td>10 seconds</td>
+    <td>fireball</td>
+    <td>Greenish light with a dark middle and long tai...</td>
+  </tr>
+  <tr>
+    <th>683</th>
+    <td>04/14/2010</td>
+    <td>hiawatha</td>
+    <td>ia</td>
+    <td>us</td>
+    <td>10 seconds</td>
+    <td>fireball</td>
+    <td>Bright turqouise fireball rapidly descending a...</td>
+  </tr>
+  <tr>
+    <th>684</th>
+    <td>04/14/2010</td>
+    <td>sunrise</td>
+    <td>fl</td>
+    <td>us</td>
+    <td>40 mins</td>
+    <td>light</td>
+    <td>Dim light moving south to north</td>
+  </tr>
+  <tr>
+    <th>685</th>
+    <td>04/14/2010</td>
+    <td>akron</td>
+    <td>oh</td>
+    <td>us</td>
+    <td>1 minute</td>
+    <td>oval</td>
+    <td>Green Fireball  SOUND</td>
+  </tr>
+  <tr>
+    <th>686</th>
+    <td>04/14/2010</td>
+    <td>macks creek</td>
+    <td>mo</td>
+    <td>us</td>
+    <td>current</td>
+    <td>light</td>
+    <td>two objects changing colors in the western sky.</td>
+  </tr>
+  <tr>
+    <th>687</th>
+    <td>04/15/2010</td>
+    <td>dearborn heights</td>
+    <td>mi</td>
+    <td>us</td>
+    <td>aprox. 10 min.</td>
+    <td>light</td>
+    <td>Weird light in the sky near Dearborn Heights&amp;#...</td>
+  </tr>
+  <tr>
+    <th>688</th>
+    <td>04/15/2010</td>
+    <td>kingman</td>
+    <td>az</td>
+    <td>us</td>
+    <td>3-4 minutes</td>
+    <td>circle</td>
+    <td>Kingman disc.  ((NUFORC Note:  Regarding alleg...</td>
+  </tr>
+  <tr>
+    <th>689</th>
+    <td>04/15/2010</td>
+    <td>east hazel crest</td>
+    <td>il</td>
+    <td>us</td>
+    <td>1 minute</td>
+    <td>circle</td>
+    <td>During a perfectly clear sunny day&amp;#44 I witne...</td>
+  </tr>
+  <tr>
+    <th>690</th>
+    <td>04/15/2010</td>
+    <td>ventura</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>8 seconds</td>
+    <td>triangle</td>
+    <td>A Triangular craft  that was highly visible</td>
+  </tr>
+  <tr>
+    <th>691</th>
+    <td>04/15/2010</td>
+    <td>buxton</td>
+    <td>nc</td>
+    <td>us</td>
+    <td>30 - 40 mins</td>
+    <td>fireball</td>
+    <td>Round flaming balls moving sporadically across...</td>
+  </tr>
+  <tr>
+    <th>692</th>
+    <td>04/15/2010</td>
+    <td>bakersfield</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>5-sec</td>
+    <td>chevron</td>
+    <td>While sitting in hot tub talking on phone&amp;#44s...</td>
+  </tr>
+  <tr>
+    <th>693</th>
+    <td>04/15/2010</td>
+    <td>nederland</td>
+    <td>tx</td>
+    <td>us</td>
+    <td>15 minutes</td>
+    <td>light</td>
+    <td>On 4/15/10 from 10:18pm cst to 10:36pm cst in ...</td>
+  </tr>
+  <tr>
+    <th>694</th>
+    <td>04/15/2010</td>
+    <td>minneapolis</td>
+    <td>mn</td>
+    <td>us</td>
+    <td>five minutes</td>
+    <td>disk</td>
+    <td>disc shaped craft seen over kenwood neighborho...</td>
+  </tr>
+  <tr>
+    <th>695</th>
+    <td>04/16/2010</td>
+    <td>marquette</td>
+    <td>mi</td>
+    <td>us</td>
+    <td>about 6 seconds</td>
+    <td>triangle</td>
+    <td>Triangular UFO over marquette michigan</td>
+  </tr>
+  <tr>
+    <th>696</th>
+    <td>04/16/2010</td>
+    <td>wheaton</td>
+    <td>mn</td>
+    <td>us</td>
+    <td>5-7 seconds</td>
+    <td>triangle</td>
+    <td>Flying v with lights around parimeter</td>
+  </tr>
+  <tr>
+    <th>697</th>
+    <td>04/16/2010</td>
+    <td>holt</td>
+    <td>mi</td>
+    <td>us</td>
+    <td>30 sec.</td>
+    <td>disk</td>
+    <td>A bright light in the sky came closer and clos...</td>
+  </tr>
+  <tr>
+    <th>698</th>
+    <td>04/16/2010</td>
+    <td>santa cruz</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>30 seconds</td>
+    <td>formation</td>
+    <td>Group of lights moving and changing direction ...</td>
+  </tr>
+  <tr>
+    <th>699</th>
+    <td>04/17/2010</td>
+    <td>lac du flambeau</td>
+    <td>wi</td>
+    <td>us</td>
+    <td>1 hour</td>
+    <td>light</td>
+    <td>High Orbit Flight of Several Objects Over Wisc...</td>
+  </tr>
+  <tr>
+    <th>700</th>
+    <td>04/17/2010</td>
+    <td>ocean springs</td>
+    <td>ms</td>
+    <td>us</td>
+    <td>5 sec</td>
+    <td>fireball</td>
+    <td>looked at first like a comet</td>
+  </tr>
+  <tr>
+    <th>701</th>
+    <td>04/17/2010</td>
+    <td>albuquerque</td>
+    <td>nm</td>
+    <td>us</td>
+    <td>5 seconds</td>
+    <td>oval</td>
+    <td>It was around the time I stated in the beginni...</td>
+  </tr>
+  <tr>
+    <th>702</th>
+    <td>04/17/2010</td>
+    <td>queen creek</td>
+    <td>az</td>
+    <td>us</td>
+    <td>6-10 min.</td>
+    <td>cross</td>
+    <td>Facing North East appeared to be a statuesque ...</td>
+  </tr>
+  <tr>
+    <th>703</th>
+    <td>04/17/2010</td>
+    <td>nipomo</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>2 seconds</td>
+    <td>disk</td>
+    <td>classic disc and dome shape with horizontal sl...</td>
+  </tr>
+  <tr>
+    <th>704</th>
+    <td>04/17/2010</td>
+    <td>angola</td>
+    <td>ny</td>
+    <td>us</td>
+    <td>1 hour</td>
+    <td>triangle</td>
+    <td>Low hovering/flying triangular craft with flas...</td>
+  </tr>
+  <tr>
+    <th>705</th>
+    <td>04/18/2010</td>
+    <td>meadville</td>
+    <td>pa</td>
+    <td>us</td>
+    <td>10 mins</td>
+    <td>light</td>
+    <td>At least six soundless&amp;#44 orange&amp;#44 glowing ...</td>
+  </tr>
+  <tr>
+    <th>706</th>
+    <td>04/18/2010</td>
+    <td>merced</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>30 sec.</td>
+    <td>triangle</td>
+    <td>As I was working on patrol I looked up at the ...</td>
+  </tr>
+  <tr>
+    <th>707</th>
+    <td>04/18/2010</td>
+    <td>colton</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>3 min</td>
+    <td>other</td>
+    <td>at 1:33 pm i saw a light above the western sky...</td>
+  </tr>
+  <tr>
+    <th>708</th>
+    <td>04/18/2010</td>
+    <td>erin</td>
+    <td>tn</td>
+    <td>us</td>
+    <td>about 4 minutes</td>
+    <td>rectangle</td>
+    <td>Orange multi-colored rectangular craft seen he...</td>
+  </tr>
+  <tr>
+    <th>709</th>
+    <td>04/18/2010</td>
+    <td>missoula</td>
+    <td>mt</td>
+    <td>us</td>
+    <td>5 seconds</td>
+    <td>unknown</td>
+    <td>Single steady white light cruising&amp;#44 then te...</td>
+  </tr>
+  <tr>
+    <th>710</th>
+    <td>04/18/2010</td>
+    <td>new lenox</td>
+    <td>il</td>
+    <td>us</td>
+    <td>about an hour</td>
+    <td>changing</td>
+    <td>2 very bright stationary objects&amp;#44 both appe...</td>
+  </tr>
+  <tr>
+    <th>711</th>
+    <td>04/18/2010</td>
+    <td>truman</td>
+    <td>mn</td>
+    <td>us</td>
+    <td>less than a minute</td>
+    <td>formation</td>
+    <td>Cloudy V formation UFO seen over Southern MN</td>
+  </tr>
+  <tr>
+    <th>712</th>
+    <td>04/19/2010</td>
+    <td>tempe</td>
+    <td>az</td>
+    <td>us</td>
+    <td>5 mins</td>
+    <td>changing</td>
+    <td>Tiny neon blue light ufo wittnessed by three i...</td>
+  </tr>
+  <tr>
+    <th>713</th>
+    <td>04/19/2010</td>
+    <td>honolulu</td>
+    <td>hi</td>
+    <td>us</td>
+    <td>30 minutes</td>
+    <td>triangle</td>
+    <td>Honolulu Hawaii - Strange Triangle aircraft  p...</td>
+  </tr>
+  <tr>
+    <th>714</th>
+    <td>04/19/2010</td>
+    <td>cocoa</td>
+    <td>fl</td>
+    <td>us</td>
+    <td>30 secs</td>
+    <td>unknown</td>
+    <td>Four green lights seen close to the ground whi...</td>
+  </tr>
+  <tr>
+    <th>715</th>
+    <td>04/19/2010</td>
+    <td>porterville</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>31sec</td>
+    <td>other</td>
+    <td>((HOAX??))  9;25pm I looked  SE and there it w...</td>
+  </tr>
+  <tr>
+    <th>716</th>
+    <td>04/20/2010</td>
+    <td>vancouver</td>
+    <td>wa</td>
+    <td>us</td>
+    <td>16 minutes</td>
+    <td>sphere</td>
+    <td>4/20/10 7:35 vancouver wa sphere 16  a flying ...</td>
+  </tr>
+  <tr>
+    <th>717</th>
+    <td>04/20/2010</td>
+    <td>fairfield (east of)</td>
+    <td>tx</td>
+    <td>us</td>
+    <td>45 minutes</td>
+    <td>changing</td>
+    <td>huge light that seemed to hover and then quick...</td>
+  </tr>
+  <tr>
+    <th>718</th>
+    <td>04/20/2010</td>
+    <td>north myrtle beach</td>
+    <td>sc</td>
+    <td>us</td>
+    <td>30 seconds</td>
+    <td>circle</td>
+    <td>Orange Lights/Diagonal Line of 3 Lights</td>
+  </tr>
+  <tr>
+    <th>719</th>
+    <td>04/20/2010</td>
+    <td>san clemente</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>10 minutes</td>
+    <td>triangle</td>
+    <td>Triangle over I-5 near San Clemente and bright...</td>
+  </tr>
+  <tr>
+    <th>720</th>
+    <td>04/20/2010</td>
+    <td>keswick (canada)</td>
+    <td>on</td>
+    <td>ca</td>
+    <td>15 min</td>
+    <td>light</td>
+    <td>((HOAX))  it was coming in and out of focus bu...</td>
+  </tr>
+  <tr>
+    <th>721</th>
+    <td>04/20/2010</td>
+    <td>las vegas</td>
+    <td>nv</td>
+    <td>us</td>
+    <td>10 minutes</td>
+    <td>fireball</td>
+    <td>12 Flickering Orange Lights Over Las Vegas&amp;#44 NV</td>
+  </tr>
+  <tr>
+    <th>722</th>
+    <td>04/20/2010</td>
+    <td>philadelphia</td>
+    <td>pa</td>
+    <td>us</td>
+    <td>approx.3 hrs.</td>
+    <td>triangle</td>
+    <td>I think it&amp;#39s important that Air Traffice fr...</td>
+  </tr>
+  <tr>
+    <th>723</th>
+    <td>04/20/2010</td>
+    <td>post falls</td>
+    <td>id</td>
+    <td>us</td>
+    <td>in filed by my house</td>
+    <td>light</td>
+    <td>It was looking at my house&amp;#44 in tryed to act...</td>
+  </tr>
+  <tr>
+    <th>724</th>
+    <td>04/21/2010</td>
+    <td>waldport</td>
+    <td>or</td>
+    <td>us</td>
+    <td>1 hour</td>
+    <td>triangle</td>
+    <td>Triangles/Cones</td>
+  </tr>
+  <tr>
+    <th>725</th>
+    <td>04/21/2010</td>
+    <td>yarmouth</td>
+    <td>me</td>
+    <td>us</td>
+    <td>20 seconds</td>
+    <td>light</td>
+    <td>Early morning dancing star.  ((NUFORC Note:  P...</td>
+  </tr>
+  <tr>
+    <th>726</th>
+    <td>04/21/2010</td>
+    <td>sherman oaks</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>1.0 hours</td>
+    <td>sphere</td>
+    <td>Stationary bright light observed foor over an ...</td>
+  </tr>
+  <tr>
+    <th>727</th>
+    <td>04/21/2010</td>
+    <td>halifax (canada)</td>
+    <td>ns</td>
+    <td>ca</td>
+    <td>2.5 hours</td>
+    <td>light</td>
+    <td>Long&amp;#44 strait&amp;#44 bright&amp;#44 green light abo...</td>
+  </tr>
+  <tr>
+    <th>728</th>
+    <td>04/21/2010</td>
+    <td>kirkland</td>
+    <td>wa</td>
+    <td>us</td>
+    <td>15 seconds</td>
+    <td>rectangle</td>
+    <td>I saw a very long object&amp;#44 with three white ...</td>
+  </tr>
+  <tr>
+    <th>729</th>
+    <td>04/21/2010</td>
+    <td>squaw valley</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>every week</td>
+    <td>unknown</td>
+    <td>Strange light has ocasional shape and departs ...</td>
+  </tr>
+  <tr>
+    <th>730</th>
+    <td>04/22/2010</td>
+    <td>easton</td>
+    <td>pa</td>
+    <td>us</td>
+    <td>12 seconds</td>
+    <td>light</td>
+    <td>Fast moving blue dot over Delaware River near ...</td>
+  </tr>
+  <tr>
+    <th>731</th>
+    <td>04/22/2010</td>
+    <td>kingston</td>
+    <td>nh</td>
+    <td>us</td>
+    <td>10 seconds</td>
+    <td>sphere</td>
+    <td>Large white orb hovering in the sky.</td>
+  </tr>
+  <tr>
+    <th>732</th>
+    <td>04/22/2010</td>
+    <td>eunice</td>
+    <td>la</td>
+    <td>us</td>
+    <td>an hour and 1/2</td>
+    <td>circle</td>
+    <td>Well my family went out shopping and when they...</td>
+  </tr>
+  <tr>
+    <th>733</th>
+    <td>04/22/2010</td>
+    <td>claremont</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>2-3 minutes</td>
+    <td>unknown</td>
+    <td>Sighting of 12 bright&amp;#44 shiny objects dartin...</td>
+  </tr>
+  <tr>
+    <th>734</th>
+    <td>04/22/2010</td>
+    <td>beaufort</td>
+    <td>sc</td>
+    <td>us</td>
+    <td>6 minutes</td>
+    <td>circle</td>
+    <td>2 Black circles moving in a straight line.</td>
+  </tr>
+  <tr>
+    <th>735</th>
+    <td>04/22/2010</td>
+    <td>santa barbara</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>15 seconds</td>
+    <td>chevron</td>
+    <td>Large Chevron shaped craft and bright Orbs ove...</td>
+  </tr>
+  <tr>
+    <th>736</th>
+    <td>04/22/2010</td>
+    <td>lagrangeville</td>
+    <td>ny</td>
+    <td>us</td>
+    <td>3 to 5 minutes</td>
+    <td>cigar</td>
+    <td>Object with bright pulsating white lights seen...</td>
+  </tr>
+  <tr>
+    <th>737</th>
+    <td>04/22/2010</td>
+    <td>santa barbara</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>on and off 30 minutes.</td>
+    <td>light</td>
+    <td>Sighting of orbs after report of large boomera...</td>
+  </tr>
+  <tr>
+    <th>738</th>
+    <td>04/23/2010</td>
+    <td>stillwater</td>
+    <td>mn</td>
+    <td>us</td>
+    <td>30 minutes</td>
+    <td>sphere</td>
+    <td>A strange glowing / pulsating colored light wa...</td>
+  </tr>
+  <tr>
+    <th>739</th>
+    <td>04/23/2010</td>
+    <td>atlanta (after takeoff; in flight)</td>
+    <td>ga</td>
+    <td>us</td>
+    <td>5 seconds</td>
+    <td>sphere</td>
+    <td>White spherical orb seen from airliner.</td>
+  </tr>
+  <tr>
+    <th>740</th>
+    <td>04/23/2010</td>
+    <td>hagerstown</td>
+    <td>md</td>
+    <td>us</td>
+    <td>5 minutes</td>
+    <td>formation</td>
+    <td>multiple objects in large formation in the aft...</td>
+  </tr>
+  <tr>
+    <th>741</th>
+    <td>04/23/2010</td>
+    <td>westwood</td>
+    <td>nj</td>
+    <td>us</td>
+    <td>30 seconds</td>
+    <td>other</td>
+    <td>Pyramidal Craft over Westwood NJ</td>
+  </tr>
+  <tr>
+    <th>742</th>
+    <td>04/23/2010</td>
+    <td>fort lauderdale</td>
+    <td>fl</td>
+    <td>us</td>
+    <td>20 minutes</td>
+    <td>light</td>
+    <td>Two stationary lights off Fort Lauderdale</td>
+  </tr>
+  <tr>
+    <th>743</th>
+    <td>04/23/2010</td>
+    <td>coquitlam (canada)</td>
+    <td>bc</td>
+    <td>ca</td>
+    <td>2 min.</td>
+    <td>unknown</td>
+    <td>Object circling the Moon.  ((NUFORC Note:  Dat...</td>
+  </tr>
+  <tr>
+    <th>744</th>
+    <td>04/23/2010</td>
+    <td>ogden</td>
+    <td>ut</td>
+    <td>us</td>
+    <td>3-5 seconds</td>
+    <td>light</td>
+    <td>White light over Ogden&amp;#44 Utah</td>
+  </tr>
+  <tr>
+    <th>745</th>
+    <td>04/23/2010</td>
+    <td>yorba linda</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>5 seconds</td>
+    <td>cigar</td>
+    <td>twinkie shaped object with lights hovering ove...</td>
+  </tr>
+  <tr>
+    <th>746</th>
+    <td>04/23/2010</td>
+    <td>corona</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>1 minute</td>
+    <td>circle</td>
+    <td>just flew from the east to the west</td>
+  </tr>
+  <tr>
+    <th>747</th>
+    <td>04/24/2010</td>
+    <td>haverhill</td>
+    <td>ma</td>
+    <td>us</td>
+    <td>30 mins</td>
+    <td>unknown</td>
+    <td>small object floating moving up and down blink...</td>
+  </tr>
+  <tr>
+    <th>748</th>
+    <td>04/24/2010</td>
+    <td>east islip</td>
+    <td>ny</td>
+    <td>us</td>
+    <td>1 minute</td>
+    <td>sphere</td>
+    <td>2 silver spheres zigzaging very high in the at...</td>
+  </tr>
+  <tr>
+    <th>749</th>
+    <td>04/24/2010</td>
+    <td>austin</td>
+    <td>tx</td>
+    <td>us</td>
+    <td>2 minutes</td>
+    <td>light</td>
+    <td>I saw four orange lights in a triangular forma...</td>
+  </tr>
+  <tr>
+    <th>750</th>
+    <td>04/24/2010</td>
+    <td>west covina</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>3 hours</td>
+    <td>formation</td>
+    <td>ufo west covina&amp;#44 ca</td>
+  </tr>
+  <tr>
+    <th>751</th>
+    <td>04/24/2010</td>
+    <td>louisville</td>
+    <td>ky</td>
+    <td>us</td>
+    <td>20 seconds</td>
+    <td>sphere</td>
+    <td>A silver sphere spotted in Louisville Kentucky.</td>
+  </tr>
+  <tr>
+    <th>752</th>
+    <td>04/24/2010</td>
+    <td>lake elsinore</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>4-5 minutes</td>
+    <td>disk</td>
+    <td>Disk light object with rotating white lights a...</td>
+  </tr>
+  <tr>
+    <th>753</th>
+    <td>04/24/2010</td>
+    <td>houston</td>
+    <td>tx</td>
+    <td>us</td>
+    <td>10 minutes</td>
+    <td>light</td>
+    <td>Orange lights seen over the Houston area trave...</td>
+  </tr>
+  <tr>
+    <th>754</th>
+    <td>04/24/2010</td>
+    <td>houston</td>
+    <td>tx</td>
+    <td>us</td>
+    <td>1 hour</td>
+    <td>circle</td>
+    <td>7-10 Orange/Red Lights seen&amp;#44 blackberry bat...</td>
+  </tr>
+  <tr>
+    <th>755</th>
+    <td>04/24/2010</td>
+    <td>cranford</td>
+    <td>nj</td>
+    <td>us</td>
+    <td>30 minutes+</td>
+    <td>light</td>
+    <td>We saw the government reaction to the lights a...</td>
+  </tr>
+  <tr>
+    <th>756</th>
+    <td>04/25/2010</td>
+    <td>towson</td>
+    <td>md</td>
+    <td>us</td>
+    <td>?</td>
+    <td>disk</td>
+    <td>We saw a flying saucer out side our window.</td>
+  </tr>
+  <tr>
+    <th>757</th>
+    <td>04/25/2010</td>
+    <td>duncan (canada)</td>
+    <td>bc</td>
+    <td>ca</td>
+    <td>few seconds</td>
+    <td>unknown</td>
+    <td>Full daylight/sun&amp;#44 reflective silvery objec...</td>
+  </tr>
+  <tr>
+    <th>758</th>
+    <td>04/25/2010</td>
+    <td>kaufman</td>
+    <td>tx</td>
+    <td>us</td>
+    <td>5 min</td>
+    <td>fireball</td>
+    <td>I was looking west at the night sky looking fo...</td>
+  </tr>
+  <tr>
+    <th>759</th>
+    <td>04/25/2010</td>
+    <td>kaufman</td>
+    <td>tx</td>
+    <td>us</td>
+    <td>6 min</td>
+    <td>fireball</td>
+    <td>My report of Sunday night April 24 9:50 pm 17:...</td>
+  </tr>
+  <tr>
+    <th>760</th>
+    <td>04/25/2010</td>
+    <td>lake elsinore</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>5 min</td>
+    <td>oval</td>
+    <td>((HOAX))  disk flew up very fast</td>
+  </tr>
+  <tr>
+    <th>761</th>
+    <td>04/26/2010</td>
+    <td>sedona</td>
+    <td>az</td>
+    <td>us</td>
+    <td>3 seconds</td>
+    <td>disk</td>
+    <td>In April 2010 myself and my wife were in Sedon...</td>
+  </tr>
+  <tr>
+    <th>762</th>
+    <td>04/26/2010</td>
+    <td>tallahassee</td>
+    <td>fl</td>
+    <td>us</td>
+    <td>30 min</td>
+    <td>sphere</td>
+    <td>Tallahassee Sighting</td>
+  </tr>
+  <tr>
+    <th>763</th>
+    <td>04/26/2010</td>
+    <td>markle</td>
+    <td>in</td>
+    <td>us</td>
+    <td>2 mins</td>
+    <td>sphere</td>
+    <td>PIC: 5+ crafts seen on 69&amp;#44 &amp;#44</td>
+  </tr>
+  <tr>
+    <th>764</th>
+    <td>04/26/2010</td>
+    <td>laguna hills</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>3 minutes</td>
+    <td>fireball</td>
+    <td>Pulsating orb appears over houses and draws po...</td>
+  </tr>
+  <tr>
+    <th>765</th>
+    <td>04/27/2010</td>
+    <td>broomfield</td>
+    <td>co</td>
+    <td>us</td>
+    <td>60 seconds</td>
+    <td>sphere</td>
+    <td>A young man in Colorado witnesses three object...</td>
+  </tr>
+  <tr>
+    <th>766</th>
+    <td>04/27/2010</td>
+    <td>chicago</td>
+    <td>il</td>
+    <td>us</td>
+    <td>3-4 min.</td>
+    <td>triangle</td>
+    <td>Individual shinning objects forming a triangle...</td>
+  </tr>
+  <tr>
+    <th>767</th>
+    <td>04/27/2010</td>
+    <td>saxtons river</td>
+    <td>vt</td>
+    <td>us</td>
+    <td>60 seconds</td>
+    <td>sphere</td>
+    <td>High-Speed White Sphere</td>
+  </tr>
+  <tr>
+    <th>768</th>
+    <td>04/28/2010</td>
+    <td>portland</td>
+    <td>or</td>
+    <td>us</td>
+    <td>30 minutes +/-</td>
+    <td>light</td>
+    <td>On the morning of Wednesday April 28 I was sta...</td>
+  </tr>
+  <tr>
+    <th>769</th>
+    <td>04/28/2010</td>
+    <td>virginia beach</td>
+    <td>va</td>
+    <td>us</td>
+    <td>1 hour</td>
+    <td>light</td>
+    <td>Ball of light&amp;#44 smaller lights flying&amp;#44 fl...</td>
+  </tr>
+  <tr>
+    <th>770</th>
+    <td>04/28/2010</td>
+    <td>steger</td>
+    <td>il</td>
+    <td>us</td>
+    <td>2-3 minutes</td>
+    <td>circle</td>
+    <td>One bright orb going East while a much dimmer ...</td>
+  </tr>
+  <tr>
+    <th>771</th>
+    <td>04/28/2010</td>
+    <td>mount vernon</td>
+    <td>wa</td>
+    <td>us</td>
+    <td>moment</td>
+    <td>other</td>
+    <td>Gray&amp;#44 Jellyfish-shaped object with lights s...</td>
+  </tr>
+  <tr>
+    <th>772</th>
+    <td>04/28/2010</td>
+    <td>bloomington</td>
+    <td>in</td>
+    <td>us</td>
+    <td>-2 minutes</td>
+    <td>cigar</td>
+    <td>Daylight Sighting of Cigar-shaped object over ...</td>
+  </tr>
+  <tr>
+    <th>773</th>
+    <td>04/28/2010</td>
+    <td>phoenix</td>
+    <td>az</td>
+    <td>us</td>
+    <td>5 min.</td>
+    <td>cigar</td>
+    <td>ship was very large&amp;#44 dark in color it just ...</td>
+  </tr>
+  <tr>
+    <th>774</th>
+    <td>04/28/2010</td>
+    <td>kinston</td>
+    <td>nc</td>
+    <td>us</td>
+    <td>?</td>
+    <td>unknown</td>
+    <td>very fast over the trees.  ((NUFORC Note:  Pro...</td>
+  </tr>
+  <tr>
+    <th>775</th>
+    <td>04/28/2010</td>
+    <td>honolulu</td>
+    <td>hi</td>
+    <td>us</td>
+    <td>3 to 4 minutes</td>
+    <td>light</td>
+    <td>looked like a intensly bright star&amp;#44brighter...</td>
+  </tr>
+  <tr>
+    <th>776</th>
+    <td>04/28/2010</td>
+    <td>durham</td>
+    <td>ct</td>
+    <td>us</td>
+    <td>1 minute</td>
+    <td>light</td>
+    <td>extremely brightly lit low flying almost silen...</td>
+  </tr>
+  <tr>
+    <th>777</th>
+    <td>04/28/2010</td>
+    <td>new bern</td>
+    <td>nc</td>
+    <td>us</td>
+    <td>5 minutes</td>
+    <td>changing</td>
+    <td>Morphing triangle into jet&amp;#44 Jupiter-bright ...</td>
+  </tr>
+  <tr>
+    <th>778</th>
+    <td>04/28/2010</td>
+    <td>plymouth</td>
+    <td>pa</td>
+    <td>us</td>
+    <td>3 minutes</td>
+    <td>sphere</td>
+    <td>At aproximately 9:19 P.M. Eastern Standard tim...</td>
+  </tr>
+  <tr>
+    <th>779</th>
+    <td>04/28/2010</td>
+    <td>capitola</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>going for about 2 hours</td>
+    <td>disk</td>
+    <td>coming down flying very low around. about 25 r...</td>
+  </tr>
+  <tr>
+    <th>780</th>
+    <td>04/28/2010</td>
+    <td>durant</td>
+    <td>ok</td>
+    <td>us</td>
+    <td>1 min 30sec</td>
+    <td>unknown</td>
+    <td>Super bright light on bottom of craft moving v...</td>
+  </tr>
+  <tr>
+    <th>781</th>
+    <td>04/28/2010</td>
+    <td>senatobia</td>
+    <td>ms</td>
+    <td>us</td>
+    <td>7 min</td>
+    <td>triangle</td>
+    <td>Lights in the  Mississippi sky.</td>
+  </tr>
+  <tr>
+    <th>782</th>
+    <td>04/29/2010</td>
+    <td>las vegas</td>
+    <td>nv</td>
+    <td>us</td>
+    <td>3-4 seconds</td>
+    <td>chevron</td>
+    <td>Chevron-shaped flying wing with 7 large round ...</td>
+  </tr>
+  <tr>
+    <th>783</th>
+    <td>04/29/2010</td>
+    <td>massapequa</td>
+    <td>ny</td>
+    <td>us</td>
+    <td>5 minutes</td>
+    <td>light</td>
+    <td>single light in sky&amp;#44 very fast&amp;#44 and also...</td>
+  </tr>
+  <tr>
+    <th>784</th>
+    <td>04/29/2010</td>
+    <td>indian mound</td>
+    <td>tn</td>
+    <td>us</td>
+    <td>3 min.</td>
+    <td>circle</td>
+    <td>at 20:14 in clear sky. low &amp;#44slow moving&amp;#44...</td>
+  </tr>
+  <tr>
+    <th>785</th>
+    <td>04/29/2010</td>
+    <td>cheyenne</td>
+    <td>wy</td>
+    <td>us</td>
+    <td>7 minutes</td>
+    <td>light</td>
+    <td>Slow moving&amp;#44 silent&amp;#44  bright light trave...</td>
+  </tr>
+  <tr>
+    <th>786</th>
+    <td>04/30/2010</td>
+    <td>somerset</td>
+    <td>ma</td>
+    <td>us</td>
+    <td>02  min</td>
+    <td>sphere</td>
+    <td>Numerous unidentified white sperical objects s...</td>
+  </tr>
+  <tr>
+    <th>787</th>
+    <td>04/30/2010</td>
+    <td>broadview heights</td>
+    <td>oh</td>
+    <td>us</td>
+    <td>1/2 hours</td>
+    <td>circle</td>
+    <td>Me and my family saw weird objects in the sky ...</td>
+  </tr>
+  <tr>
+    <th>788</th>
+    <td>04/30/2010</td>
+    <td>savannah</td>
+    <td>tn</td>
+    <td>us</td>
+    <td>1 hour</td>
+    <td>unknown</td>
+    <td>1 big white light with a row of red lights and...</td>
+  </tr>
+  <tr>
+    <th>789</th>
+    <td>04/30/2010</td>
+    <td>erin (canada)</td>
+    <td>on</td>
+    <td>ca</td>
+    <td>3 min</td>
+    <td>triangle</td>
+    <td>Erin Ontario UFO SIghting</td>
+  </tr>
+  <tr>
+    <th>790</th>
+    <td>04/30/2010</td>
+    <td>lincoln</td>
+    <td>ne</td>
+    <td>us</td>
+    <td>15-20 seconds</td>
+    <td>other</td>
+    <td>I witnessed a some sort of octagon or circular...</td>
+  </tr>
+  <tr>
+    <th>791</th>
+    <td>04/30/2010</td>
+    <td>evansville</td>
+    <td>wy</td>
+    <td>us</td>
+    <td>45 minutes</td>
+    <td>circle</td>
+    <td>Strange Craft By North Casper</td>
+  </tr>
+  <tr>
+    <th>792</th>
+    <td>05/01/2010</td>
+    <td>san  carlos</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>25 -40 seconds</td>
+    <td>triangle</td>
+    <td>I can&amp;#39t explain what i saw but it is the fi...</td>
+  </tr>
+  <tr>
+    <th>793</th>
+    <td>05/01/2010</td>
+    <td>fruitland</td>
+    <td>id</td>
+    <td>us</td>
+    <td>5 minutes</td>
+    <td>triangle</td>
+    <td>Triangular shaped something hovering over a da...</td>
+  </tr>
+  <tr>
+    <th>794</th>
+    <td>05/01/2010</td>
+    <td>newington</td>
+    <td>ct</td>
+    <td>us</td>
+    <td>10 min</td>
+    <td>circle</td>
+    <td>Silver Dots Above Clear Newington&amp;#44 CT Sky</td>
+  </tr>
+  <tr>
+    <th>795</th>
+    <td>05/01/2010</td>
+    <td>san bernardino</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>2 mins</td>
+    <td>formation</td>
+    <td>4 flashing red lights forming a square lthen a...</td>
+  </tr>
+  <tr>
+    <th>796</th>
+    <td>05/01/2010</td>
+    <td>naples</td>
+    <td>fl</td>
+    <td>us</td>
+    <td>5 minutes</td>
+    <td>cigar</td>
+    <td>Sighting on Vanderbilt Beach&amp;#44 Naples&amp;#44 Fl...</td>
+  </tr>
+  <tr>
+    <th>797</th>
+    <td>05/01/2010</td>
+    <td>east boston</td>
+    <td>ma</td>
+    <td>us</td>
+    <td>5-10 minutes</td>
+    <td>disk</td>
+    <td>A large&amp;#44saucer shaped object&amp;#44that i did ...</td>
+  </tr>
+  <tr>
+    <th>798</th>
+    <td>05/01/2010</td>
+    <td>tularosa</td>
+    <td>nm</td>
+    <td>us</td>
+    <td>~30 minutes</td>
+    <td>unknown</td>
+    <td>UFO shot down over Civilians?</td>
+  </tr>
+  <tr>
+    <th>799</th>
+    <td>05/01/2010</td>
+    <td>santa cruz</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>2 minutes</td>
+    <td>circle</td>
+    <td>six orange lights fly over Santa Cruz&amp;#44 CA</td>
+  </tr>
+  <tr>
+    <th>800</th>
+    <td>05/01/2010</td>
+    <td>gig harbor</td>
+    <td>wa</td>
+    <td>us</td>
+    <td>approx half hour</td>
+    <td>light</td>
+    <td>Unusual stationary&amp;#44 elongated and bright li...</td>
+  </tr>
+  <tr>
+    <th>801</th>
+    <td>05/01/2010</td>
+    <td>hallettsville</td>
+    <td>tx</td>
+    <td>us</td>
+    <td>30 seconds</td>
+    <td>triangle</td>
+    <td>It was like a large glass like structure with ...</td>
+  </tr>
+  <tr>
+    <th>802</th>
+    <td>05/01/2010</td>
+    <td>tijeras</td>
+    <td>nm</td>
+    <td>us</td>
+    <td>5 min.</td>
+    <td>circle</td>
+    <td>UFO over Sandia Mountains</td>
+  </tr>
+  <tr>
+    <th>803</th>
+    <td>05/01/2010</td>
+    <td>edson (canada)</td>
+    <td>ab</td>
+    <td>ca</td>
+    <td>about 15 minutes each tim</td>
+    <td>flash</td>
+    <td>Multicolored UFO seen over Edson Alberta Twice</td>
+  </tr>
+  <tr>
+    <th>804</th>
+    <td>05/01/2010</td>
+    <td>richmond</td>
+    <td>va</td>
+    <td>us</td>
+    <td>3-5 minutes.</td>
+    <td>disk</td>
+    <td>I saw a big tilted dark gray saucer-like objec...</td>
+  </tr>
+  <tr>
+    <th>805</th>
+    <td>05/02/2010</td>
+    <td>los angeles</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>30</td>
+    <td>circle</td>
+    <td>saw round gold ball withgray gue coming out sl...</td>
+  </tr>
+  <tr>
+    <th>806</th>
+    <td>05/02/2010</td>
+    <td>bend</td>
+    <td>or</td>
+    <td>us</td>
+    <td>2 minutes</td>
+    <td>disk</td>
+    <td>Silver disk over Oregon</td>
+  </tr>
+  <tr>
+    <th>807</th>
+    <td>05/02/2010</td>
+    <td>alpharetta</td>
+    <td>ga</td>
+    <td>us</td>
+    <td>about 1 minute</td>
+    <td>light</td>
+    <td>I saw a glowing&amp;#44 red object fly through the...</td>
+  </tr>
+  <tr>
+    <th>808</th>
+    <td>05/02/2010</td>
+    <td>berkeley</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>5 minutes</td>
+    <td>circle</td>
+    <td>Blue dotted lights forming a circle. Bright wh...</td>
+  </tr>
+  <tr>
+    <th>809</th>
+    <td>05/02/2010</td>
+    <td>austin</td>
+    <td>tx</td>
+    <td>us</td>
+    <td>4 minutes</td>
+    <td>unknown</td>
+    <td>Amber lights seen in night sky in Austin&amp;#44 T...</td>
+  </tr>
+  <tr>
+    <th>810</th>
+    <td>05/02/2010</td>
+    <td>fort atkinson</td>
+    <td>wi</td>
+    <td>us</td>
+    <td>2 min</td>
+    <td>light</td>
+    <td>three lights over Fort Atkinson&amp;#44 Wisconsin ...</td>
+  </tr>
+  <tr>
+    <th>811</th>
+    <td>05/02/2010</td>
+    <td>hometown</td>
+    <td>il</td>
+    <td>us</td>
+    <td>5 min</td>
+    <td>diamond</td>
+    <td>Diamond shaped object with lights hovering the...</td>
+  </tr>
+  <tr>
+    <th>812</th>
+    <td>05/02/2010</td>
+    <td>wilmington</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>40 seconds</td>
+    <td>oval</td>
+    <td>Orb like object flying low  over wilmington ca...</td>
+  </tr>
+  <tr>
+    <th>813</th>
+    <td>05/03/2010</td>
+    <td>savannah</td>
+    <td>tn</td>
+    <td>us</td>
+    <td>30 seconds</td>
+    <td>unknown</td>
+    <td>bright silver gray color fish shaped object. V...</td>
+  </tr>
+  <tr>
+    <th>814</th>
+    <td>05/03/2010</td>
+    <td>whitman</td>
+    <td>ma</td>
+    <td>us</td>
+    <td>30 second</td>
+    <td>triangle</td>
+    <td>Three red light in the shape of a triangle mov...</td>
+  </tr>
+  <tr>
+    <th>815</th>
+    <td>05/03/2010</td>
+    <td>mchenry</td>
+    <td>il</td>
+    <td>us</td>
+    <td>0ne minute</td>
+    <td>other</td>
+    <td>I saw giant birds flying at very fast speeds i...</td>
+  </tr>
+  <tr>
+    <th>816</th>
+    <td>05/03/2010</td>
+    <td>mchenry</td>
+    <td>il</td>
+    <td>us</td>
+    <td>30 secs.</td>
+    <td>disk</td>
+    <td>((HOAX??))  I thought they were birds but the ...</td>
+  </tr>
+  <tr>
+    <th>817</th>
+    <td>05/03/2010</td>
+    <td>louisville</td>
+    <td>ky</td>
+    <td>us</td>
+    <td>22:00</td>
+    <td>changing</td>
+    <td>Bright objects and flashes over Louisville&amp;#44...</td>
+  </tr>
+  <tr>
+    <th>818</th>
+    <td>05/03/2010</td>
+    <td>omaha</td>
+    <td>ne</td>
+    <td>us</td>
+    <td>4 mins</td>
+    <td>diamond</td>
+    <td>Walking on the South campus of the University ...</td>
+  </tr>
+  <tr>
+    <th>819</th>
+    <td>05/03/2010</td>
+    <td>knoxville</td>
+    <td>tn</td>
+    <td>us</td>
+    <td>3 minutes</td>
+    <td>unknown</td>
+    <td>I just witnessed a large static formation or 1...</td>
+  </tr>
+  <tr>
+    <th>820</th>
+    <td>05/03/2010</td>
+    <td>ukiah</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>current</td>
+    <td>light</td>
+    <td>Small lights that fly around in formation</td>
+  </tr>
+  <tr>
+    <th>821</th>
+    <td>05/03/2010</td>
+    <td>state college</td>
+    <td>pa</td>
+    <td>us</td>
+    <td>~5 minutes</td>
+    <td>light</td>
+    <td>Around 12 red lights moving in loose formation...</td>
+  </tr>
+  <tr>
+    <th>822</th>
+    <td>05/04/2010</td>
+    <td>pierce</td>
+    <td>tx</td>
+    <td>us</td>
+    <td>1 hour 30 minutes</td>
+    <td>light</td>
+    <td>Circular objects with very bright hallow ((sic...</td>
+  </tr>
+  <tr>
+    <th>823</th>
+    <td>05/04/2010</td>
+    <td>san angelo</td>
+    <td>tx</td>
+    <td>us</td>
+    <td>approx 45 sec</td>
+    <td>unknown</td>
+    <td>3 unknown objects in the skies of west Texas</td>
+  </tr>
+  <tr>
+    <th>824</th>
+    <td>05/04/2010</td>
+    <td>santa clarita</td>
+    <td>ca</td>
+    <td>us</td>
+    <td>12 minutes</td>
+    <td>formation</td>
+    <td>It was around 9:20pm last night (May 4&amp;#44 201...</td>
+  </tr>
+  <tr>
+    <th>825</th>
+    <td>05/04/2010</td>
+    <td>ewa beach</td>
+    <td>hi</td>
+    <td>us</td>
+    <td>2 seconds</td>
+    <td>light</td>
+    <td>Two bright flashes lighting up the entire sky ...</td>
+  </tr>
+</tbody>
+</table>
+</div>
+<script>
+
+// // ========================================================================================================================= //
+// // ============================================== Pagination Not working with search = ( ====================================
+
+
+ // get the table element
+
+ var $table = document.getElementById("alienTable"),
+ // number of rows per page
+ $n = 50,
+ // number of rows of the table
+ $rowCount = $table.rows.length,
+ // get the first cell's tag name (in the first row)
+ $firstRow = $table.rows[0].firstElementChild.tagName,
+ // boolean var to check if table has a head row
+ $hasHead = ($firstRow === "TH"),
+ // an array to hold each row
+ $tr = [],
+ // loop counters, to start count from rows[1] (2nd row) if the first row has a head tag
+ $i,$ii,$j = ($hasHead)?1:0,
+ // holds the first row if it has a (<TH>) & nothing if (<TD>)
+ $th = ($hasHead?$table.rows[(0)].outerHTML:"");
+ // count the number of pages
+ var $pageCount = Math.ceil($rowCount / $n);
+ // if we had one page only, then we have nothing to do ..
+ if ($pageCount > 1) {
+     // assign each row outHTML (tag name & innerHTML) to the array
+     for ($i = $j,$ii = 0; $i < $rowCount; $i++, $ii++)
+         $tr[$ii] = $table.rows[$i].outerHTML;
+     // create a div block to hold the buttons
+     $table.insertAdjacentHTML("afterend","<div id='buttons'></div");
+     // the first sort, default page is the first one
+     sort(1);
+ }
+
+ // ($p) is the selected page number. it will be generated when a user clicks a button
+ function sort($p) {
+     /* create ($rows) a variable to hold the group of rows
+     ** to be displayed on the selected page,
+     ** ($s) the start point .. the first row in each page, Do The Math
+     */
+     var $rows = $th,$s = (($n * $p)-$n);
+     for ($i = $s; $i < ($s+$n) && $i < $tr.length; $i++)
+         $rows += $tr[$i];
+   
+     // now the table has a processed group of rows ..
+     $table.innerHTML = $rows;
+     // create the pagination buttons
+     document.getElementById("buttons").innerHTML = pageButtons($pageCount,$p);
+     // CSS Stuff
+     document.getElementById("id"+$p).setAttribute("class","active");
+ }
+
+
+ // ($pCount) : number of pages,($cur) : current page, the selected one ..
+ function pageButtons($pCount,$cur) {
+     /* this variables will disable the "Prev" button on 1st page
+        and "next" button on the last one */
+     var $prevDis = ($cur == 1)?"disabled":"",
+         $nextDis = ($cur == $pCount)?"disabled":"",
+         /* this ($buttons) will hold every single button needed
+         ** it will creates each button and sets the onclick attribute
+         ** to the "sort" function with a special ($p) number..
+         */
+         $buttons = "<input type='button' value='&lt;&lt; Prev' onclick='sort("+($cur - 1)+")' "+$prevDis+">";
+     for ($i=1; $i<=$pCount;$i++)
+         $buttons += "<input type='button' id='id"+$i+"'value='"+$i+"' onclick='sort("+$i+")'>";
+     $buttons += "<input type='button' value='Next &gt;&gt;' onclick='sort("+($cur + 1)+")' "+$nextDis+">";
+     return $buttons;
+ }
+ 
+
+</script>
+
+</body>
+</html>
