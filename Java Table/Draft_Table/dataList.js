@@ -1,4 +1,4 @@
-var alienData = [{
+var dataList = [{
       "datetime": "1/1/2010",
       "city": "benton",
       "state": "ar",
@@ -7434,4 +7434,5 @@ var alienData = [{
     }
   ]
 
-  console.log(alienData)
+  console.log(dataList)
+  

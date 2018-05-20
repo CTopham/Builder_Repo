@@ -9,6 +9,8 @@ var $country = document.querySelector("#country");
 var $shape = document.querySelector("#shape");
 var $dTime = document.querySelector("#dtime");
 
+// =========================City==============================
+
 // Add an event listener to the searchButton, call handleSearchButtonClick when clicked
 $city.addEventListener("click", citySearch);
 
@@ -36,7 +38,6 @@ function renderTable() {
 }
 renderTable();
 
-// =========================City==============================
 
 function citySearch() {
   // Format the user's search by removing leading and trailing whitespace, lowercase the string
