@@ -1,6 +1,8 @@
 import os
+import json
 import datetime as dt
 import sqlalchemy
+import pandas as pd
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, func
@@ -30,7 +32,7 @@ Base = automap_base()
 Base.prepare(engine, reflect=True)
 
 # Save references to the invoices and invoice_items tables
-#otulist = Base.classes.samples
+otulist = Base.classes.samples
 metameta = Base.classes.samples_metadata
 
 # Create our session (link) from Python to the DB
@@ -96,19 +98,37 @@ def names():
 
 @app.route("/wfreq")
 def wash():
-    results = session.query(metameta.WFREQ)
+    results = session.query(metameta.WFREQ).\
+    order_by(metameta.WFREQ).all()
     washlist = list(np.ravel(results))
     return jsonify(washlist)
 
 
-@app.route('/wfreq/<sample>')
-def washersample(sample='BB_940'):
-    results = session.query(metameta.WFREQ)
-        #filter(metameta.SAMPLEID == sample).\
-        #group_by(metameta.SAMPLEID).all().\
-        #washlist = list(np.ravel(results))
+@app.route("/testpage/<sample>")
+def testroute(sample = 'BB_940'):
+    results = session.query(otulist.otu_id, otulist.sample).\
+    order_by(metameta.WFREQ).all()
+    washlist = list(np.ravel(results))
+    return jsonify(washlist)
 
-    return jsonify(results)
+
+
+@app.route("/names/<sample>")
+def sampleit(sample = 'BB_940'):
+    csv_path = "DataSets/belly_button_biodiversity_samples.csv"
+    df = pd.read_csv(csv_path, encoding="utf-8", dtype=object)
+    df_sample = df[sample]
+    df_sample = pd.DataFrame(list(df_sample))
+    df_sample.rename(columns={0: 'Sample'}, inplace=True)
+    df_sample[['Sample']] = df_sample[['Sample']].apply(pd.to_numeric)
+    df_sample = df_sample.loc[df_sample["Sample"] > 0]
+    df_sample = df_sample.sort_values('Sample', ascending=False)
+
+    #df_sample.to_dict
+    
+    jsonfiles = json.loads(df_sample.to_json(orient='records'))
+    return jsonify(jsonfiles)
+    
 
 if __name__ == "__main__":
     app.run(debug=True)
