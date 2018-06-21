@@ -4,12 +4,15 @@ var mapbox = "https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}
 // Creating map object
 var myMap = L.map("map", {
   center: [40.7, -73.95],
-  zoom: 2
+  zoom: 1.3
 });
 
 // Adding tile layer to the map
 L.tileLayer(mapbox).addTo(myMap);
 
+function markerSize(mag) {
+  return mag / 40;
+}
 
 var url = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_month.geojson";
 
@@ -24,6 +27,7 @@ d3.json(url, function(response) {
   // Loop through our data...
     for (var i = 0; i < response.features.length; i++) {
       // set the data location property to a variable
+      console.log(response.features[i].properties.mag)
       var location = response.features[i].geometry;
   
       // If the data has a location property...
@@ -32,20 +36,16 @@ d3.json(url, function(response) {
         // Add a new marker to the cluster group and bind a pop-up
         markers.addLayer(L.circle([location.coordinates[1], location.coordinates[0]],{fillOpacity: 0.75,
           color: "red",
-          fillColor: "purple", radius:response.features[i].properties.mag}));
+          fillColor: "purple", 
+          radius:response.features[i].properties.mag}));
 
       }
       
     }
     
-    
-  
     // Add our marker cluster layer to the map
     myMap.addLayer(markers);
-
-    
-  
-  });
+});
   //===============================Bubbles=================================================
   
   // //var url = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_month.geojson";
