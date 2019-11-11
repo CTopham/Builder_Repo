@@ -11,7 +11,7 @@ import numpy as np
 
 def init_browser():
     executable_path = {
-        'executable_path': r'C:\Users\Craig\Desktop\chromedriver.exe'}
+        'executable_path': r'C:\Users\14804\Desktop\chromedriver.exe'}
     return Browser("chrome", **executable_path, headless=False)
 
 
